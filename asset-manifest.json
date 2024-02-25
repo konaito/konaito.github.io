@@ -1,0 +1,19 @@
+{
+  "files": {
+    "main.js": "/static/js/main.1ed86fa6.js",
+    "static/media/flask-svgrepo-com.svg": "/static/media/flask-svgrepo-com.f74879d56c9294439efcb2f1eaaabf6d.svg",
+    "static/media/nextjs-fill-svgrepo-com.svg": "/static/media/nextjs-fill-svgrepo-com.c15cc90ef3084ba7e4827e0cbc396ad6.svg",
+    "static/media/typescript-official-svgrepo-com.svg": "/static/media/typescript-official-svgrepo-com.3ca8a525abd0f8887aae0089dc4ed25c.svg",
+    "static/media/firebase-svgrepo-com.svg": "/static/media/firebase-svgrepo-com.8f69a13150a1594d8fb73df74f12b548.svg",
+    "static/media/light-solidity-svgrepo-com.svg": "/static/media/light-solidity-svgrepo-com.074c2e6e04376df91c3c8535f68a5845.svg",
+    "index.html": "/index.html",
+    "static/media/c.svg": "/static/media/c.c86ab343915e382feeddbee294b35c0a.svg",
+    "static/media/vue-vuejs-javascript-js-framework-svgrepo-com (1).svg": "/static/media/vue-vuejs-javascript-js-framework-svgrepo-com (1).78eba050430c5a2ce800914c92986c9c.svg",
+    "static/media/flutter-svgrepo-com.svg": "/static/media/flutter-svgrepo-com.9eec95c1fffd93cba12beaf7b24b7802.svg",
+    "static/media/fastapi-svgrepo-com.svg": "/static/media/fastapi-svgrepo-com.1536093a1656eaee7a8d589641ff2803.svg",
+    "main.1ed86fa6.js.map": "/static/js/main.1ed86fa6.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.1ed86fa6.js"
+  ]
+}
