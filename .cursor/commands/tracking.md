@@ -120,3 +120,4 @@ window.addEventListener('scroll', function() {
 3. ブラウザの開発者ツールのネットワークタブで、`/api/track`へのPOSTリクエストを確認
 4. イベント送信時に`window.MyTracker`の存在チェックが正しく行われているか確認
 
+

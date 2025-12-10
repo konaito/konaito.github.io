@@ -120,3 +120,4 @@ POST https://analytics.fybe.jp/api/track
 2. ダッシュボードで正しいオリジン（ドメイン）を選択しているか確認
 3. 時間範囲のフィルターを確認
 
+
