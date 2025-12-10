@@ -14,7 +14,7 @@ WebサイトにAnalyticsトラッキングスクリプトを追加し、ペー�
 対象のHTMLファイルの`</head>`タグの直前、または`</body>`タグの直前に以下のスクリプトタグを追加します：
 
 ```html
-<script src="https://analytics.fybe.jp/tracker.js" async defer></script>
+<script src="https://analytics.fybe.jp/analytics.js" async defer></script>
 ```
 
 **推奨配置場所**: `</head>`タグの直前
@@ -30,7 +30,7 @@ WebサイトにAnalyticsトラッキングスクリプトを追加し、ペー�
   <title>あなたのサイト</title>
   
   <!-- トラッキングスクリプト -->
-  <script src="https://analytics.fybe.jp/tracker.js" async defer></script>
+  <script src="https://analytics.fybe.jp/analytics.js" async defer></script>
 </head>
 <body>
   <!-- あなたのコンテンツ -->
@@ -54,7 +54,7 @@ WebサイトにAnalyticsトラッキングスクリプトを追加し、ペー�
 
 1. ブラウザでHTMLファイルを開く
 2. 開発者ツールのネットワークタブを開く
-3. `tracker.js`が正常に読み込まれているか確認
+3. `analytics.js`が正常に読み込まれているか確認
 4. `/api/track`へのPOSTリクエストが送信されているか確認（ステータスコード204が期待される）
 
 ## データの確認
@@ -111,8 +111,8 @@ POST https://analytics.fybe.jp/api/track
 ### スクリプトが読み込まれない場合
 
 1. ブラウザのコンソールでエラーを確認
-2. ネットワークタブで`tracker.js`の読み込み状況を確認
-3. `https://analytics.fybe.jp/tracker.js`に直接アクセスして、スクリプトが利用可能か確認
+2. ネットワークタブで`analytics.js`の読み込み状況を確認
+3. `https://analytics.fybe.jp/analytics.js`に直接アクセスして、スクリプトが利用可能か確認
 
 ### データがダッシュボードに表示されない場合
 
