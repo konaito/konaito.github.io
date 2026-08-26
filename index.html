@@ -3,94 +3,421 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome</title>
+    <title>konaito — Engineering Portfolio</title>
+    <meta name="description" content="konaito (Kota Naito) — engineering portfolio. AI agents, web services, native apps, and 188 repositories of shipped work.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=Instrument+Serif:ital@0;1&family=Zen+Old+Mincho:wght@400;700&family=IBM+Plex+Sans+JP:wght@400;500&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        :root {
+            --paper: #fdfcfa;
+            --ink: #1a1815;
+            --ink-soft: #57534b;
+            --ink-faint: #8a857b;
+            --line: #e3ded4;
+            --line-strong: #c9c2b4;
+            --accent: #c2410c;
+            --accent-soft: #fff1e8;
+            --serif: "Instrument Serif", "Zen Old Mincho", serif;
+            --mono: "IBM Plex Mono", monospace;
+            --sans: "IBM Plex Sans JP", -apple-system, sans-serif;
         }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
+            background: var(--paper);
+            color: var(--ink);
+            font-family: var(--sans);
+            font-size: 15px;
+            line-height: 1.75;
+            -webkit-font-smoothing: antialiased;
         }
-
-        .container {
-            background: white;
-            border-radius: 20px;
-            padding: 60px 40px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            text-align: center;
-            max-width: 600px;
-            width: 100%;
+        /* 紙のような粒子感 */
+        body::before {
+            content: "";
+            position: fixed; inset: 0;
+            pointer-events: none;
+            opacity: 0.5;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 0.1 0 0 0 0 0.09 0 0 0 0 0.08 0 0 0 0.03 0'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)'/%3E%3C/svg%3E");
+            z-index: 10;
         }
+        .wrap { max-width: 880px; margin: 0 auto; padding: 0 24px; }
 
-        h1 {
-            color: #333;
-            font-size: 2.5em;
-            margin-bottom: 20px;
-            font-weight: 700;
+        /* ── ヘッダー ── */
+        header {
+            display: flex; justify-content: space-between; align-items: baseline;
+            padding: 28px 0 0;
+            font-family: var(--mono); font-size: 12px;
         }
-
-        p {
-            color: #666;
-            font-size: 1.2em;
-            line-height: 1.6;
-            margin-bottom: 30px;
+        header .brand { letter-spacing: 0.08em; color: var(--ink-soft); }
+        .lang-toggle {
+            display: inline-flex; border: 1px solid var(--line-strong); border-radius: 2px; overflow: hidden;
         }
-
-        .emoji {
-            font-size: 4em;
-            margin-bottom: 20px;
+        .lang-toggle button {
+            font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em;
+            padding: 4px 12px; border: none; background: transparent; color: var(--ink-faint);
+            cursor: pointer;
         }
+        .lang-toggle button.active { background: var(--ink); color: var(--paper); }
 
-        .button {
-            display: inline-block;
-            padding: 15px 30px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 600;
-            transition: transform 0.2s, box-shadow 0.2s;
-            margin-top: 20px;
+        /* ── ヒーロー ── */
+        .hero { padding: 88px 0 64px; border-bottom: 1px solid var(--line-strong); }
+        .hero .kicker {
+            font-family: var(--mono); font-size: 12px; letter-spacing: 0.22em;
+            text-transform: uppercase; color: var(--accent); margin-bottom: 20px;
         }
-
-        .button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.4);
+        .hero h1 {
+            font-family: var(--serif); font-weight: 400;
+            font-size: clamp(44px, 8vw, 84px);
+            line-height: 1.08; letter-spacing: -0.01em;
         }
+        .hero h1 em { font-style: italic; color: var(--accent); }
+        .hero .lede {
+            margin-top: 28px; max-width: 560px;
+            color: var(--ink-soft); font-size: 16px;
+        }
+        .hero .links { margin-top: 32px; display: flex; gap: 20px; flex-wrap: wrap; }
+        .hero .links a {
+            font-family: var(--mono); font-size: 13px; color: var(--ink);
+            text-decoration: none; border-bottom: 1px solid var(--line-strong);
+            padding-bottom: 2px; transition: border-color .15s, color .15s;
+        }
+        .hero .links a:hover { color: var(--accent); border-color: var(--accent); }
 
-        @media (max-width: 600px) {
-            h1 {
-                font-size: 2em;
-            }
-            
-            p {
-                font-size: 1em;
-            }
-            
-            .container {
-                padding: 40px 20px;
-            }
+        /* ── セクション共通 ── */
+        section { padding: 64px 0; border-bottom: 1px solid var(--line); }
+        .sec-head { display: flex; align-items: baseline; gap: 16px; margin-bottom: 40px; }
+        .sec-head .num { font-family: var(--mono); font-size: 12px; color: var(--accent); }
+        .sec-head h2 {
+            font-family: var(--serif); font-weight: 400; font-size: 32px; letter-spacing: 0.01em;
+        }
+        .sec-head .rule { flex: 1; height: 1px; background: var(--line); }
+
+        /* ── 統計 ── */
+        .stat-grid {
+            display: grid; grid-template-columns: repeat(4, 1fr);
+            border: 1px solid var(--line-strong); border-radius: 2px;
+        }
+        .stat { padding: 24px 20px; border-right: 1px solid var(--line); }
+        .stat:last-child { border-right: none; }
+        .stat .value {
+            font-family: var(--serif); font-size: clamp(34px, 5vw, 52px); line-height: 1;
+        }
+        .stat .value .unit { font-size: 0.45em; color: var(--ink-faint); margin-left: 2px; }
+        .stat .label {
+            margin-top: 10px; font-family: var(--mono); font-size: 11px;
+            letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-faint);
+        }
+        .stat-note { margin-top: 14px; font-size: 13px; color: var(--ink-faint); }
+
+        /* ── コントリビューション ── */
+        .contrib { margin-top: 56px; }
+        .contrib h3, .lang-block h3 {
+            font-family: var(--mono); font-size: 12px; letter-spacing: 0.18em;
+            text-transform: uppercase; color: var(--ink-soft); margin-bottom: 24px;
+        }
+        .contrib-chart {
+            display: flex; align-items: flex-end; gap: 12px; height: 180px;
+        }
+        .contrib-col { flex: 1; display: flex; flex-direction: column; justify-content: flex-end; height: 100%; }
+        .contrib-bar {
+            background: var(--ink); border-radius: 1px; min-height: 3px; position: relative;
+            transform-origin: bottom; animation: grow .8s cubic-bezier(.2,.8,.2,1) backwards;
+        }
+        .contrib-col:nth-child(2) .contrib-bar { animation-delay: .06s }
+        .contrib-col:nth-child(3) .contrib-bar { animation-delay: .12s }
+        .contrib-col:nth-child(4) .contrib-bar { animation-delay: .18s }
+        .contrib-col:nth-child(5) .contrib-bar { animation-delay: .24s }
+        .contrib-col:nth-child(6) .contrib-bar { animation-delay: .3s }
+        .contrib-bar.partial {
+            background: repeating-linear-gradient(-45deg, var(--accent), var(--accent) 4px, #e2703a 4px, #e2703a 8px);
+        }
+        @keyframes grow { from { transform: scaleY(0); } }
+        .contrib-bar .count {
+            position: absolute; top: -22px; left: 50%; transform: translateX(-50%);
+            font-family: var(--mono); font-size: 11px; color: var(--ink-soft); white-space: nowrap;
+        }
+        .contrib-col .year {
+            margin-top: 8px; text-align: center;
+            font-family: var(--mono); font-size: 11px; color: var(--ink-faint); white-space: nowrap;
+        }
+        .contrib-note { margin-top: 16px; font-size: 13px; color: var(--ink-faint); }
+
+        /* ── 言語 ── */
+        .lang-block { margin-top: 56px; }
+        .lang-row { display: grid; grid-template-columns: 110px 1fr 52px; gap: 14px; align-items: center; margin-bottom: 10px; }
+        .lang-row .name { font-family: var(--mono); font-size: 13px; }
+        .lang-row .bar-track { height: 10px; background: #efece5; border-radius: 1px; overflow: hidden; }
+        .lang-row .bar {
+            height: 100%; background: var(--ink); border-radius: 1px;
+            transform-origin: left; animation: growX .8s cubic-bezier(.2,.8,.2,1) backwards;
+        }
+        .lang-row:first-child .bar { background: var(--accent); }
+        @keyframes growX { from { transform: scaleX(0); } }
+        .lang-row .pct { font-family: var(--mono); font-size: 12px; color: var(--ink-faint); text-align: right; }
+        .lang-note { margin-top: 14px; font-size: 13px; color: var(--ink-faint); }
+
+        /* ── ドメイン ── */
+        .domain-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--line); border: 1px solid var(--line); }
+        .domain {
+            background: var(--paper); padding: 26px 24px;
+            transition: background .15s;
+        }
+        .domain:hover { background: var(--accent-soft); }
+        /* 奇数個のとき最後の空きマスを紙色で埋める */
+        .domain-grid::after { content: ""; background: var(--paper); }
+        .domain .top { display: flex; justify-content: space-between; align-items: baseline; }
+        .domain h3 { font-family: var(--serif); font-weight: 400; font-size: 21px; }
+        .domain .count { font-family: var(--mono); font-size: 12px; color: var(--accent); }
+        .domain .tech { margin-top: 4px; font-family: var(--mono); font-size: 11px; color: var(--ink-faint); letter-spacing: 0.04em; }
+        .domain p { margin-top: 12px; font-size: 13.5px; color: var(--ink-soft); }
+        .domain-note { margin-top: 20px; font-size: 13px; color: var(--ink-faint); }
+
+        /* ── プロジェクト ── */
+        .project { display: grid; grid-template-columns: 200px 1fr; gap: 24px; padding: 26px 0; border-top: 1px solid var(--line); text-decoration: none; color: inherit; }
+        .project:last-of-type { border-bottom: 1px solid var(--line); }
+        .project:hover .p-name { color: var(--accent); }
+        .p-name { font-family: var(--mono); font-size: 15px; font-weight: 500; transition: color .15s; }
+        .p-name::after { content: " ↗"; font-size: 11px; color: var(--ink-faint); }
+        .p-lang { margin-top: 6px; font-family: var(--mono); font-size: 11px; color: var(--ink-faint); }
+        .p-desc { font-size: 14px; color: var(--ink-soft); }
+
+        /* ── フッター ── */
+        footer { padding: 48px 0 64px; font-family: var(--mono); font-size: 12px; color: var(--ink-faint); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+        footer a { color: inherit; }
+
+        /* リビール */
+        .reveal { opacity: 0; transform: translateY(16px); transition: opacity .7s ease, transform .7s ease; }
+        .reveal.in { opacity: 1; transform: none; }
+
+        @media (max-width: 640px) {
+            .stat-grid { grid-template-columns: 1fr 1fr; }
+            .stat:nth-child(2) { border-right: none; }
+            .stat:nth-child(1), .stat:nth-child(2) { border-bottom: 1px solid var(--line); }
+            .domain-grid { grid-template-columns: 1fr; }
+            .project { grid-template-columns: 1fr; gap: 8px; }
+            .contrib-chart { gap: 6px; height: 150px; }
+            .contrib-bar .count { font-size: 9px; }
         }
     </style>
     <!-- トラッキングスクリプト -->
     <script src="https://analytics.fybe.jp/analytics.js" async defer></script>
 </head>
 <body>
-    <div class="container">
-        <div class="emoji">👋</div>
-        <h1>ようこそ</h1>
-        <p>これは適当に作ったindex.htmlです。</p>
-        <p>シンプルでモダンなデザインになっています。</p>
-        <a href="#" class="button" id="start-button">はじめる</a>
+    <div class="wrap">
+        <header>
+            <span class="brand">konaito.github.io</span>
+            <nav class="lang-toggle" aria-label="Language">
+                <button id="btn-ja" onclick="setLang('ja')">日本語</button>
+                <button id="btn-en" onclick="setLang('en')">EN</button>
+            </nav>
+        </header>
+
+        <div class="hero">
+            <p class="kicker" data-i18n="kicker"></p>
+            <h1 id="hero-title"></h1>
+            <p class="lede" data-i18n="lede"></p>
+            <div class="links">
+                <a href="https://github.com/konaito" target="_blank" rel="noopener">GitHub</a>
+                <a href="https://x.com/konaito_copilot" target="_blank" rel="noopener">X / Twitter</a>
+            </div>
+        </div>
+
+        <section class="reveal">
+            <div class="sec-head">
+                <span class="num">01</span>
+                <h2 data-i18n="s1_title"></h2>
+                <span class="rule"></span>
+            </div>
+            <div class="stat-grid" id="stat-grid"></div>
+            <p class="stat-note" data-i18n="s1_note"></p>
+
+            <div class="contrib">
+                <h3 data-i18n="contrib_title"></h3>
+                <div class="contrib-chart" id="contrib-chart"></div>
+                <p class="contrib-note" data-i18n="contrib_note"></p>
+            </div>
+
+            <div class="lang-block">
+                <h3 data-i18n="lang_title"></h3>
+                <div id="lang-rows"></div>
+                <p class="lang-note" data-i18n="lang_note"></p>
+            </div>
+        </section>
+
+        <section class="reveal">
+            <div class="sec-head">
+                <span class="num">02</span>
+                <h2 data-i18n="s2_title"></h2>
+                <span class="rule"></span>
+            </div>
+            <div class="domain-grid" id="domain-grid"></div>
+            <p class="domain-note" data-i18n="s2_note"></p>
+        </section>
+
+        <section class="reveal">
+            <div class="sec-head">
+                <span class="num">03</span>
+                <h2 data-i18n="s3_title"></h2>
+                <span class="rule"></span>
+            </div>
+            <div id="projects"></div>
+        </section>
+
+        <footer>
+            <span>© <span id="year"></span> konaito</span>
+            <span><span data-i18n="updated"></span> <span id="generated-at"></span></span>
+        </footer>
     </div>
+
+    <script>
+    const I18N = {
+        ja: {
+            kicker: "Engineering Portfolio",
+            hero_title: '作りながら、<em>考える。</em>',
+            lede: "konaito（内藤剛汰）。AIエージェント、Webサービス、ネイティブアプリ。思いついたものは全部作る。5年間で188リポジトリ、その7割はまだ非公開のまま動いている。",
+            s1_title: "数字で見る",
+            s1_note: "GitHub上の全リポジトリ（fork除く）の実測値。非公開リポジトリを含む。",
+            contrib_title: "年間コントリビューション",
+            contrib_note: "※ 2026年は1月〜8月時点の値。AIエージェントを使い倒す開発スタイルに移行してから、出荷速度が桁で変わった。",
+            lang_title: "言語別リポジトリ数",
+            lang_note: "各リポジトリの主要言語で集計。ほかに Rust / Go / Ruby / Dart / Astro / Solidity など。",
+            s2_title: "何を作ってきたか",
+            s2_note: "非公開リポジトリを含む188リポジトリをドメイン別に集計。個別の非公開プロジェクトの詳細は面談等でお見せできます。",
+            s3_title: "公開プロジェクト",
+            updated: "データ更新:",
+            domains: {
+                "ai-agents": { name: "AIエージェント / LLMアプリ", tech: "Claude Agent SDK · OpenAI · マルチエージェント · RAG", desc: "自律エージェント、LLM同士の対戦・会話システム、生成AIプロダクトの企画から実装まで。" },
+                "web-saas": { name: "Webサービス / SaaS", tech: "Next.js · TypeScript · Supabase · Prisma · Vercel", desc: "認証・課金・分析まで含むフルスタックのWebサービスを多数構築・運用。" },
+                "devtools": { name: "開発ツール / CLI", tech: "TypeScript · CDP · Claude Code skills · Homebrew", desc: "ターミナル内ブラウザ、エージェント用スキル群など、開発体験を上げる道具を自作。" },
+                "native-apps": { name: "ネイティブアプリ", tech: "Swift / macOS · Kotlin / Android · BLE", desc: "macOSメニューバー常駐ツール、Androidウィジェット、BLEデバイス連携アプリなど。" },
+                "trading": { name: "トレーディング / 予測市場", tech: "Python · Polymarket · Hyperliquid · バックテスト", desc: "予測市場・暗号資産の自動売買Bot、バックテスト基盤、ダッシュボード。" },
+                "ml": { name: "機械学習 / 強化学習", tech: "PyTorch · PPO self-play · シミュレーション", desc: "カードゲームAIの自己対戦学習、LLM×RLのハイブリッド対戦AIなど。" },
+                "web3": { name: "ブロックチェーン / zk", tech: "Solidity · zkSNARK · Solana · Sui", desc: "zk回路、トークン、ウォレット連携。ハッカソン参加作品を含む。" },
+                "systems": { name: "低レイヤ / システム", tech: "C · Rust · アルゴリズム", desc: "42カリキュラムのC課題群、Rust製ツールへのコントリビュートなど計算機の基礎体力。" },
+                "experiments": { name: "プロトタイプ / 検証", tech: "調査 · 技術検証 · 企画", desc: "新しい技術やアイデアの検証リポジトリ。作って確かめるのが最速だと思っている。" }
+            },
+            statLabels: { repos: "リポジトリ", private: "非公開", langs: "言語", since: "年から" }
+        },
+        en: {
+            kicker: "Engineering Portfolio",
+            hero_title: 'Build first, <em>then think.</em>',
+            lede: "konaito (Kota Naito). AI agents, web services, native apps — I build everything I think of. 188 repositories in 5 years, 70% of them still private and running.",
+            s1_title: "By the numbers",
+            s1_note: "Measured across all GitHub repositories (excluding forks), private ones included.",
+            contrib_title: "Yearly contributions",
+            contrib_note: "* 2026 covers January–August. Shipping speed changed by an order of magnitude after going all-in on AI-agent-driven development.",
+            lang_title: "Repositories by language",
+            lang_note: "Counted by each repository's primary language. Also: Rust, Go, Ruby, Dart, Astro, Solidity, and more.",
+            s2_title: "What I build",
+            s2_note: "All 188 repositories, private ones included, grouped by domain. Happy to walk through private projects in a call.",
+            s3_title: "Public projects",
+            updated: "Data updated:",
+            domains: {
+                "ai-agents": { name: "AI Agents / LLM Apps", tech: "Claude Agent SDK · OpenAI · multi-agent · RAG", desc: "Autonomous agents, LLM-vs-LLM game and conversation systems, generative-AI products from concept to code." },
+                "web-saas": { name: "Web Services / SaaS", tech: "Next.js · TypeScript · Supabase · Prisma · Vercel", desc: "Full-stack web services with auth, billing, and analytics — built and operated end to end." },
+                "devtools": { name: "Developer Tools / CLI", tech: "TypeScript · CDP · Claude Code skills · Homebrew", desc: "A browser inside the terminal, agent skill packs — tools that sharpen the development loop." },
+                "native-apps": { name: "Native Apps", tech: "Swift / macOS · Kotlin / Android · BLE", desc: "macOS menu-bar utilities, Android widgets, BLE device companions, and more." },
+                "trading": { name: "Trading / Prediction Markets", tech: "Python · Polymarket · Hyperliquid · backtesting", desc: "Trading bots for prediction markets and crypto, backtesting rigs, dashboards." },
+                "ml": { name: "Machine Learning / RL", tech: "PyTorch · PPO self-play · simulation", desc: "Self-play card-game AIs, hybrid LLM×RL battle agents, and other trained systems." },
+                "web3": { name: "Blockchain / zk", tech: "Solidity · zkSNARK · Solana · Sui", desc: "zk circuits, tokens, wallet integrations — including hackathon entries." },
+                "systems": { name: "Systems / Low-level", tech: "C · Rust · algorithms", desc: "The 42 curriculum in C, contributions to Rust tools — computing fundamentals." },
+                "experiments": { name: "Prototypes / Research", tech: "research · feasibility · planning", desc: "Repositories for testing new tech and ideas. Building is the fastest way to find out." }
+            },
+            statLabels: { repos: "repositories", private: "private", langs: "languages", since: "since" }
+        }
+    };
+
+    let DATA = null;
+    let lang = (() => {
+        try { return localStorage.getItem('lang') || (navigator.language.startsWith('ja') ? 'ja' : 'en'); }
+        catch (e) { return 'ja'; }
+    })();
+
+    function setLang(l) {
+        lang = l;
+        try { localStorage.setItem('lang', l); } catch (e) {}
+        document.documentElement.lang = l;
+        render();
+    }
+
+    function render() {
+        if (!DATA) return;
+        const t = I18N[lang];
+        document.getElementById('btn-ja').classList.toggle('active', lang === 'ja');
+        document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+            el.textContent = t[el.dataset.i18n] ?? '';
+        });
+        document.getElementById('hero-title').innerHTML = t.hero_title;
+        document.getElementById('generated-at').textContent = DATA.generatedAt;
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // 統計
+        const langCount = DATA.languagesByBytes.length;
+        const stats = [
+            { v: DATA.totals.repos, u: '', label: t.statLabels.repos },
+            { v: DATA.totals.private, u: '', label: t.statLabels.private },
+            { v: langCount, u: '+', label: t.statLabels.langs },
+            { v: DATA.totals.since, u: '', label: t.statLabels.since },
+        ];
+        document.getElementById('stat-grid').innerHTML = stats.map(s =>
+            `<div class="stat"><div class="value">${s.v}<span class="unit">${s.u}</span></div><div class="label">${s.label}</div></div>`
+        ).join('');
+
+        // コントリビューション
+        const max = Math.max(...DATA.contributions.map(c => c.total));
+        document.getElementById('contrib-chart').innerHTML = DATA.contributions.map(c => {
+            const h = Math.max(2, Math.round(c.total / max * 100));
+            const yearLabel = c.partial ? (lang === 'ja' ? `${c.year}*` : `${c.year}*`) : c.year;
+            return `<div class="contrib-col">
+                <div class="contrib-bar${c.partial ? ' partial' : ''}" style="height:${h}%">
+                    <span class="count">${c.total.toLocaleString()}</span>
+                </div>
+                <div class="year">${yearLabel}</div>
+            </div>`;
+        }).join('');
+
+        // 言語
+        const maxRepos = DATA.languagesByRepos[0].repos;
+        document.getElementById('lang-rows').innerHTML = DATA.languagesByRepos.map((l, i) =>
+            `<div class="lang-row">
+                <span class="name">${l.name}</span>
+                <div class="bar-track"><div class="bar" style="width:${Math.round(l.repos / maxRepos * 100)}%; animation-delay:${i * 0.05}s"></div></div>
+                <span class="pct">${l.repos}</span>
+            </div>`
+        ).join('');
+
+        // ドメイン
+        const catOrder = [...DATA.categories].sort((a, b) => b.count - a.count);
+        document.getElementById('domain-grid').innerHTML = catOrder.map(c => {
+            const d = t.domains[c.id];
+            if (!d) return '';
+            return `<div class="domain">
+                <div class="top"><h3>${d.name}</h3><span class="count">× ${c.count}</span></div>
+                <div class="tech">${d.tech}</div>
+                <p>${d.desc}</p>
+            </div>`;
+        }).join('');
+
+        // プロジェクト
+        document.getElementById('projects').innerHTML = DATA.featured.map(p =>
+            `<a class="project" href="${p.url}" target="_blank" rel="noopener">
+                <div><div class="p-name">${p.name}</div><div class="p-lang">${p.language}${p.stars ? ` · ★ ${p.stars}` : ''}</div></div>
+                <div class="p-desc">${p.description}</div>
+            </a>`
+        ).join('');
+    }
+
+    fetch('data.json')
+        .then(r => r.json())
+        .then(d => { DATA = d; setLang(lang); });
+
+    // スクロールリビール
+    const io = new IntersectionObserver(entries => {
+        entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+    </script>
 </body>
 </html>

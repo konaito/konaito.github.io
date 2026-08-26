@@ -1,0 +1,199 @@
+{
+  "generatedAt": "2026-08-26",
+  "totals": {
+    "repos": 188,
+    "private": 128,
+    "public": 60,
+    "since": "2021"
+  },
+  "languagesByRepos": [
+    {
+      "name": "TypeScript",
+      "repos": 97
+    },
+    {
+      "name": "Python",
+      "repos": 26
+    },
+    {
+      "name": "JavaScript",
+      "repos": 9
+    },
+    {
+      "name": "HTML",
+      "repos": 8
+    },
+    {
+      "name": "Swift",
+      "repos": 6
+    },
+    {
+      "name": "C",
+      "repos": 6
+    },
+    {
+      "name": "PHP",
+      "repos": 3
+    },
+    {
+      "name": "Kotlin",
+      "repos": 2
+    }
+  ],
+  "languagesByBytes": [
+    {
+      "name": "TypeScript",
+      "bytes": 11458978
+    },
+    {
+      "name": "Python",
+      "bytes": 5719402
+    },
+    {
+      "name": "JavaScript",
+      "bytes": 2738523
+    },
+    {
+      "name": "HTML",
+      "bytes": 2366834
+    },
+    {
+      "name": "CSS",
+      "bytes": 1533347
+    },
+    {
+      "name": "PHP",
+      "bytes": 1001015
+    },
+    {
+      "name": "Kotlin",
+      "bytes": 622038
+    },
+    {
+      "name": "C",
+      "bytes": 566339
+    },
+    {
+      "name": "Swift",
+      "bytes": 543861
+    },
+    {
+      "name": "Rust",
+      "bytes": 539983
+    }
+  ],
+  "contributions": [
+    {
+      "year": 2021,
+      "total": 5,
+      "partial": false
+    },
+    {
+      "year": 2022,
+      "total": 47,
+      "partial": false
+    },
+    {
+      "year": 2023,
+      "total": 208,
+      "partial": false
+    },
+    {
+      "year": 2024,
+      "total": 806,
+      "partial": false
+    },
+    {
+      "year": 2025,
+      "total": 4332,
+      "partial": false
+    },
+    {
+      "year": 2026,
+      "total": 9383,
+      "partial": true
+    }
+  ],
+  "categories": [
+    {
+      "id": "ai-agents",
+      "count": 41
+    },
+    {
+      "id": "web-saas",
+      "count": 56
+    },
+    {
+      "id": "native-apps",
+      "count": 14
+    },
+    {
+      "id": "trading",
+      "count": 8
+    },
+    {
+      "id": "devtools",
+      "count": 21
+    },
+    {
+      "id": "ml",
+      "count": 8
+    },
+    {
+      "id": "systems",
+      "count": 7
+    },
+    {
+      "id": "web3",
+      "count": 9
+    },
+    {
+      "id": "experiments",
+      "count": 24
+    }
+  ],
+  "featured": [
+    {
+      "name": "ito",
+      "description": "4つのAI(Gemini/Grok/ChatGPT/Claude)が会話しながらカードゲーム『ito』を遊ぶマルチエージェント・ロールプレイの例",
+      "language": "TypeScript",
+      "stars": 0,
+      "url": "https://github.com/konaito/ito"
+    },
+    {
+      "name": "terminal-browser",
+      "description": "A browser inside your terminal — pure TypeScript (kitty graphics + CDP), no Electron",
+      "language": "TypeScript",
+      "stars": 1,
+      "url": "https://github.com/konaito/terminal-browser"
+    },
+    {
+      "name": "opttab",
+      "description": "⌥⇥ Option+Tab window switcher for macOS — reaches windows across Spaces, fullscreen, and minimized",
+      "language": "Swift",
+      "stars": 0,
+      "url": "https://github.com/konaito/opttab"
+    },
+    {
+      "name": "manga-agent",
+      "description": "Open-source manga editor agent and spec-driven AI production harness (mangagen)",
+      "language": "Python",
+      "stars": 0,
+      "url": "https://github.com/konaito/manga-agent"
+    },
+    {
+      "name": "nimmt",
+      "description": "6 Nimmt! (ニムト) AI trained with PPO self-play — beats MC-rollout search by 2.4 bulls/deal with a single 931KB MLP. Browser UI included.",
+      "language": "Python",
+      "stars": 0,
+      "url": "https://github.com/konaito/nimmt"
+    },
+    {
+      "name": "ClaudeAsOpenAI",
+      "description": "Claude-as-OpenAI proxy server powered by Claude Agent SDK",
+      "language": "Python",
+      "stars": 1,
+      "url": "https://github.com/konaito/ClaudeAsOpenAI"
+    }
+  ]
+}
