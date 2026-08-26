@@ -47,7 +47,7 @@
     },
     {
       "name": "Python",
-      "bytes": 5719402
+      "bytes": 5726676
     },
     {
       "name": "JavaScript",
@@ -55,11 +55,11 @@
     },
     {
       "name": "HTML",
-      "bytes": 2366834
+      "bytes": 2402245
     },
     {
       "name": "CSS",
-      "bytes": 1533347
+      "bytes": 1535325
     },
     {
       "name": "PHP",
@@ -110,7 +110,7 @@
     },
     {
       "year": 2026,
-      "total": 9383,
+      "total": 9381,
       "partial": true
     }
   ],
@@ -165,14 +165,16 @@
       "description": "A browser inside your terminal — pure TypeScript (kitty graphics + CDP), no Electron",
       "language": "TypeScript",
       "stars": 1,
-      "url": "https://github.com/konaito/terminal-browser"
+      "url": "https://github.com/konaito/terminal-browser",
+      "pagesUrl": "https://konaito.github.io/terminal-browser/"
     },
     {
       "name": "opttab",
       "description": "⌥⇥ Option+Tab window switcher for macOS — reaches windows across Spaces, fullscreen, and minimized",
       "language": "Swift",
       "stars": 0,
-      "url": "https://github.com/konaito/opttab"
+      "url": "https://github.com/konaito/opttab",
+      "pagesUrl": "https://konaito.github.io/opttab/"
     },
     {
       "name": "manga-agent",
@@ -186,7 +188,8 @@
       "description": "6 Nimmt! (ニムト) AI trained with PPO self-play — beats MC-rollout search by 2.4 bulls/deal with a single 931KB MLP. Browser UI included.",
       "language": "Python",
       "stars": 0,
-      "url": "https://github.com/konaito/nimmt"
+      "url": "https://github.com/konaito/nimmt",
+      "pagesUrl": "https://konaito.github.io/nimmt/"
     },
     {
       "name": "ClaudeAsOpenAI",

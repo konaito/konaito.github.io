@@ -116,12 +116,17 @@ def main():
             sys.exit(f"featured リポジトリ {n} が見つからない")
         if r["visibility"] != "PUBLIC":
             sys.exit(f"featured リポジトリ {n} が public でない")
+        # GitHub Pagesで公開中ならそのURLを持たせる(404なら無し)
+        pages = subprocess.run(["gh", "api", f"repos/konaito/{n}/pages", "--jq", ".html_url"],
+                               capture_output=True, text=True, timeout=30)
+        pages_url = pages.stdout.strip() if pages.returncode == 0 else ""
         featured.append({
             "name": r["name"],
             "description": r["description"] or "",
             "language": (r["primaryLanguage"] or {}).get("name", ""),
             "stars": r["stargazerCount"],
             "url": r["url"],
+            **({"pagesUrl": pages_url} if pages_url else {}),
         })
 
     data = {
