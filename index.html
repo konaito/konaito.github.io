@@ -7,7 +7,9 @@
     <meta name="description" content="konaito (Kota Naito) — engineering portfolio. AI agents, web services, native apps, and 188 repositories of shipped work.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=Instrument+Serif:ital@0;1&family=Zen+Old+Mincho:wght@400;700&family=IBM+Plex+Sans+JP:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://api.fontshare.com">
+    <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@500,700,900,701&display=swap" rel="stylesheet">
     <style>
         :root {
             --paper: #fdfcfa;
@@ -18,9 +20,9 @@
             --line-strong: #c9c2b4;
             --accent: #c2410c;
             --accent-soft: #fff1e8;
-            --serif: "Instrument Serif", "Zen Old Mincho", serif;
-            --mono: "IBM Plex Mono", monospace;
-            --sans: "IBM Plex Sans JP", -apple-system, sans-serif;
+            --serif: "Satoshi", "Zen Kaku Gothic New", sans-serif;
+            --mono: "Geist Mono", monospace;
+            --sans: "Satoshi", "Zen Kaku Gothic New", -apple-system, sans-serif;
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
@@ -67,9 +69,9 @@
             text-transform: uppercase; color: var(--accent); margin-bottom: 20px;
         }
         .hero h1 {
-            font-family: var(--serif); font-weight: 400;
+            font-family: var(--serif); font-weight: 900;
             font-size: clamp(44px, 8vw, 84px);
-            line-height: 1.08; letter-spacing: -0.01em;
+            line-height: 1.05; letter-spacing: -0.035em;
         }
         .hero h1 em { font-style: italic; color: var(--accent); }
         .hero .lede {
@@ -89,7 +91,7 @@
         .sec-head { display: flex; align-items: baseline; gap: 16px; margin-bottom: 40px; }
         .sec-head .num { font-family: var(--mono); font-size: 12px; color: var(--accent); }
         .sec-head h2 {
-            font-family: var(--serif); font-weight: 400; font-size: 32px; letter-spacing: 0.01em;
+            font-family: var(--serif); font-weight: 700; font-size: 28px; letter-spacing: -0.02em;
         }
         .sec-head .rule { flex: 1; height: 1px; background: var(--line); }
 
@@ -101,7 +103,8 @@
         .stat { padding: 24px 20px; border-right: 1px solid var(--line); }
         .stat:last-child { border-right: none; }
         .stat .value {
-            font-family: var(--serif); font-size: clamp(34px, 5vw, 52px); line-height: 1;
+            font-family: var(--serif); font-weight: 700; letter-spacing: -0.02em;
+            font-size: clamp(34px, 5vw, 52px); line-height: 1;
         }
         .stat .value .unit { font-size: 0.45em; color: var(--ink-faint); margin-left: 2px; }
         .stat .label {
@@ -167,7 +170,7 @@
         /* 奇数個のとき最後の空きマスを紙色で埋める */
         .domain-grid::after { content: ""; background: var(--paper); }
         .domain .top { display: flex; justify-content: space-between; align-items: baseline; }
-        .domain h3 { font-family: var(--serif); font-weight: 400; font-size: 21px; }
+        .domain h3 { font-family: var(--serif); font-weight: 700; font-size: 18px; letter-spacing: -0.01em; }
         .domain .count { font-family: var(--mono); font-size: 12px; color: var(--accent); }
         .domain .tech { margin-top: 4px; font-family: var(--mono); font-size: 11px; color: var(--ink-faint); letter-spacing: 0.04em; }
         .domain p { margin-top: 12px; font-size: 13.5px; color: var(--ink-soft); }
@@ -274,8 +277,8 @@
     const I18N = {
         ja: {
             kicker: "Engineering Portfolio",
-            hero_title: '作りながら、<em>考える。</em>',
-            lede: "konaito（内藤剛汰）。AIエージェント、Webサービス、ネイティブアプリ。思いついたものは全部作る。5年間で188リポジトリ、その7割はまだ非公開のまま動いている。",
+            hero_title: 'Build first, <em>then think.</em>',
+            lede: "konaito（内藤剛汰）。AIエージェント、Webサービス、ネイティブアプリ。思いついたものは全部作る。5年で188リポジトリ、うち128は非公開。",
             s1_title: "数字で見る",
             s1_note: "GitHub上の全リポジトリ（fork除く）の実測値。非公開リポジトリを含む。",
             contrib_title: "年間コントリビューション",
@@ -302,7 +305,7 @@
         en: {
             kicker: "Engineering Portfolio",
             hero_title: 'Build first, <em>then think.</em>',
-            lede: "konaito (Kota Naito). AI agents, web services, native apps — I build everything I think of. 188 repositories in 5 years, 70% of them still private and running.",
+            lede: "konaito (Kota Naito). AI agents, web services, native apps — I build everything I think of. 188 repositories in 5 years, 128 of them private.",
             s1_title: "By the numbers",
             s1_note: "Measured across all GitHub repositories (excluding forks), private ones included.",
             contrib_title: "Yearly contributions",
@@ -330,7 +333,7 @@
 
     let DATA = null;
     let lang = (() => {
-        try { return localStorage.getItem('lang') || (navigator.language.startsWith('ja') ? 'ja' : 'en'); }
+        try { return localStorage.getItem('lang') || 'ja'; }
         catch (e) { return 'ja'; }
     })();
 
