@@ -4,7 +4,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>konaito — Engineering Portfolio</title>
-    <meta name="description" content="konaito (Kota Naito) — engineering portfolio. AI agents, web services, native apps, and 188 repositories of shipped work.">
+    <meta name="description" content="konaito（内藤剛汰）のエンジニアリングポートフォリオ。AIエージェント、Webサービス、ネイティブアプリ。5年で188リポジトリ。AI agents, web services, native apps — 188 repositories in 5 years.">
+    <link rel="canonical" href="https://konaito.github.io/">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://konaito.github.io/">
+    <meta property="og:site_name" content="konaito.github.io">
+    <meta property="og:title" content="konaito — Engineering Portfolio">
+    <meta property="og:description" content="Build first, then think. AIエージェント、Webサービス、ネイティブアプリ。5年で188リポジトリ。">
+    <meta property="og:image" content="https://konaito.github.io/assets/og.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="konaito — Engineering Portfolio">
+    <meta name="twitter:description" content="Build first, then think. AIエージェント、Webサービス、ネイティブアプリ。5年で188リポジトリ。">
+    <meta name="twitter:image" content="https://konaito.github.io/assets/og.png">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Kota Naito",
+      "alternateName": ["konaito", "内藤剛汰"],
+      "url": "https://konaito.github.io/",
+      "jobTitle": "Software Engineer",
+      "sameAs": [
+        "https://github.com/konaito",
+        "https://x.com/konaito_copilot"
+      ]
+    }
+    </script>
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+    <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://api.fontshare.com">
@@ -176,6 +205,33 @@
         .domain p { margin-top: 12px; font-size: 13.5px; color: var(--ink-soft); }
         .domain-note { margin-top: 20px; font-size: 13px; color: var(--ink-faint); }
 
+        /* ── Live ── */
+        .live-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+        .live-card {
+            display: block; text-decoration: none; color: inherit;
+            border: 1px solid var(--line-strong); border-radius: 2px;
+            padding: 22px 20px; transition: border-color .15s, transform .15s;
+        }
+        .live-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+        .live-badge {
+            display: inline-flex; align-items: center; gap: 6px;
+            font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em;
+            color: var(--accent); margin-bottom: 14px;
+        }
+        .live-badge::before {
+            content: ""; width: 7px; height: 7px; border-radius: 50%;
+            background: var(--accent); animation: pulse 2s ease-in-out infinite;
+        }
+        @keyframes pulse { 0%,100% { opacity: 1 } 50% { opacity: 0.3 } }
+        .live-card h3 { font-family: var(--mono); font-size: 15px; font-weight: 500; }
+        .live-card p { margin-top: 10px; font-size: 13px; color: var(--ink-soft); }
+        .live-card .go {
+            margin-top: 16px; font-family: var(--mono); font-size: 12px;
+            color: var(--ink); border-bottom: 1px solid var(--line-strong);
+            display: inline-block; padding-bottom: 2px;
+        }
+        .live-card:hover .go { color: var(--accent); border-color: var(--accent); }
+
         /* ── プロジェクト ── */
         .project { display: grid; grid-template-columns: 200px 1fr; gap: 24px; padding: 26px 0; border-top: 1px solid var(--line); text-decoration: none; color: inherit; }
         .project:last-of-type { border-bottom: 1px solid var(--line); }
@@ -198,6 +254,7 @@
             .stat:nth-child(2) { border-right: none; }
             .stat:nth-child(1), .stat:nth-child(2) { border-bottom: 1px solid var(--line); }
             .domain-grid { grid-template-columns: 1fr; }
+            .live-grid { grid-template-columns: 1fr; }
             .project { grid-template-columns: 1fr; gap: 8px; }
             .contrib-chart { gap: 6px; height: 150px; }
             .contrib-bar .count { font-size: 9px; }
@@ -261,6 +318,15 @@
         <section class="reveal">
             <div class="sec-head">
                 <span class="num">03</span>
+                <h2 data-i18n="live_title"></h2>
+                <span class="rule"></span>
+            </div>
+            <div class="live-grid" id="live-grid"></div>
+        </section>
+
+        <section class="reveal">
+            <div class="sec-head">
+                <span class="num">04</span>
                 <h2 data-i18n="s3_title"></h2>
                 <span class="rule"></span>
             </div>
@@ -287,6 +353,8 @@
             lang_note: "各リポジトリの主要言語で集計。ほかに Rust / Go / Ruby / Dart / Astro / Solidity など。",
             s2_title: "何を作ってきたか",
             s2_note: "非公開リポジトリを含む188リポジトリをドメイン別に集計。個別の非公開プロジェクトの詳細は面談等でお見せできます。",
+            live_title: "触って試せる",
+            live_go: "開く",
             s3_title: "公開プロジェクト",
             updated: "データ更新:",
             domains: {
@@ -314,6 +382,8 @@
             lang_note: "Counted by each repository's primary language. Also: Rust, Go, Ruby, Dart, Astro, Solidity, and more.",
             s2_title: "What I build",
             s2_note: "All 188 repositories, private ones included, grouped by domain. Happy to walk through private projects in a call.",
+            live_title: "Try it live",
+            live_go: "Open",
             s3_title: "Public projects",
             updated: "Data updated:",
             domains: {
@@ -403,8 +473,19 @@
             </div>`;
         }).join('');
 
-        // プロジェクト
-        document.getElementById('projects').innerHTML = DATA.featured.map(p =>
+        // Live (GitHub Pagesで公開中のもの)
+        const live = DATA.featured.filter(p => p.pagesUrl);
+        document.getElementById('live-grid').innerHTML = live.map(p =>
+            `<a class="live-card" href="${p.pagesUrl}" target="_blank" rel="noopener">
+                <span class="live-badge">LIVE</span>
+                <h3>${p.name}</h3>
+                <p>${p.description}</p>
+                <span class="go">${t.live_go} ↗</span>
+            </a>`
+        ).join('');
+
+        // プロジェクト (Live枠以外)
+        document.getElementById('projects').innerHTML = DATA.featured.filter(p => !p.pagesUrl).map(p =>
             `<a class="project" href="${p.url}" target="_blank" rel="noopener">
                 <div><div class="p-name">${p.name}</div><div class="p-lang">${p.language}${p.stars ? ` · ★ ${p.stars}` : ''}</div></div>
                 <div class="p-desc">${p.description}</div>

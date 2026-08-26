@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://konaito.github.io/sitemap.xml
