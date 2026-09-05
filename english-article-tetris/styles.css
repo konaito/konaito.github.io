@@ -1,4 +1,5 @@
-/* English Article Tetris — original dark teal / cream theme */
+/* English Article Tetris — original dark teal / cream theme
+   Smartphone-first UX */
 
 :root {
   --bg: #0d2e2e;
@@ -16,46 +17,63 @@
   --muted: #9ab8b8;
   --lane-gap: 4px;
   --font: "Segoe UI", system-ui, -apple-system, sans-serif;
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --safe-left: env(safe-area-inset-left, 0px);
+  --safe-right: env(safe-area-inset-right, 0px);
+  --touch-bar-h: 0px;
 }
 
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  -webkit-tap-highlight-color: transparent;
 }
 
 html, body {
   height: 100%;
+  height: 100dvh;
   background: radial-gradient(ellipse at 50% 0%, #164848 0%, var(--bg) 45%, var(--bg-deep) 100%);
   color: var(--text);
   font-family: var(--font);
+  overscroll-behavior: none;
+  touch-action: manipulation;
+  overflow: hidden;
 }
 
 #app {
   min-height: 100%;
+  min-height: 100dvh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 1rem 1rem 2rem;
-  gap: 0.75rem;
+  padding: calc(0.5rem + var(--safe-top)) 0.6rem calc(0.5rem + var(--safe-bottom));
+  gap: 0.4rem;
+  width: 100%;
+  max-width: 720px;
+  margin: 0 auto;
 }
 
 .top-bar {
   text-align: center;
+  flex-shrink: 0;
+  width: 100%;
 }
 
 .logo {
-  font-size: clamp(1.4rem, 4vw, 2rem);
+  font-size: clamp(1.05rem, 4.2vw, 2rem);
   font-weight: 800;
   letter-spacing: 0.02em;
   color: var(--cream);
   text-shadow: 0 2px 0 rgba(0,0,0,0.35);
+  line-height: 1.15;
 }
 
 .tagline {
   color: var(--muted);
-  font-size: 0.9rem;
-  margin-top: 0.25rem;
+  font-size: 0.85rem;
+  margin-top: 0.15rem;
 }
 
 .hidden { display: none !important; }
@@ -64,39 +82,55 @@ html, body {
 .overlay-panel {
   position: fixed;
   inset: 0;
-  z-index: 20;
+  z-index: 30;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(8, 31, 31, 0.88);
-  padding: 1rem;
+  background: rgba(8, 31, 31, 0.9);
+  padding: calc(0.75rem + var(--safe-top)) 0.75rem calc(0.75rem + var(--safe-bottom));
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .panel-card {
   background: var(--panel);
   border: 2px solid var(--teal-bright);
   border-radius: 16px;
-  padding: 1.75rem 1.5rem;
-  max-width: 520px;
+  padding: 1.25rem 1.1rem 1.35rem;
+  max-width: 480px;
   width: 100%;
+  max-height: min(92dvh, 100%);
+  overflow-y: auto;
   box-shadow: 0 12px 40px rgba(0,0,0,0.45);
+  overscroll-behavior: contain;
 }
 
 .panel-card h2 {
   color: var(--cream);
+  margin-bottom: 0.75rem;
+  font-size: 1.35rem;
+}
+
+.panel-sub {
+  color: var(--muted);
   margin-bottom: 1rem;
-  font-size: 1.5rem;
+  font-size: 0.95rem;
 }
 
 .howto {
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 0.85rem;
-  margin-bottom: 1.25rem;
+  gap: 0.65rem;
+  margin-bottom: 1rem;
   font-size: 0.92rem;
   line-height: 1.45;
   color: var(--text);
+}
+
+.howto-en {
+  font-size: 0.8rem;
+  color: var(--muted);
 }
 
 .howto em {
@@ -108,18 +142,21 @@ html, body {
 .controls-hint {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
-  margin-bottom: 1.25rem;
+  gap: 0.45rem;
+  margin-bottom: 1rem;
 }
 
 .controls-hint span {
   background: var(--bg-deep);
   border: 1px solid var(--teal);
   border-radius: 8px;
-  padding: 0.35rem 0.6rem;
-  font-size: 0.78rem;
+  padding: 0.4rem 0.65rem;
+  font-size: 0.8rem;
   color: var(--muted);
 }
+
+.touch-hints { display: none; }
+.kb-hints { display: flex; }
 
 .btn {
   appearance: none;
@@ -128,9 +165,10 @@ html, body {
   font-family: inherit;
   font-weight: 700;
   font-size: 1rem;
-  border-radius: 10px;
+  border-radius: 12px;
   padding: 0.7rem 1.4rem;
   transition: transform 0.08s ease, background 0.15s ease;
+  touch-action: manipulation;
 }
 
 .btn:active { transform: scale(0.97); }
@@ -141,103 +179,142 @@ html, body {
   width: 100%;
 }
 
-.btn.primary:hover { background: #f8b56a; }
+.btn.primary:active { background: #f8b56a; }
+
+.btn-huge {
+  min-height: 52px;
+  font-size: 1.15rem;
+  padding: 0.85rem 1.4rem;
+}
 
 .btn.ghost {
   background: transparent;
   color: var(--muted);
   border: 1px solid var(--teal);
-  width: 100%;
-  margin-top: 0.5rem;
+  width: auto;
+  margin-top: 0;
+  padding: 0.45rem 0.75rem;
+  font-size: 0.85rem;
+  min-height: 44px;
+  align-self: center;
 }
 
-.btn.ghost:hover {
+.btn.ghost:active {
   color: var(--cream);
   border-color: var(--teal-bright);
 }
 
 .go-score {
   font-size: 1.25rem;
-  margin: 0.75rem 0 1.25rem;
+  margin: 0.75rem 0 1.1rem;
 }
 
 .go-reason {
   color: var(--muted);
 }
 
-/* Game layout */
+/* Game layout — column: HUD strip → board → touch bar */
 #game-wrap {
   display: flex;
-  flex-wrap: wrap;
-  gap: 1.25rem;
-  justify-content: center;
-  align-items: flex-start;
+  flex-direction: column;
+  gap: 0.45rem;
+  align-items: stretch;
   width: 100%;
-  max-width: 720px;
+  flex: 1;
+  min-height: 0;
+  padding-bottom: var(--touch-bar-h);
 }
 
 .hud {
   background: var(--panel);
   border: 2px solid var(--teal);
-  border-radius: 14px;
-  padding: 1rem;
-  min-width: 140px;
+  border-radius: 12px;
+  padding: 0.4rem 0.5rem;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.35rem;
+  flex-shrink: 0;
+  width: 100%;
+  overflow: hidden;
+}
+
+.hud-block {
   display: flex;
   flex-direction: column;
-  gap: 0.85rem;
+  align-items: center;
+  min-width: 0;
+  flex: 1 1 0;
 }
 
 .hud-block .label {
   display: block;
-  font-size: 0.7rem;
+  font-size: 0.58rem;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.06em;
   color: var(--muted);
-  margin-bottom: 0.2rem;
+  margin-bottom: 0.05rem;
+  white-space: nowrap;
 }
 
 .hud-block .value {
-  font-size: 1.5rem;
+  font-size: 1.05rem;
   font-weight: 800;
   color: var(--cream);
+  line-height: 1.15;
+  white-space: nowrap;
 }
 
 .hearts {
-  letter-spacing: 0.15em;
+  letter-spacing: 0.08em;
   color: var(--danger) !important;
+  font-size: 0.95rem !important;
 }
 
 .next-box {
   background: var(--bg-deep);
-  border-radius: 10px;
-  padding: 0.65rem;
+  border-radius: 8px;
+  padding: 0.2rem 0.35rem 0.3rem;
   border: 1px dashed var(--teal);
+  flex: 1.4 1 0;
+  min-width: 72px;
 }
 
 .next-piece {
-  min-height: 64px;
+  min-height: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   background: var(--cream);
   color: var(--ink);
-  border-radius: 8px;
-  padding: 0.4rem;
-  margin-top: 0.35rem;
+  border-radius: 6px;
+  padding: 0.2rem 0.25rem;
+  margin-top: 0.15rem;
+  width: 100%;
 }
 
 .next-word {
   font-weight: 800;
-  font-size: 0.95rem;
+  font-size: 0.72rem;
   text-align: center;
-  line-height: 1.15;
+  line-height: 1.1;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .next-phonetic {
-  font-size: 0.7rem;
+  font-size: 0.58rem;
   color: #5a6a5a;
-  margin-top: 0.15rem;
+  margin-top: 0.05rem;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .board-area {
@@ -245,6 +322,13 @@ html, body {
   display: flex;
   flex-direction: column;
   align-items: stretch;
+  flex: 1 1 auto;
+  min-height: 0;
+  width: 100%;
+  touch-action: none;
+  overscroll-behavior: none;
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 #board {
@@ -254,8 +338,12 @@ html, body {
   border-radius: 12px 12px 0 0;
   box-shadow: 0 8px 28px rgba(0,0,0,0.4);
   image-rendering: auto;
-  max-width: 100%;
+  width: 100%;
   height: auto;
+  max-height: 100%;
+  touch-action: none;
+  flex: 1 1 auto;
+  min-height: 0;
 }
 
 .lane-labels {
@@ -266,42 +354,69 @@ html, body {
   border: 3px solid var(--teal-bright);
   border-top: none;
   border-radius: 0 0 12px 12px;
-  padding: 0.45rem 0.2rem 0.55rem;
+  padding: 0.2rem 0.15rem 0.35rem;
+  flex-shrink: 0;
+  touch-action: none;
 }
 
 .lane-label {
+  appearance: none;
+  border: none;
+  background: transparent;
+  color: inherit;
+  font-family: inherit;
   text-align: center;
   display: flex;
   flex-direction: column;
-  gap: 0.1rem;
+  align-items: center;
+  justify-content: center;
+  gap: 0.05rem;
+  min-height: 48px;
+  padding: 0.35rem 0.15rem;
+  border-radius: 8px;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+
+.lane-label:active {
+  background: rgba(42, 143, 143, 0.35);
 }
 
 .lane-label .art {
   font-weight: 800;
-  font-size: 0.95rem;
+  font-size: clamp(0.78rem, 3.2vw, 1.05rem);
   color: var(--accent);
+  line-height: 1.15;
+  word-break: break-word;
+  hyphens: auto;
+  max-width: 100%;
 }
 
 .lane-label small {
-  font-size: 0.62rem;
+  font-size: clamp(0.52rem, 2vw, 0.65rem);
   color: var(--muted);
+  line-height: 1.1;
 }
 
 .lane-phrases {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: var(--lane-gap);
-  min-height: 1.4rem;
-  margin-bottom: 0.25rem;
-  font-size: 0.68rem;
+  min-height: 1.15rem;
+  margin-bottom: 0.15rem;
+  font-size: clamp(0.55rem, 2.2vw, 0.7rem);
   text-align: center;
   color: var(--ok);
   font-weight: 600;
+  flex-shrink: 0;
 }
 
 .lane-phrases span {
   opacity: 0;
   transition: opacity 0.2s;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .lane-phrases span.show {
@@ -310,21 +425,23 @@ html, body {
 
 .feedback {
   position: absolute;
-  top: 40%;
+  top: 38%;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 5;
-  background: rgba(8, 31, 31, 0.92);
+  background: rgba(8, 31, 31, 0.94);
   border: 2px solid var(--danger);
   color: var(--cream);
-  padding: 0.75rem 1rem;
-  border-radius: 10px;
+  padding: 0.85rem 1.1rem;
+  border-radius: 12px;
   font-weight: 700;
-  font-size: 0.95rem;
+  font-size: clamp(0.95rem, 3.8vw, 1.15rem);
+  line-height: 1.35;
   text-align: center;
-  max-width: 90%;
+  max-width: 92%;
   pointer-events: none;
   animation: popIn 0.2s ease;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.4);
 }
 
 .feedback.ok {
@@ -336,19 +453,123 @@ html, body {
   to   { opacity: 1; transform: translate(-50%, -50%) scale(1); }
 }
 
-@media (max-width: 560px) {
-  #game-wrap {
-    flex-direction: column;
-    align-items: center;
+/* Touch control bar — fixed thumb zone */
+.touch-bar {
+  display: none;
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 15;
+  grid-template-columns: 1fr 1fr 1fr 1.35fr;
+  gap: 0.4rem;
+  padding: 0.45rem 0.55rem calc(0.45rem + var(--safe-bottom));
+  padding-left: calc(0.55rem + var(--safe-left));
+  padding-right: calc(0.55rem + var(--safe-right));
+  background: linear-gradient(180deg, rgba(8, 31, 31, 0.92), var(--bg-deep) 40%);
+  border-top: 2px solid var(--teal);
+  touch-action: none;
+  overscroll-behavior: none;
+}
+
+.touch-btn {
+  appearance: none;
+  border: 2px solid var(--teal-bright);
+  background: var(--panel);
+  color: var(--cream);
+  font-family: inherit;
+  font-weight: 800;
+  font-size: 1.35rem;
+  border-radius: 14px;
+  min-height: 56px;
+  height: 60px;
+  cursor: pointer;
+  touch-action: manipulation;
+  user-select: none;
+  -webkit-user-select: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.touch-btn:active {
+  background: var(--teal);
+  transform: scale(0.97);
+}
+
+.touch-drop {
+  background: var(--accent);
+  color: var(--ink);
+  border-color: #d89040;
+  font-size: 0.95rem;
+  letter-spacing: 0.04em;
+}
+
+.touch-drop:active {
+  background: #f8b56a;
+}
+
+/* Narrow / touch-first */
+@media (max-width: 720px), (hover: none) and (pointer: coarse) {
+  :root {
+    --touch-bar-h: calc(68px + env(safe-area-inset-bottom, 0px));
   }
+
+  .tagline { display: none; }
+
+  .logo {
+    font-size: clamp(1rem, 4vw, 1.25rem);
+  }
+
+  #app {
+    padding-top: calc(0.35rem + var(--safe-top));
+    padding-bottom: 0;
+    gap: 0.3rem;
+  }
+
+  .touch-bar {
+    display: grid;
+  }
+
+  .touch-hints { display: flex; }
+  .kb-hints { display: none; }
+
+  .howto-en { display: none; }
+
+  .panel-card {
+    padding: 1.1rem 1rem 1.2rem;
+  }
+}
+
+/* Very small phones */
+@media (max-width: 380px) {
+  .hud-block .value { font-size: 0.92rem; }
+  .hearts { font-size: 0.85rem !important; }
+  .next-word { font-size: 0.65rem; }
+  .lane-label { min-height: 44px; padding: 0.25rem 0.1rem; }
+  .touch-btn {
+    min-height: 52px;
+    height: 56px;
+    font-size: 1.2rem;
+  }
+  .touch-drop { font-size: 0.85rem; }
+}
+
+/* Desktop / wide: keep touch bar hidden unless coarse pointer;
+   HUD can breathe a bit more */
+@media (min-width: 721px) and (hover: hover) {
   .hud {
-    flex-direction: row;
-    flex-wrap: wrap;
-    width: 100%;
-    max-width: 400px;
-    justify-content: space-between;
+    padding: 0.55rem 0.75rem;
   }
-  .hud-block { min-width: 70px; }
-  .next-box { flex: 1 1 100%; }
-  .btn.ghost { width: auto; margin-top: 0; }
+  .hud-block .label { font-size: 0.65rem; }
+  .hud-block .value { font-size: 1.25rem; }
+  .next-word { font-size: 0.85rem; }
+  .next-phonetic { font-size: 0.65rem; }
+  .lane-label { min-height: 52px; }
+  .lane-label .art { font-size: 1rem; }
+}
+
+/* When game not visible, no touch bar padding */
+#game-wrap.hidden {
+  padding-bottom: 0;
 }

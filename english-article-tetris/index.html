@@ -1,8 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
+  <meta name="theme-color" content="#1a5c5c" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="mobile-web-app-capable" content="yes" />
   <title>English Article Tetris</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
@@ -16,28 +19,27 @@
     <!-- START SCREEN -->
     <section id="start-screen" class="overlay-panel">
       <div class="panel-card">
-        <h2>How to Play / 遊び方</h2>
+        <h2>遊び方</h2>
         <ul class="howto">
-          <li><strong>EN:</strong> Falling nouns must land in the correct article lane:
-            <em>a</em> (countable, consonant sound),
-            <em>an</em> (countable, vowel sound),
-            <em>some</em> (uncountable),
-            <em>a pair of</em> (paired items).
-            Fill a full row across all 4 lanes to clear. 3 lives. Wrong lane = lose a life.</li>
-          <li><strong>JP:</strong> 落ちてくる名詞を正しい冠詞のレーンへ。
-            <em>a</em>（子音で始まる可算）、
-            <em>an</em>（母音で始まる可算）、
-            <em>some</em>（不可算）、
-            <em>a pair of</em>（対になるもの）。
-            4レーン横一列で消去。ライフは3。間違えるとライフ減。</li>
+          <li>落ちてくる名詞を正しい冠詞レーンへ落としてね。
+            <em>a</em>（子音）·
+            <em>an</em>（母音）·
+            <em>some</em>（不可算）·
+            <em>a pair of</em>（対）。
+            4レーン横一列で消去。ライフ3。ミスで−1。</li>
+          <li class="howto-en"><strong>EN:</strong> Land nouns in the correct article lane. Clear a full row across all 4 lanes. 3 lives.</li>
         </ul>
-        <div class="controls-hint">
+        <div class="controls-hint touch-hints">
+          <span>レーンをタップで落とす</span>
+          <span>下のボタンで操作</span>
+        </div>
+        <div class="controls-hint kb-hints">
           <span>← → / A D — move</span>
           <span>↓ — soft drop</span>
           <span>Space — hard drop</span>
           <span>Esc / P — pause</span>
         </div>
-        <button id="btn-start" class="btn primary">Start Game</button>
+        <button id="btn-start" class="btn primary btn-huge">Start</button>
       </div>
     </section>
 
@@ -45,8 +47,8 @@
     <section id="pause-screen" class="overlay-panel hidden">
       <div class="panel-card">
         <h2>Paused</h2>
-        <p>Press Esc / P or Resume to continue.</p>
-        <button id="btn-resume" class="btn primary">Resume</button>
+        <p class="panel-sub">タップまたは Resume で再開</p>
+        <button id="btn-resume" class="btn primary btn-huge">Resume</button>
       </div>
     </section>
 
@@ -56,13 +58,13 @@
         <h2>Game Over</h2>
         <p class="go-reason" id="go-reason"></p>
         <p class="go-score">Score: <strong id="go-score">0</strong></p>
-        <button id="btn-restart" class="btn primary">Play Again</button>
+        <button id="btn-restart" class="btn primary btn-huge">Play Again</button>
       </div>
     </section>
 
     <!-- GAME HUD + BOARD -->
     <main id="game-wrap" class="hidden">
-      <aside class="hud">
+      <aside class="hud" aria-label="Game status">
         <div class="hud-block">
           <span class="label">Score</span>
           <span id="score" class="value">0</span>
@@ -82,25 +84,33 @@
             <span class="next-phonetic" id="next-phonetic"></span>
           </div>
         </div>
-        <button id="btn-pause" class="btn ghost">Pause</button>
+        <button id="btn-pause" class="btn ghost" type="button">Pause</button>
       </aside>
 
-      <div class="board-area">
+      <div class="board-area" id="board-area">
         <div id="feedback" class="feedback hidden"></div>
-        <canvas id="board" width="400" height="560"></canvas>
         <div id="lane-phrases" class="lane-phrases">
           <span data-lane="0"></span>
           <span data-lane="1"></span>
           <span data-lane="2"></span>
           <span data-lane="3"></span>
         </div>
-        <div class="lane-labels">
-          <div class="lane-label"><span class="art">a</span><small>consonant</small></div>
-          <div class="lane-label"><span class="art">an</span><small>vowel sound</small></div>
-          <div class="lane-label"><span class="art">some</span><small>uncountable</small></div>
-          <div class="lane-label"><span class="art">a pair of</span><small>paired</small></div>
+        <canvas id="board" width="400" height="560" aria-label="Game board"></canvas>
+        <div class="lane-labels" id="lane-labels" role="group" aria-label="Article lanes">
+          <button type="button" class="lane-label" data-lane="0"><span class="art">a</span><small>consonant</small></button>
+          <button type="button" class="lane-label" data-lane="1"><span class="art">an</span><small>vowel sound</small></button>
+          <button type="button" class="lane-label" data-lane="2"><span class="art">some</span><small>uncountable</small></button>
+          <button type="button" class="lane-label" data-lane="3"><span class="art">a pair of</span><small>paired</small></button>
         </div>
       </div>
+
+      <!-- Touch control bar (thumb zone) -->
+      <nav id="touch-bar" class="touch-bar" aria-label="Touch controls">
+        <button type="button" class="touch-btn" id="tc-left" aria-label="Move left">◀</button>
+        <button type="button" class="touch-btn" id="tc-right" aria-label="Move right">▶</button>
+        <button type="button" class="touch-btn" id="tc-soft" aria-label="Soft drop">▼</button>
+        <button type="button" class="touch-btn touch-drop" id="tc-drop" aria-label="Hard drop">DROP</button>
+      </nav>
     </main>
   </div>
   <script src="game.js"></script>

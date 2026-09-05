@@ -1,6 +1,6 @@
 /**
  * English Article Tetris — original learning game
- * Vanilla JS, no dependencies
+ * Vanilla JS, smartphone-first controls
  */
 
 (() => {
@@ -83,15 +83,13 @@
 
   const ARTICLE_LABELS = ["a", "an", "some", "a pair of"];
 
-  // ─── Board constants ───
+  // ─── Board constants (logical grid; CELL scales) ───
   const LANES = 4;
   const ROWS = 8;
-  const CELL = 70;
   const GAP = 4;
-  const BOARD_W = LANES * CELL + (LANES + 1) * GAP;
-  const BOARD_H = ROWS * CELL + (ROWS + 1) * GAP;
-
+  const CELL_BASE = 70;
   const FALL_MS_BASE = 900;
+  const FALL_MS_TOUCH = 1050;
   const SOFT_DROP_MS = 70;
   const FEEDBACK_MS = 1400;
   const PHRASE_FLASH_MS = 1600;
@@ -99,14 +97,13 @@
   // ─── DOM ───
   const canvas = document.getElementById("board");
   const ctx = canvas.getContext("2d");
-  canvas.width = BOARD_W;
-  canvas.height = BOARD_H;
 
   const el = {
     start: document.getElementById("start-screen"),
     pause: document.getElementById("pause-screen"),
     gameover: document.getElementById("gameover-screen"),
     gameWrap: document.getElementById("game-wrap"),
+    boardArea: document.getElementById("board-area"),
     score: document.getElementById("score"),
     combo: document.getElementById("combo"),
     lives: document.getElementById("lives"),
@@ -116,11 +113,23 @@
     goScore: document.getElementById("go-score"),
     goReason: document.getElementById("go-reason"),
     lanePhrases: document.querySelectorAll("#lane-phrases span"),
+    laneLabels: document.querySelectorAll(".lane-label"),
     btnStart: document.getElementById("btn-start"),
     btnResume: document.getElementById("btn-resume"),
     btnRestart: document.getElementById("btn-restart"),
     btnPause: document.getElementById("btn-pause"),
+    tcLeft: document.getElementById("tc-left"),
+    tcRight: document.getElementById("tc-right"),
+    tcSoft: document.getElementById("tc-soft"),
+    tcDrop: document.getElementById("tc-drop"),
+    touchBar: document.getElementById("touch-bar"),
   };
+
+  // mutable draw metrics
+  let CELL = CELL_BASE;
+  let BOARD_W = LANES * CELL + (LANES + 1) * GAP;
+  let BOARD_H = ROWS * CELL + (ROWS + 1) * GAP;
+  let dpr = 1;
 
   // ─── State ───
   let grid; // [lane][row] = noun | null  (row 0 = bottom)
@@ -134,7 +143,20 @@
   let lastFall;
   let animId;
   let feedbackTimer;
-  let bag; // shuffle bag for fair distribution
+  let bag;
+  let fallMs = FALL_MS_BASE;
+
+  function isTouchPreferred() {
+    return (
+      window.matchMedia("(hover: none) and (pointer: coarse)").matches ||
+      window.matchMedia("(max-width: 720px)").matches ||
+      ("ontouchstart" in window && navigator.maxTouchPoints > 0)
+    );
+  }
+
+  function updateFallSpeed() {
+    fallMs = isTouchPreferred() ? FALL_MS_TOUCH : FALL_MS_BASE;
+  }
 
   function fullPhrase(noun) {
     return `${ARTICLE_LABELS[noun.lane]} ${noun.word}`;
@@ -176,6 +198,8 @@
     updateHud();
     clearFeedback();
     clearLanePhrases();
+    updateFallSpeed();
+    resizeBoard();
   }
 
   function spawnPiece() {
@@ -189,7 +213,6 @@
     updateNext();
     lastFall = performance.now();
 
-    // top-out check: if spawn lane already full at top
     if (columnHeight(current.lane) >= ROWS) {
       endGame("A lane filled to the top!");
     }
@@ -204,9 +227,8 @@
     return h;
   }
 
-  /** Visual row (0=top) → stack row from bottom */
   function landingRow(lane) {
-    return columnHeight(lane); // bottom-up index where next block sits
+    return columnHeight(lane);
   }
 
   function updateHud() {
@@ -252,7 +274,6 @@
   }
 
   function comboBonus() {
-    // +10, +15, +20, +25...
     return 5 + combo * 5;
   }
 
@@ -262,7 +283,6 @@
     const correct = noun.lane === lane;
 
     if (!correct) {
-      // destroy — never leave wrong match
       combo = 0;
       lives -= 1;
       updateHud();
@@ -288,17 +308,13 @@
     score += comboBonus();
     updateHud();
 
-    const cleared = clearFullRows();
-    if (cleared === 0) {
-      // subtle ok flash optional — skip to keep snappy
-    }
+    clearFullRows();
 
     if (lives <= 0) return;
     spawnPiece();
   }
 
   function clearFullRows() {
-    // A "row" across all 4 lanes: same bottom-up index all filled
     let clearedCount = 0;
     let r = 0;
     while (r < ROWS) {
@@ -306,14 +322,12 @@
       if (full) {
         const rowNouns = grid.map((col) => col[r]);
         flashLanePhrases(rowNouns);
-        // remove row r from each lane, gravity (blocks below stay; above fall down)
         for (let lane = 0; lane < LANES; lane++) {
           grid[lane].splice(r, 1);
           grid[lane].push(null);
         }
         clearedCount++;
         score += 100;
-        // don't increment r — new block fell into this index
       } else {
         r++;
       }
@@ -334,9 +348,8 @@
 
   function hardDrop() {
     if (!current || state !== "playing") return;
-    // snap to landing visual position then lock
     const stackH = columnHeight(current.lane);
-    const visualBottomRow = ROWS - 1 - stackH; // where block will sit (0=top)
+    const visualBottomRow = ROWS - 1 - stackH;
     current.y = visualBottomRow;
     lockPiece();
   }
@@ -344,7 +357,7 @@
   function softStep() {
     if (!current || state !== "playing") return;
     const stackH = columnHeight(current.lane);
-    const maxY = ROWS - 1 - stackH; // lowest visual row allowed
+    const maxY = ROWS - 1 - stackH;
     if (current.y < maxY) {
       current.y += 1;
     } else {
@@ -356,10 +369,62 @@
     if (!current || state !== "playing") return;
     const nl = current.lane + dir;
     if (nl < 0 || nl >= LANES) return;
-    // instant snap; clamp y so we don't overlap existing stack in new lane
     current.lane = nl;
     const maxY = ROWS - 1 - columnHeight(nl);
     if (current.y > maxY) current.y = maxY;
+  }
+
+  function moveToLaneAndDrop(lane) {
+    if (!current || state !== "playing") return;
+    if (lane < 0 || lane >= LANES) return;
+    current.lane = lane;
+    const maxY = ROWS - 1 - columnHeight(lane);
+    if (current.y > maxY) current.y = maxY;
+    hardDrop();
+  }
+
+  // ─── Responsive canvas ───
+  function resizeBoard() {
+    if (!el.boardArea) return;
+
+    const area = el.boardArea;
+    const phrases = area.querySelector(".lane-phrases");
+    const labels = area.querySelector(".lane-labels");
+    const phrasesH = phrases ? phrases.offsetHeight + 4 : 20;
+    const labelsH = labels ? labels.offsetHeight : 56;
+
+    const availW = Math.max(120, area.clientWidth - 6);
+    let availH = area.clientHeight - phrasesH - labelsH - 6;
+
+    // When flex hasn't settled yet, estimate from viewport
+    if (availH < 120) {
+      const touchH = isTouchPreferred() ? 72 : 0;
+      const hudH = 56;
+      const topH = 36;
+      availH = Math.max(
+        160,
+        window.innerHeight - touchH - hudH - topH - phrasesH - labelsH - 28
+      );
+    }
+
+    const cellFromW = Math.floor((availW - (LANES + 1) * GAP) / LANES);
+    const cellFromH = Math.floor((availH - (ROWS + 1) * GAP) / ROWS);
+    CELL = Math.max(36, Math.min(CELL_BASE, cellFromW, cellFromH));
+
+    BOARD_W = LANES * CELL + (LANES + 1) * GAP;
+    BOARD_H = ROWS * CELL + (ROWS + 1) * GAP;
+
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    canvas.width = Math.round(BOARD_W * dpr);
+    canvas.height = Math.round(BOARD_H * dpr);
+    canvas.style.width = BOARD_W + "px";
+    canvas.style.height = BOARD_H + "px";
+    // center if narrower than area
+    canvas.style.marginLeft = availW > BOARD_W ? "auto" : "0";
+    canvas.style.marginRight = availW > BOARD_W ? "auto" : "0";
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+    drawBoard();
   }
 
   // ─── Drawing ───
@@ -372,42 +437,41 @@
   }
 
   function drawRoundedRect(x, y, w, h, r) {
+    const rr = Math.min(r, w / 2, h / 2);
     ctx.beginPath();
-    ctx.moveTo(x + r, y);
-    ctx.arcTo(x + w, y, x + w, y + h, r);
-    ctx.arcTo(x + w, y + h, x, y + h, r);
-    ctx.arcTo(x, y + h, x, y, r);
-    ctx.arcTo(x, y, x + w, y, r);
+    ctx.moveTo(x + rr, y);
+    ctx.arcTo(x + w, y, x + w, y + h, rr);
+    ctx.arcTo(x + w, y + h, x, y + h, rr);
+    ctx.arcTo(x, y + h, x, y, rr);
+    ctx.arcTo(x, y, x + w, y, rr);
     ctx.closePath();
   }
 
   function drawBlock(x, y, noun, ghost) {
-    const pad = 2;
+    const pad = Math.max(1, Math.round(CELL * 0.03));
+    const radius = Math.max(6, Math.round(CELL * 0.14));
     ctx.save();
     if (ghost) ctx.globalAlpha = 0.35;
-    drawRoundedRect(x + pad, y + pad, CELL - pad * 2, CELL - pad * 2, 10);
+    drawRoundedRect(x + pad, y + pad, CELL - pad * 2, CELL - pad * 2, radius);
     ctx.fillStyle = ghost ? "#cfc3a8" : "#f5ead6";
     ctx.fill();
     ctx.strokeStyle = ghost ? "#a89878" : "#c4a882";
-    ctx.lineWidth = 2;
+    ctx.lineWidth = Math.max(1.5, CELL / 35);
     ctx.stroke();
 
-    // word
     ctx.fillStyle = "#1a2a2a";
     ctx.textAlign = "center";
     ctx.textBaseline = "middle";
     const cx = x + CELL / 2;
-    const cy = y + CELL / 2 - (noun.phonetic ? 6 : 0);
+    const cy = y + CELL / 2 - (noun.phonetic ? CELL * 0.08 : 0);
 
-    // fit text
-    let size = 15;
+    let size = Math.max(9, Math.round(CELL * 0.22));
     ctx.font = `800 ${size}px "Segoe UI", system-ui, sans-serif`;
-    const maxW = CELL - 12;
-    while (size > 9 && ctx.measureText(noun.word).width > maxW) {
+    const maxW = CELL - Math.round(CELL * 0.17);
+    while (size > 8 && ctx.measureText(noun.word).width > maxW) {
       size -= 1;
       ctx.font = `800 ${size}px "Segoe UI", system-ui, sans-serif`;
     }
-    // wrap long words roughly
     const words = noun.word.split(" ");
     if (words.length > 1 && ctx.measureText(noun.word).width > maxW) {
       const lineH = size + 2;
@@ -419,9 +483,10 @@
     }
 
     if (noun.phonetic && !ghost) {
-      ctx.font = `600 9px "Segoe UI", system-ui, sans-serif`;
+      const pSize = Math.max(7, Math.round(CELL * 0.13));
+      ctx.font = `600 ${pSize}px "Segoe UI", system-ui, sans-serif`;
       ctx.fillStyle = "#5a6a5a";
-      ctx.fillText(noun.phonetic, cx, y + CELL - 14);
+      ctx.fillText(noun.phonetic, cx, y + CELL - Math.round(CELL * 0.2));
     }
     ctx.restore();
   }
@@ -429,14 +494,12 @@
   function drawBoard() {
     ctx.clearRect(0, 0, BOARD_W, BOARD_H);
 
-    // lane backgrounds
     for (let lane = 0; lane < LANES; lane++) {
       const x = laneX(lane);
       ctx.fillStyle = lane % 2 === 0 ? "#0a2424" : "#0c2828";
       ctx.fillRect(x, GAP, CELL, BOARD_H - GAP * 2);
     }
 
-    // grid lines subtle
     ctx.strokeStyle = "rgba(42,143,143,0.25)";
     ctx.lineWidth = 1;
     for (let r = 0; r <= ROWS; r++) {
@@ -447,17 +510,17 @@
       ctx.stroke();
     }
 
-    // stacked blocks (grid[lane][bottomUp])
-    for (let lane = 0; lane < LANES; lane++) {
-      for (let bu = 0; bu < ROWS; bu++) {
-        const noun = grid[lane][bu];
-        if (!noun) continue;
-        const visualRow = ROWS - 1 - bu;
-        drawBlock(laneX(lane), rowY(visualRow), noun, false);
+    if (grid) {
+      for (let lane = 0; lane < LANES; lane++) {
+        for (let bu = 0; bu < ROWS; bu++) {
+          const noun = grid[lane][bu];
+          if (!noun) continue;
+          const visualRow = ROWS - 1 - bu;
+          drawBlock(laneX(lane), rowY(visualRow), noun, false);
+        }
       }
     }
 
-    // ghost + current
     if (current && state === "playing") {
       const stackH = columnHeight(current.lane);
       const ghostVisual = ROWS - 1 - stackH;
@@ -474,7 +537,7 @@
   // ─── Loop ───
   function tick(now) {
     if (state === "playing" && current) {
-      const interval = softDropping ? SOFT_DROP_MS : FALL_MS_BASE;
+      const interval = softDropping ? SOFT_DROP_MS : fallMs;
       if (now - lastFall >= interval) {
         softStep();
         lastFall = now;
@@ -499,6 +562,11 @@
     state = "playing";
     el.gameWrap.classList.remove("hidden");
     showOnly(null);
+    // layout after showing
+    requestAnimationFrame(() => {
+      resizeBoard();
+      requestAnimationFrame(resizeBoard);
+    });
   }
 
   function togglePause() {
@@ -519,7 +587,7 @@
     showOnly("gameover");
   }
 
-  // ─── Input ───
+  // ─── Keyboard ───
   function onKeyDown(e) {
     const k = e.key;
     if (state === "start") {
@@ -562,6 +630,134 @@
     if (e.key === "ArrowDown") softDropping = false;
   }
 
+  // ─── Touch / pointer ───
+  function laneFromClientX(clientX) {
+    const rect = canvas.getBoundingClientRect();
+    if (rect.width <= 0) return -1;
+    const x = clientX - rect.left;
+    const ratio = x / rect.width;
+    const lane = Math.floor(ratio * LANES);
+    if (lane < 0 || lane >= LANES) return -1;
+    return lane;
+  }
+
+  // Soft-drop hold on touch button
+  let softHoldTimer = null;
+
+  function startSoftHold() {
+    softDropping = true;
+    softStep();
+    clearInterval(softHoldTimer);
+    softHoldTimer = setInterval(() => {
+      if (state === "playing") softStep();
+    }, SOFT_DROP_MS);
+  }
+
+  function endSoftHold() {
+    softDropping = false;
+    clearInterval(softHoldTimer);
+    softHoldTimer = null;
+  }
+
+  function bindHold(btn, onDown, onUp) {
+    const down = (e) => {
+      e.preventDefault();
+      onDown();
+    };
+    const up = (e) => {
+      e.preventDefault();
+      onUp();
+    };
+    btn.addEventListener("pointerdown", down);
+    btn.addEventListener("pointerup", up);
+    btn.addEventListener("pointercancel", up);
+    btn.addEventListener("pointerleave", up);
+  }
+
+  function bindTap(btn, fn) {
+    btn.addEventListener("pointerdown", (e) => {
+      e.preventDefault();
+      fn();
+    });
+  }
+
+  // Canvas swipe + tap-to-drop
+  let pointerActive = false;
+  let ptrId = null;
+  let startX = 0;
+  let startY = 0;
+  let lastLaneShiftX = 0;
+  let swipeMoved = false;
+  const SWIPE_LANE_PX = 28;
+  const SWIPE_DROP_PX = 48;
+  const TAP_SLOP = 14;
+
+  function onCanvasPointerDown(e) {
+    if (state !== "playing") return;
+    e.preventDefault();
+    pointerActive = true;
+    ptrId = e.pointerId;
+    startX = e.clientX;
+    startY = e.clientY;
+    lastLaneShiftX = e.clientX;
+    swipeMoved = false;
+    try {
+      canvas.setPointerCapture(e.pointerId);
+    } catch (_) {}
+  }
+
+  function onCanvasPointerMove(e) {
+    if (!pointerActive || e.pointerId !== ptrId || state !== "playing") return;
+    e.preventDefault();
+    const dx = e.clientX - lastLaneShiftX;
+    const totalDx = e.clientX - startX;
+    const totalDy = e.clientY - startY;
+
+    if (Math.abs(totalDx) > TAP_SLOP || Math.abs(totalDy) > TAP_SLOP) {
+      swipeMoved = true;
+    }
+
+    // horizontal lane moves while dragging
+    if (Math.abs(dx) >= SWIPE_LANE_PX) {
+      const steps = Math.trunc(dx / SWIPE_LANE_PX);
+      for (let i = 0; i < Math.abs(steps); i++) {
+        moveLane(steps > 0 ? 1 : -1);
+      }
+      lastLaneShiftX += steps * SWIPE_LANE_PX;
+    }
+  }
+
+  function onCanvasPointerUp(e) {
+    if (!pointerActive || e.pointerId !== ptrId) return;
+    e.preventDefault();
+    const totalDx = e.clientX - startX;
+    const totalDy = e.clientY - startY;
+
+    if (!swipeMoved) {
+      // one-tap: move to lane + hard drop
+      const lane = laneFromClientX(e.clientX);
+      if (lane >= 0) moveToLaneAndDrop(lane);
+    } else if (totalDy > SWIPE_DROP_PX && Math.abs(totalDy) > Math.abs(totalDx)) {
+      hardDrop();
+    }
+
+    pointerActive = false;
+    ptrId = null;
+  }
+
+  function onCanvasPointerCancel(e) {
+    if (e.pointerId !== ptrId) return;
+    pointerActive = false;
+    ptrId = null;
+  }
+
+  // Prevent page scroll/bounce while interacting with game
+  function preventScroll(e) {
+    if (!el.gameWrap.classList.contains("hidden")) {
+      e.preventDefault();
+    }
+  }
+
   // ─── Wire UI ───
   el.btnStart.addEventListener("click", startPlaying);
   el.btnResume.addEventListener("click", togglePause);
@@ -570,9 +766,45 @@
   window.addEventListener("keydown", onKeyDown);
   window.addEventListener("keyup", onKeyUp);
 
+  bindTap(el.tcLeft, () => moveLane(-1));
+  bindTap(el.tcRight, () => moveLane(1));
+  bindHold(el.tcSoft, startSoftHold, endSoftHold);
+  bindTap(el.tcDrop, () => hardDrop());
+
+  el.laneLabels.forEach((btn) => {
+    btn.addEventListener("pointerdown", (e) => {
+      e.preventDefault();
+      const lane = Number(btn.dataset.lane);
+      moveToLaneAndDrop(lane);
+    });
+  });
+
+  canvas.addEventListener("pointerdown", onCanvasPointerDown);
+  canvas.addEventListener("pointermove", onCanvasPointerMove);
+  canvas.addEventListener("pointerup", onCanvasPointerUp);
+  canvas.addEventListener("pointercancel", onCanvasPointerCancel);
+
+  el.boardArea.addEventListener("touchmove", preventScroll, { passive: false });
+  el.touchBar.addEventListener("touchmove", preventScroll, { passive: false });
+  canvas.addEventListener("touchmove", preventScroll, { passive: false });
+
+  // Avoid context menu on long-press
+  canvas.addEventListener("contextmenu", (e) => e.preventDefault());
+  el.touchBar.addEventListener("contextmenu", (e) => e.preventDefault());
+
+  window.addEventListener("resize", () => {
+    updateFallSpeed();
+    if (!el.gameWrap.classList.contains("hidden")) resizeBoard();
+  });
+  window.addEventListener("orientationchange", () => {
+    setTimeout(resizeBoard, 120);
+  });
+
   // boot
   state = "start";
   grid = emptyGrid();
+  updateFallSpeed();
+  resizeBoard();
   drawBoard();
   animId = requestAnimationFrame(tick);
 })();
