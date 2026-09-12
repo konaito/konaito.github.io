@@ -4,19 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>konaito — Engineering Portfolio</title>
-    <meta name="description" content="konaito（内藤剛汰）のエンジニアリングポートフォリオ。AIエージェント、Webサービス、ネイティブアプリ。5年で188リポジトリ。AI agents, web services, native apps — 188 repositories in 5 years.">
+    <meta name="description" content="konaito（内藤剛汰）のエンジニアリングポートフォリオ。AIエージェント、Webサービス、ネイティブアプリ。5年で180リポジトリ。AI agents, web services, native apps — 180 repositories in 5 years.">
     <link rel="canonical" href="https://konaito.github.io/">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://konaito.github.io/">
     <meta property="og:site_name" content="konaito.github.io">
     <meta property="og:title" content="konaito — Engineering Portfolio">
-    <meta property="og:description" content="Build first, then think. AIエージェント、Webサービス、ネイティブアプリ。5年で188リポジトリ。">
+    <meta property="og:description" content="Build first, then think. AIエージェント、Webサービス、ネイティブアプリ。5年で180リポジトリ。">
     <meta property="og:image" content="https://konaito.github.io/assets/og.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="konaito — Engineering Portfolio">
-    <meta name="twitter:description" content="Build first, then think. AIエージェント、Webサービス、ネイティブアプリ。5年で188リポジトリ。">
+    <meta name="twitter:description" content="Build first, then think. AIエージェント、Webサービス、ネイティブアプリ。5年で180リポジトリ。">
     <meta name="twitter:image" content="https://konaito.github.io/assets/og.png">
     <script type="application/ld+json">
     {
@@ -344,15 +344,15 @@
         ja: {
             kicker: "Engineering Portfolio",
             hero_title: 'Build first, <em>then think.</em>',
-            lede: "konaito（内藤剛汰）。AIエージェント、Webサービス、ネイティブアプリ。思いついたものは全部作る。5年で188リポジトリ、うち128は非公開。",
+            lede: "konaito（内藤剛汰）。AIエージェント、Webサービス、ネイティブアプリ。思いついたものは全部作る。{repos}リポジトリ、うち{private}は非公開。",
             s1_title: "数字で見る",
             s1_note: "GitHub上の全リポジトリ（fork除く）の実測値。非公開リポジトリを含む。",
             contrib_title: "年間コントリビューション",
-            contrib_note: "※ 2026年は1月〜8月時点の値。AIエージェントを使い倒す開発スタイルに移行してから、出荷速度が桁で変わった。",
+            contrib_note: "※ {year}年は1月〜{month}月時点の値。AIエージェントを使い倒す開発スタイルに移行してから、出荷速度が桁で変わった。",
             lang_title: "言語別リポジトリ数",
             lang_note: "各リポジトリの主要言語で集計。ほかに Rust / Go / Ruby / Dart / Astro / Solidity など。",
             s2_title: "何を作ってきたか",
-            s2_note: "非公開リポジトリを含む188リポジトリをドメイン別に集計。個別の非公開プロジェクトの詳細は面談等でお見せできます。",
+            s2_note: "非公開リポジトリを含む{repos}リポジトリをドメイン別に集計。個別の非公開プロジェクトの詳細は面談等でお見せできます。",
             live_title: "触って試せる",
             live_go: "開く",
             s3_title: "公開プロジェクト",
@@ -373,15 +373,15 @@
         en: {
             kicker: "Engineering Portfolio",
             hero_title: 'Build first, <em>then think.</em>',
-            lede: "konaito (Kota Naito). AI agents, web services, native apps — I build everything I think of. 188 repositories in 5 years, 128 of them private.",
+            lede: "konaito (Kota Naito). AI agents, web services, native apps — I build everything I think of. {repos} repositories, {private} of them private.",
             s1_title: "By the numbers",
             s1_note: "Measured across all GitHub repositories (excluding forks), private ones included.",
             contrib_title: "Yearly contributions",
-            contrib_note: "* 2026 covers January–August. Shipping speed changed by an order of magnitude after going all-in on AI-agent-driven development.",
+            contrib_note: "* {year} covers January–{monthName}. Shipping speed changed by an order of magnitude after going all-in on AI-agent-driven development.",
             lang_title: "Repositories by language",
             lang_note: "Counted by each repository's primary language. Also: Rust, Go, Ruby, Dart, Astro, Solidity, and more.",
             s2_title: "What I build",
-            s2_note: "All 188 repositories, private ones included, grouped by domain. Happy to walk through private projects in a call.",
+            s2_note: "All {repos} repositories, private ones included, grouped by domain. Happy to walk through private projects in a call.",
             live_title: "Try it live",
             live_go: "Open",
             s3_title: "Public projects",
@@ -417,10 +417,20 @@
     function render() {
         if (!DATA) return;
         const t = I18N[lang];
+        const partial = DATA.contributions.find(c => c.partial) || DATA.contributions.at(-1);
+        const generatedDate = new Date(`${DATA.generatedAt}T00:00:00Z`);
+        const variables = {
+            repos: DATA.totals.repos,
+            private: DATA.totals.private,
+            year: partial?.year || generatedDate.getUTCFullYear(),
+            month: generatedDate.getUTCMonth() + 1,
+            monthName: new Intl.DateTimeFormat('en-US', { month: 'long', timeZone: 'UTC' }).format(generatedDate),
+        };
+        const translate = value => String(value ?? '').replace(/\{(\w+)\}/g, (_, key) => variables[key] ?? `{${key}}`);
         document.getElementById('btn-ja').classList.toggle('active', lang === 'ja');
         document.getElementById('btn-en').classList.toggle('active', lang === 'en');
         document.querySelectorAll('[data-i18n]').forEach(el => {
-            el.textContent = t[el.dataset.i18n] ?? '';
+            el.textContent = translate(t[el.dataset.i18n]);
         });
         document.getElementById('hero-title').innerHTML = t.hero_title;
         document.getElementById('generated-at').textContent = DATA.generatedAt;

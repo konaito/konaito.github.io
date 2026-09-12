@@ -1,31 +1,31 @@
 {
-  "generatedAt": "2026-08-26",
+  "generatedAt": "2026-09-12",
   "totals": {
-    "repos": 188,
-    "private": 128,
-    "public": 60,
+    "repos": 181,
+    "private": 125,
+    "public": 56,
     "since": "2021"
   },
   "languagesByRepos": [
     {
       "name": "TypeScript",
-      "repos": 97
+      "repos": 88
     },
     {
       "name": "Python",
-      "repos": 26
+      "repos": 27
     },
     {
       "name": "JavaScript",
-      "repos": 9
+      "repos": 14
     },
     {
       "name": "HTML",
-      "repos": 8
+      "repos": 9
     },
     {
       "name": "Swift",
-      "repos": 6
+      "repos": 7
     },
     {
       "name": "C",
@@ -43,23 +43,23 @@
   "languagesByBytes": [
     {
       "name": "TypeScript",
-      "bytes": 11458978
+      "bytes": 11492998
     },
     {
       "name": "Python",
-      "bytes": 5726676
+      "bytes": 5915792
     },
     {
       "name": "JavaScript",
-      "bytes": 2738523
+      "bytes": 3060349
     },
     {
       "name": "HTML",
-      "bytes": 2402245
+      "bytes": 2500657
     },
     {
       "name": "CSS",
-      "bytes": 1535325
+      "bytes": 1689205
     },
     {
       "name": "PHP",
@@ -67,19 +67,19 @@
     },
     {
       "name": "Kotlin",
-      "bytes": 622038
+      "bytes": 673153
+    },
+    {
+      "name": "Swift",
+      "bytes": 666629
     },
     {
       "name": "C",
       "bytes": 566339
     },
     {
-      "name": "Swift",
-      "bytes": 543861
-    },
-    {
       "name": "Rust",
-      "bytes": 539983
+      "bytes": 546609
     }
   ],
   "contributions": [
@@ -100,44 +100,44 @@
     },
     {
       "year": 2024,
-      "total": 806,
+      "total": 800,
       "partial": false
     },
     {
       "year": 2025,
-      "total": 4332,
+      "total": 4280,
       "partial": false
     },
     {
       "year": 2026,
-      "total": 9381,
+      "total": 9820,
       "partial": true
     }
   ],
   "categories": [
     {
       "id": "ai-agents",
-      "count": 41
+      "count": 39
     },
     {
       "id": "web-saas",
-      "count": 56
+      "count": 58
     },
     {
       "id": "native-apps",
-      "count": 14
+      "count": 15
     },
     {
       "id": "trading",
-      "count": 8
+      "count": 9
     },
     {
       "id": "devtools",
-      "count": 21
+      "count": 18
     },
     {
       "id": "ml",
-      "count": 8
+      "count": 10
     },
     {
       "id": "systems",
@@ -149,16 +149,17 @@
     },
     {
       "id": "experiments",
-      "count": 24
+      "count": 16
     }
   ],
   "featured": [
     {
-      "name": "ito",
-      "description": "4つのAI(Gemini/Grok/ChatGPT/Claude)が会話しながらカードゲーム『ito』を遊ぶマルチエージェント・ロールプレイの例",
-      "language": "TypeScript",
-      "stars": 0,
-      "url": "https://github.com/konaito/ito"
+      "name": "ai-karaoke",
+      "description": "A local-first karaoke PWA for 愛を伝えるだとか",
+      "language": "JavaScript",
+      "stars": 1,
+      "url": "https://github.com/konaito/ai-karaoke",
+      "pagesUrl": "https://konaito.github.io/ai-karaoke/"
     },
     {
       "name": "terminal-browser",
@@ -177,19 +178,26 @@
       "pagesUrl": "https://konaito.github.io/opttab/"
     },
     {
-      "name": "manga-agent",
-      "description": "Open-source manga editor agent and spec-driven AI production harness (mangagen)",
-      "language": "Python",
-      "stars": 0,
-      "url": "https://github.com/konaito/manga-agent"
-    },
-    {
       "name": "nimmt",
       "description": "6 Nimmt! (ニムト) AI trained with PPO self-play — beats MC-rollout search by 2.4 bulls/deal with a single 931KB MLP. Browser UI included.",
       "language": "Python",
       "stars": 0,
       "url": "https://github.com/konaito/nimmt",
       "pagesUrl": "https://konaito.github.io/nimmt/"
+    },
+    {
+      "name": "ito",
+      "description": "4つのAI(Gemini/Grok/ChatGPT/Claude)が会話しながらカードゲーム『ito』を遊ぶマルチエージェント・ロールプレイの例",
+      "language": "TypeScript",
+      "stars": 0,
+      "url": "https://github.com/konaito/ito"
+    },
+    {
+      "name": "manga-agent",
+      "description": "Open-source manga editor agent and spec-driven AI production harness (mangagen)",
+      "language": "Python",
+      "stars": 0,
+      "url": "https://github.com/konaito/manga-agent"
     },
     {
       "name": "ClaudeAsOpenAI",
