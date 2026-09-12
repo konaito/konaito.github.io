@@ -56,7 +56,7 @@ def main():
 
     repos = json.loads(gh([
         "repo", "list", "konaito", "--limit", "300", "--json",
-        "name,visibility,description,primaryLanguage,createdAt,pushedAt,stargazerCount,isFork,url",
+        "name,visibility,description,primaryLanguage,createdAt,pushedAt,stargazerCount,isFork,url,homepageUrl",
     ]))
     repos = [r for r in repos if not r["isFork"]]
 
@@ -106,7 +106,8 @@ def main():
 
     # 公開して見せるプロジェクト（publicのみ、名前を出してよい）
     featured_names = [
-        "ito", "terminal-browser", "opttab", "manga-agent", "nimmt", "ClaudeAsOpenAI",
+        "ai-karaoke",
+        "terminal-browser", "opttab", "nimmt", "ito", "manga-agent", "ClaudeAsOpenAI",
     ]
     by_name = {r["name"]: r for r in repos}
     featured = []
@@ -116,10 +117,15 @@ def main():
             sys.exit(f"featured リポジトリ {n} が見つからない")
         if r["visibility"] != "PUBLIC":
             sys.exit(f"featured リポジトリ {n} が public でない")
-        # GitHub Pagesで公開中ならそのURLを持たせる(404なら無し)
+        # GitHub Pagesで公開中ならそのURLを持たせる。
+        # Pages APIが404を返すケースでは、リポジトリのhomepage設定を
+        # フォールバックに使う（ユーザーサイト配下のURLだけを対象にする）。
         pages = subprocess.run(["gh", "api", f"repos/konaito/{n}/pages", "--jq", ".html_url"],
                                capture_output=True, text=True, timeout=30)
         pages_url = pages.stdout.strip() if pages.returncode == 0 else ""
+        expected_pages_url = f"https://konaito.github.io/{n}/"
+        if not pages_url and (r.get("homepageUrl") or "").rstrip("/") == expected_pages_url.rstrip("/"):
+            pages_url = expected_pages_url
         featured.append({
             "name": r["name"],
             "description": r["description"] or "",
