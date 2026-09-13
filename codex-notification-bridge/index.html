@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Codex Notification Bridge — Download</title>
-  <meta name="description" content="Codexの作業中セッションへメッセージを挿入するmacOSアプリ、Codex Notification Bridgeのダウンロードページ。">
+  <meta name="description" content="mainの最新ビルドをダウンロードできる、Codex Notification Bridgeの配布ページ。">
   <link rel="canonical" href="https://konaito.github.io/codex-notification-bridge/">
   <style>
     :root { --paper: #fdfcfa; --ink: #1a1815; --soft: #57534b; --faint: #8a857b; --line: #e3ded4; --accent: #c2410c; --accent-soft: #fff1e8; }
@@ -15,8 +15,11 @@
     .eyebrow { color: var(--accent); font-size: 12px; letter-spacing: .16em; text-transform: uppercase; }
     h1 { margin: 54px 0 18px; font-size: clamp(38px, 8vw, 72px); line-height: 1.05; letter-spacing: -.05em; }
     .lede { max-width: 600px; color: var(--soft); font-size: 18px; }
-    .download { display: inline-flex; margin: 34px 0 14px; padding: 14px 20px; background: var(--accent); color: white; text-decoration: none; border-radius: 3px; font-weight: 700; }
+    .downloads { display: flex; gap: 10px; flex-wrap: wrap; margin: 34px 0 14px; }
+    .download { display: inline-flex; padding: 14px 20px; background: var(--accent); color: white; text-decoration: none; border-radius: 3px; font-weight: 700; }
+    .download.secondary { background: var(--ink); }
     .download:hover { background: #9a3412; }
+    .download.secondary:hover { background: #3a3732; }
     .meta { color: var(--faint); font-size: 12px; }
     section { margin-top: 56px; padding-top: 26px; border-top: 1px solid var(--line); }
     h2 { margin: 0 0 18px; font-size: 22px; }
@@ -29,17 +32,20 @@
 </head>
 <body>
   <main>
-    <div class="eyebrow">macOS utility · v0.1.1</div>
+    <div class="eyebrow">macOS utility · latest main build</div>
     <h1>Codex<br>Notification Bridge</h1>
     <p class="lede">作業中のCodexセッションを一覧表示し、入力内容と直近の会話・作業状態から送信先を予測して、選択したタスクへメッセージを挿入するElectronアプリです。</p>
 
-    <a class="download" href="https://github.com/konaito/konaito.github.io/releases/download/codex-notification-bridge-v0.1.1/Codex-Notification-Bridge-0.1.1-macos-arm64.zip">Apple Silicon版をダウンロード（121MB）</a>
-    <div class="meta">macOS arm64 · Electron 44.3.0 · Developer ID署名済み・Apple公証済み · <a href="https://github.com/konaito/konaito.github.io/releases/tag/codex-notification-bridge-v0.1.1">Release details</a></div>
+    <div class="downloads">
+      <a class="download" href="https://github.com/konaito/codex-notification-bridge/releases/latest/download/Codex-Notification-Bridge-macOS-arm64.zip">Apple Silicon版をダウンロード</a>
+      <a class="download secondary" href="https://github.com/konaito/codex-notification-bridge/releases/latest/download/Codex-Notification-Bridge-macOS-x64.zip">Intel版をダウンロード</a>
+    </div>
+    <div class="meta">macOS arm64 / x64 · Electron 44.3.0 · mainへのpushごとに自動ビルド · <a href="https://github.com/konaito/codex-notification-bridge/releases/latest">最新Release</a></div>
 
     <section>
       <h2>インストール</h2>
       <ol>
-        <li>ZIPをダウンロードして展開します。</li>
+        <li>お使いのMacに合うZIPをダウンロードして展開します。</li>
         <li><code>Codex Notification Bridge.app</code> をApplicationsへ移動します。</li>
         <li>初回に警告が出た場合は、アプリを右クリックして「開く」を選びます。</li>
       </ol>
@@ -48,16 +54,16 @@
     <section>
       <h2>必要環境</h2>
       <ul>
-        <li>Apple Silicon搭載Mac（Mシリーズ）</li>
+        <li>macOSを搭載したApple SiliconまたはIntel Mac</li>
         <li>ログイン済みの <code>codex</code> CLI</li>
         <li>Codexの作業中セッションにアクセスできる環境</li>
       </ul>
-      <p class="note">アプリはDeveloper IDで署名し、Appleの公証を通しています。ソースコードは<a href="https://github.com/konaito/codex-notification-bridge">公開リポジトリ</a>で確認できます。</p>
+      <p class="note">mainへのpush後、GitHub ActionsがテストとmacOS向けパッケージングを実行し、成功したビルドだけを最新Releaseとして公開します。現時点では署名・公証を行っていないため、初回起動時にmacOSの確認が表示される場合があります。ソースコードは<a href="https://github.com/konaito/codex-notification-bridge">公開リポジトリ</a>で確認できます。</p>
     </section>
 
     <section>
       <h2>関連リンク</h2>
-      <p><a href="https://github.com/konaito/konaito.github.io/releases/tag/codex-notification-bridge-v0.1.1">更新情報とSHA-256</a> · <a href="https://github.com/konaito/codex-notification-bridge">ソースコード</a> · <a href="https://konaito.github.io/">konaitoのポートフォリオ</a></p>
+      <p><a href="https://github.com/konaito/codex-notification-bridge/releases/latest">更新情報とRelease</a> · <a href="https://github.com/konaito/codex-notification-bridge">ソースコード</a> · <a href="https://konaito.github.io/">konaitoのポートフォリオ</a></p>
     </section>
 
     <footer>Codex Notification Bridge · konaito</footer>
