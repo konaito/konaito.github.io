@@ -17,9 +17,7 @@
     .lede { max-width: 600px; color: var(--soft); font-size: 18px; }
     .downloads { display: flex; gap: 10px; flex-wrap: wrap; margin: 34px 0 14px; }
     .download { display: inline-flex; padding: 14px 20px; background: var(--accent); color: white; text-decoration: none; border-radius: 3px; font-weight: 700; }
-    .download.secondary { background: var(--ink); }
     .download:hover { background: #9a3412; }
-    .download.secondary:hover { background: #3a3732; }
     .meta { color: var(--faint); font-size: 12px; }
     section { margin-top: 56px; padding-top: 26px; border-top: 1px solid var(--line); }
     h2 { margin: 0 0 18px; font-size: 22px; }
@@ -37,15 +35,14 @@
     <p class="lede">作業中のCodexセッションを一覧表示し、入力内容と直近の会話・作業状態から送信先を予測して、選択したタスクへメッセージを挿入するElectronアプリです。</p>
 
     <div class="downloads">
-      <a class="download" href="https://github.com/konaito/codex-notification-bridge/releases/latest/download/Codex-Notification-Bridge-macOS-arm64.zip">Apple Silicon版をダウンロード</a>
-      <a class="download secondary" href="https://github.com/konaito/codex-notification-bridge/releases/latest/download/Codex-Notification-Bridge-macOS-x64.zip">Intel版をダウンロード</a>
+      <a class="download" href="https://github.com/konaito/codex-notification-bridge/releases/latest/download/Codex-Notification-Bridge-macOS-arm64.dmg">Apple Silicon版（DMG）をダウンロード</a>
     </div>
-    <div class="meta">macOS arm64 / x64 · Electron 44.3.0 · mainへのpushごとに自動ビルド · <a href="https://github.com/konaito/codex-notification-bridge/releases/latest">最新Release</a></div>
+    <div class="meta">macOS arm64 · Electron 44.3.0 · mainへのpushごとにDMGを自動ビルド · <a href="https://github.com/konaito/codex-notification-bridge/releases/latest">最新Release</a></div>
 
     <section>
       <h2>インストール</h2>
       <ol>
-        <li>お使いのMacに合うZIPをダウンロードして展開します。</li>
+        <li>DMGをダウンロードして開きます。</li>
         <li><code>Codex Notification Bridge.app</code> をApplicationsへ移動します。</li>
         <li>初回に警告が出た場合は、アプリを右クリックして「開く」を選びます。</li>
       </ol>
@@ -54,11 +51,11 @@
     <section>
       <h2>必要環境</h2>
       <ul>
-        <li>macOSを搭載したApple SiliconまたはIntel Mac</li>
+        <li>Apple Silicon搭載Mac（Mシリーズ）</li>
         <li>ログイン済みの <code>codex</code> CLI</li>
         <li>Codexの作業中セッションにアクセスできる環境</li>
       </ul>
-      <p class="note">mainへのpush後、GitHub ActionsがテストとmacOS向けパッケージングを実行し、成功したビルドだけを最新Releaseとして公開します。現時点では署名・公証を行っていないため、初回起動時にmacOSの確認が表示される場合があります。ソースコードは<a href="https://github.com/konaito/codex-notification-bridge">公開リポジトリ</a>で確認できます。</p>
+      <p class="note">mainへのpush後、GitHub ActionsがテストとApple Silicon向けDMG生成を実行し、成功したビルドだけを最新Releaseとして公開します。現時点では署名・公証を行っていないため、初回起動時にmacOSの確認が表示される場合があります。ソースコードは<a href="https://github.com/konaito/codex-notification-bridge">公開リポジトリ</a>で確認できます。</p>
     </section>
 
     <section>
