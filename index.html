@@ -3,516 +3,892 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>konaito — Engineering Portfolio</title>
-    <meta name="description" content="konaito（内藤剛汰）のエンジニアリングポートフォリオ。AIエージェント、Webサービス、ネイティブアプリ。5年で180リポジトリ。AI agents, web services, native apps — 180 repositories in 5 years.">
+    <title>内藤剛汰 - コナイトペディア</title>
+    <meta name="description" content="内藤剛汰（konaito）は、日本のソフトウェアエンジニア、実業家、音楽家。合同会社FYBE.jp代表社員。42 Tokyo所属。AIエージェント駆動の開発、エッセイ、楽曲制作を行う。">
     <link rel="canonical" href="https://konaito.github.io/">
-    <meta property="og:type" content="website">
+    <meta property="og:type" content="profile">
     <meta property="og:url" content="https://konaito.github.io/">
-    <meta property="og:site_name" content="konaito.github.io">
-    <meta property="og:title" content="konaito — Engineering Portfolio">
-    <meta property="og:description" content="Build first, then think. AIエージェント、Webサービス、ネイティブアプリ。5年で180リポジトリ。">
+    <meta property="og:site_name" content="コナイトペディア">
+    <meta property="og:title" content="内藤剛汰 - コナイトペディア">
+    <meta property="og:description" content="日本のソフトウェアエンジニア、実業家、音楽家。合同会社FYBE.jp代表社員。">
     <meta property="og:image" content="https://konaito.github.io/assets/og.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="konaito — Engineering Portfolio">
-    <meta name="twitter:description" content="Build first, then think. AIエージェント、Webサービス、ネイティブアプリ。5年で180リポジトリ。">
+    <meta name="twitter:title" content="内藤剛汰 - コナイトペディア">
+    <meta name="twitter:description" content="日本のソフトウェアエンジニア、実業家、音楽家。合同会社FYBE.jp代表社員。">
     <meta name="twitter:image" content="https://konaito.github.io/assets/og.png">
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "Person",
-      "name": "Kota Naito",
-      "alternateName": ["konaito", "内藤剛汰"],
+      "name": "内藤剛汰",
+      "alternateName": ["Kota Naito", "konaito"],
       "url": "https://konaito.github.io/",
       "jobTitle": "Software Engineer",
+      "worksFor": { "@type": "Organization", "name": "合同会社FYBE.jp", "url": "https://www.fybe.jp/" },
       "sameAs": [
         "https://github.com/konaito",
-        "https://x.com/konaito_copilot"
+        "https://x.com/konaito_copilot",
+        "https://note.com/konaito",
+        "https://www.youtube.com/channel/UCUCuTNSoAma6Q3-FHk4Ea8w"
       ]
     }
     </script>
     <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
     <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://api.fontshare.com">
-    <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
-    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@500,700,900,701&display=swap" rel="stylesheet">
     <style>
         :root {
-            --paper: #fdfcfa;
-            --ink: #1a1815;
-            --ink-soft: #57534b;
-            --ink-faint: #8a857b;
-            --line: #e3ded4;
-            --line-strong: #c9c2b4;
-            --accent: #c2410c;
-            --accent-soft: #fff1e8;
-            --serif: "Satoshi", "Zen Kaku Gothic New", sans-serif;
-            --mono: "Geist Mono", monospace;
-            --sans: "Satoshi", "Zen Kaku Gothic New", -apple-system, sans-serif;
+            --text: #202122;
+            --text-soft: #54595d;
+            --link: #3366cc;
+            --link-visited: #6a60b0;
+            --border: #a2a9b1;
+            --border-soft: #c8ccd1;
+            --border-faint: #eaecf0;
+            --bg: #ffffff;
+            --bg-subtle: #f8f9fa;
+            --bg-head: #eaecf0;
+            --notice: #fc3;
+            --serif: "Linux Libertine", "Georgia", "Times", "Hiragino Mincho ProN", "Yu Mincho", serif;
+            --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Noto Sans JP", Meiryo, sans-serif;
         }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * { box-sizing: border-box; }
         html { scroll-behavior: smooth; }
         body {
-            background: var(--paper);
-            color: var(--ink);
-            font-family: var(--sans);
-            font-size: 15px;
-            line-height: 1.75;
-            -webkit-font-smoothing: antialiased;
+            margin: 0; background: var(--bg); color: var(--text);
+            font-family: var(--sans); font-size: 15px; line-height: 1.65;
         }
-        /* 紙のような粒子感 */
-        body::before {
-            content: "";
-            position: fixed; inset: 0;
-            pointer-events: none;
-            opacity: 0.5;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 0.1 0 0 0 0 0.09 0 0 0 0 0.08 0 0 0 0.03 0'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)'/%3E%3C/svg%3E");
-            z-index: 10;
+        a { color: var(--link); text-decoration: none; }
+        a:visited { color: var(--link-visited); }
+        a:hover { text-decoration: underline; }
+        a.ext::after {
+            content: ""; display: inline-block; width: 10px; height: 10px; margin-left: 3px;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 10 10'%3E%3Cpath fill='%233366cc' d='M1 1h4v1H2v6h6V5h1v4H1z'/%3E%3Cpath fill='%233366cc' d='M6 1h3v3L8 3 5.5 5.5l-1-1L7 2z'/%3E%3C/svg%3E") no-repeat;
         }
-        .wrap { max-width: 880px; margin: 0 auto; padding: 0 24px; }
 
         /* ── ヘッダー ── */
-        header {
-            display: flex; justify-content: space-between; align-items: baseline;
-            padding: 28px 0 0;
-            font-family: var(--mono); font-size: 12px;
+        .site-header {
+            display: flex; align-items: center; gap: 16px;
+            max-width: 1440px; margin: 0 auto; padding: 10px 24px;
         }
-        header .brand { letter-spacing: 0.08em; color: var(--ink-soft); }
-        .lang-toggle {
-            display: inline-flex; border: 1px solid var(--line-strong); border-radius: 2px; overflow: hidden;
+        .logo { display: flex; align-items: center; gap: 10px; color: var(--text) !important; }
+        .logo:hover { text-decoration: none; }
+        .logo svg { width: 46px; height: 46px; flex: none; }
+        .wordmark { line-height: 1.15; }
+        .wordmark b { display: block; font-family: var(--serif); font-weight: 400; font-size: 21px; letter-spacing: 0.02em; }
+        .wordmark small { display: block; font-size: 11px; color: var(--text-soft); letter-spacing: 0.05em; }
+        .search { flex: 1; max-width: 520px; display: flex; margin-left: 24px; }
+        .search input {
+            flex: 1; min-width: 0; font: inherit; font-size: 14px;
+            padding: 6px 10px; border: 1px solid var(--border); border-right: none; border-radius: 2px 0 0 2px;
         }
-        .lang-toggle button {
-            font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em;
-            padding: 4px 12px; border: none; background: transparent; color: var(--ink-faint);
-            cursor: pointer;
+        .search input:focus { outline: none; border-color: var(--link); box-shadow: inset 0 0 0 1px var(--link); }
+        .search button {
+            font: inherit; font-size: 14px; padding: 6px 14px; cursor: pointer;
+            background: var(--bg-subtle); border: 1px solid var(--border); border-radius: 0 2px 2px 0; color: var(--text);
         }
-        .lang-toggle button.active { background: var(--ink); color: var(--paper); }
+        .search button:hover { background: #fff; }
+        .header-links { margin-left: auto; font-size: 13px; display: flex; gap: 14px; }
 
-        /* ── ヒーロー ── */
-        .hero { padding: 88px 0 64px; border-bottom: 1px solid var(--line-strong); }
-        .hero .kicker {
-            font-family: var(--mono); font-size: 12px; letter-spacing: 0.22em;
-            text-transform: uppercase; color: var(--accent); margin-bottom: 20px;
+        /* ── レイアウト ── */
+        .page { max-width: 1440px; margin: 0 auto; padding: 0 24px; display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 28px; }
+        .sidebar { position: sticky; top: 0; align-self: start; max-height: 100vh; overflow-y: auto; padding: 20px 0 40px; font-size: 13.5px; }
+        .sidebar h2 {
+            font-family: var(--sans); font-size: 13px; font-weight: 700; margin: 0 0 8px;
+            padding-bottom: 6px; border-bottom: 1px solid var(--border-soft); color: var(--text-soft);
         }
-        .hero h1 {
-            font-family: var(--serif); font-weight: 900;
-            font-size: clamp(44px, 8vw, 84px);
-            line-height: 1.05; letter-spacing: -0.035em;
-        }
-        .hero h1 em { font-style: italic; color: var(--accent); }
-        .hero .lede {
-            margin-top: 28px; max-width: 560px;
-            color: var(--ink-soft); font-size: 16px;
-        }
-        .hero .links { margin-top: 32px; display: flex; gap: 20px; flex-wrap: wrap; }
-        .hero .links a {
-            font-family: var(--mono); font-size: 13px; color: var(--ink);
-            text-decoration: none; border-bottom: 1px solid var(--line-strong);
-            padding-bottom: 2px; transition: border-color .15s, color .15s;
-        }
-        .hero .links a:hover { color: var(--accent); border-color: var(--accent); }
+        .toc ol { list-style: none; margin: 0; padding: 0; }
+        .toc ol ol { padding-left: 12px; }
+        .toc li { margin: 4px 0; }
+        .toc a { color: var(--text); }
+        .toc a.active { font-weight: 700; color: var(--text); }
+        .toc a:hover { color: var(--link); }
+        .toc .top-link { display: block; margin-bottom: 6px; }
+        .side-block { margin-top: 28px; }
+        .side-block ul { list-style: none; padding: 0; margin: 0; }
+        .side-block li { margin: 4px 0; }
 
-        /* ── セクション共通 ── */
-        section { padding: 64px 0; border-bottom: 1px solid var(--line); }
-        .sec-head { display: flex; align-items: baseline; gap: 16px; margin-bottom: 40px; }
-        .sec-head .num { font-family: var(--mono); font-size: 12px; color: var(--accent); }
-        .sec-head h2 {
-            font-family: var(--serif); font-weight: 700; font-size: 28px; letter-spacing: -0.02em;
-        }
-        .sec-head .rule { flex: 1; height: 1px; background: var(--line); }
+        main { min-width: 0; padding-bottom: 40px; }
 
-        /* ── 統計 ── */
-        .stat-grid {
-            display: grid; grid-template-columns: repeat(4, 1fr);
-            border: 1px solid var(--line-strong); border-radius: 2px;
+        /* ── タブ ── */
+        .tabs { display: flex; justify-content: space-between; align-items: flex-end; border-bottom: 1px solid var(--border); margin-top: 12px; font-size: 13.5px; }
+        .tabs .group { display: flex; gap: 2px; }
+        .tabs a, .tabs span {
+            display: block; padding: 6px 10px 5px; color: var(--link); border-bottom: 2px solid transparent; margin-bottom: -1px;
         }
-        .stat { padding: 24px 20px; border-right: 1px solid var(--line); }
-        .stat:last-child { border-right: none; }
-        .stat .value {
-            font-family: var(--serif); font-weight: 700; letter-spacing: -0.02em;
-            font-size: clamp(34px, 5vw, 52px); line-height: 1;
-        }
-        .stat .value .unit { font-size: 0.45em; color: var(--ink-faint); margin-left: 2px; }
-        .stat .label {
-            margin-top: 10px; font-family: var(--mono); font-size: 11px;
-            letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-faint);
-        }
-        .stat-note { margin-top: 14px; font-size: 13px; color: var(--ink-faint); }
+        .tabs .selected { color: var(--text); border-bottom-color: var(--text); font-weight: 600; }
 
-        /* ── コントリビューション ── */
-        .contrib { margin-top: 56px; }
-        .contrib h3, .lang-block h3 {
-            font-family: var(--mono); font-size: 12px; letter-spacing: 0.18em;
-            text-transform: uppercase; color: var(--ink-soft); margin-bottom: 24px;
+        /* ── 本文 ── */
+        h1.firstHeading {
+            font-family: var(--serif); font-weight: 400; font-size: 30px; line-height: 1.3;
+            margin: 18px 0 2px; padding-bottom: 4px; border-bottom: 1px solid var(--border);
         }
-        .contrib-chart {
-            display: flex; align-items: flex-end; gap: 12px; height: 180px;
+        .siteSub { font-size: 12.5px; color: var(--text-soft); margin: 6px 0 14px; }
+        .hatnote { padding-left: 1.6em; margin: 0 0 10px; font-size: 14px; color: var(--text-soft); }
+        .ambox {
+            display: flex; gap: 12px; align-items: center;
+            border: 1px solid var(--border); border-left: 10px solid var(--notice);
+            background: var(--bg-subtle); padding: 8px 12px; margin: 0 0 16px; font-size: 13.5px;
         }
-        .contrib-col { flex: 1; display: flex; flex-direction: column; justify-content: flex-end; height: 100%; }
-        .contrib-bar {
-            background: var(--ink); border-radius: 1px; min-height: 3px; position: relative;
-            transform-origin: bottom; animation: grow .8s cubic-bezier(.2,.8,.2,1) backwards;
+        .ambox svg { flex: none; }
+        .content h2 {
+            font-family: var(--serif); font-weight: 400; font-size: 23px; line-height: 1.3;
+            margin: 28px 0 10px; padding-bottom: 3px; border-bottom: 1px solid var(--border);
+            scroll-margin-top: 12px;
         }
-        .contrib-col:nth-child(2) .contrib-bar { animation-delay: .06s }
-        .contrib-col:nth-child(3) .contrib-bar { animation-delay: .12s }
-        .contrib-col:nth-child(4) .contrib-bar { animation-delay: .18s }
-        .contrib-col:nth-child(5) .contrib-bar { animation-delay: .24s }
-        .contrib-col:nth-child(6) .contrib-bar { animation-delay: .3s }
-        .contrib-bar.partial {
-            background: repeating-linear-gradient(-45deg, var(--accent), var(--accent) 4px, #e2703a 4px, #e2703a 8px);
-        }
-        @keyframes grow { from { transform: scaleY(0); } }
-        .contrib-bar .count {
-            position: absolute; top: -22px; left: 50%; transform: translateX(-50%);
-            font-family: var(--mono); font-size: 11px; color: var(--ink-soft); white-space: nowrap;
-        }
-        .contrib-col .year {
-            margin-top: 8px; text-align: center;
-            font-family: var(--mono); font-size: 11px; color: var(--ink-faint); white-space: nowrap;
-        }
-        .contrib-note { margin-top: 16px; font-size: 13px; color: var(--ink-faint); }
+        .content h3 { font-size: 17px; font-weight: 700; margin: 20px 0 6px; scroll-margin-top: 12px; }
+        .content p { margin: 8px 0 10px; }
+        .content ul, .content ol { margin: 6px 0 12px; padding-left: 1.6em; }
+        .content li { margin: 3px 0; }
+        .editsection { font-family: var(--sans); font-size: 13px; margin-left: 10px; color: var(--text-soft); }
+        .editsection a { font-weight: 400; }
+        sup.reference { font-size: 11px; line-height: 1; white-space: nowrap; }
+        sup.reference a { padding: 0 1px; }
+        :target { background: #eaf3ff; }
 
-        /* ── 言語 ── */
-        .lang-block { margin-top: 56px; }
-        .lang-row { display: grid; grid-template-columns: 110px 1fr 52px; gap: 14px; align-items: center; margin-bottom: 10px; }
-        .lang-row .name { font-family: var(--mono); font-size: 13px; }
-        .lang-row .bar-track { height: 10px; background: #efece5; border-radius: 1px; overflow: hidden; }
-        .lang-row .bar {
-            height: 100%; background: var(--ink); border-radius: 1px;
-            transform-origin: left; animation: growX .8s cubic-bezier(.2,.8,.2,1) backwards;
+        /* ── インフォボックス ── */
+        .infobox {
+            float: right; clear: right; width: 300px; margin: 0 0 16px 20px;
+            border: 1px solid var(--border); background: var(--bg-subtle);
+            border-collapse: collapse; font-size: 13px; line-height: 1.5;
         }
-        .lang-row:first-child .bar { background: var(--accent); }
-        @keyframes growX { from { transform: scaleX(0); } }
-        .lang-row .pct { font-family: var(--mono); font-size: 12px; color: var(--ink-faint); text-align: right; }
-        .lang-note { margin-top: 14px; font-size: 13px; color: var(--ink-faint); }
-
-        /* ── ドメイン ── */
-        .domain-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--line); border: 1px solid var(--line); }
-        .domain {
-            background: var(--paper); padding: 26px 24px;
-            transition: background .15s;
+        .infobox caption { font-family: var(--serif); font-size: 19px; font-weight: 400; padding: 8px 6px 4px; }
+        .infobox th, .infobox td { padding: 4px 8px; vertical-align: top; text-align: left; }
+        .infobox th { width: 36%; font-weight: 700; }
+        .infobox .image { text-align: center; padding: 8px; }
+        .infobox .image img { width: 180px; height: 180px; display: block; margin: 0 auto; border: 1px solid var(--border-soft); background: #fff; }
+        .infobox .image div { font-size: 12px; color: var(--text-soft); margin-top: 6px; }
+        .thumb {
+            float: right; clear: right; width: 360px; margin: 4px 0 14px 20px;
+            border: 1px solid var(--border-soft); background: var(--bg-subtle); padding: 4px;
         }
-        .domain:hover { background: var(--accent-soft); }
-        /* 奇数個のとき最後の空きマスを紙色で埋める */
-        .domain-grid::after { content: ""; background: var(--paper); }
-        .domain .top { display: flex; justify-content: space-between; align-items: baseline; }
-        .domain h3 { font-family: var(--serif); font-weight: 700; font-size: 18px; letter-spacing: -0.01em; }
-        .domain .count { font-family: var(--mono); font-size: 12px; color: var(--accent); }
-        .domain .tech { margin-top: 4px; font-family: var(--mono); font-size: 11px; color: var(--ink-faint); letter-spacing: 0.04em; }
-        .domain p { margin-top: 12px; font-size: 13.5px; color: var(--ink-soft); }
-        .domain-note { margin-top: 20px; font-size: 13px; color: var(--ink-faint); }
+        .thumb img { display: block; width: 100%; height: auto; background: #fff; border: 1px solid var(--border-faint); }
+        .thumb .thumbcaption { font-size: 12.5px; line-height: 1.5; padding: 6px 3px 2px; color: var(--text); }
+        @media (max-width: 640px) { .thumb { float: none; width: 100%; margin: 8px 0 14px; } }
+        .infobox .subhead th { text-align: center; background: var(--bg-head); width: auto; font-size: 13px; }
+        .infobox .nickname { text-align: center; font-size: 12.5px; padding-bottom: 8px; }
 
-        /* ── Live ── */
-        .live-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-        .live-card {
-            display: block; text-decoration: none; color: inherit;
-            border: 1px solid var(--line-strong); border-radius: 2px;
-            padding: 22px 20px; transition: border-color .15s, transform .15s;
+        /* ── 表 ── */
+        table.wikitable {
+            border-collapse: collapse; background: var(--bg-subtle); border: 1px solid var(--border);
+            margin: 10px 0 16px; font-size: 13.5px; max-width: 100%;
         }
-        .live-card:hover { border-color: var(--accent); transform: translateY(-2px); }
-        .live-badge {
-            display: inline-flex; align-items: center; gap: 6px;
-            font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em;
-            color: var(--accent); margin-bottom: 14px;
+        .table-wrap { overflow-x: auto; }
+        .wikitable th, .wikitable td { border: 1px solid var(--border); padding: 5px 9px; vertical-align: top; }
+        .wikitable th { background: var(--bg-head); text-align: center; }
+        .wikitable td.num { text-align: right; font-variant-numeric: tabular-nums; }
+        .wikitable caption { font-weight: 700; padding: 4px; text-align: left; }
+
+        blockquote {
+            margin: 12px 0; padding: 4px 16px; border-left: 4px solid var(--border-faint); color: var(--text);
         }
-        .live-badge::before {
-            content: ""; width: 7px; height: 7px; border-radius: 50%;
-            background: var(--accent); animation: pulse 2s ease-in-out infinite;
+        blockquote cite { display: block; font-style: normal; font-size: 13px; color: var(--text-soft); margin-top: 4px; }
+
+        /* ── 脚注 ── */
+        .references { font-size: 13px; padding-left: 2em !important; }
+        .references li { margin: 4px 0; }
+        .references .back { font-weight: 700; margin-right: 4px; }
+        .cols { columns: 2 28em; column-gap: 2em; }
+
+        /* ── カテゴリ・フッター ── */
+        .catlinks {
+            clear: both; border: 1px solid var(--border); background: var(--bg-subtle);
+            padding: 6px 10px; margin-top: 28px; font-size: 13px;
         }
-        @keyframes pulse { 0%,100% { opacity: 1 } 50% { opacity: 0.3 } }
-        .live-card h3 { font-family: var(--mono); font-size: 15px; font-weight: 500; }
-        .live-card p { margin-top: 10px; font-size: 13px; color: var(--ink-soft); }
-        .live-card .go {
-            margin-top: 16px; font-family: var(--mono); font-size: 12px;
-            color: var(--ink); border-bottom: 1px solid var(--line-strong);
-            display: inline-block; padding-bottom: 2px;
+        .catlinks ul { display: inline; padding: 0; margin: 0; }
+        .catlinks li { display: inline; }
+        .catlinks li + li::before { content: " | "; color: var(--text-soft); }
+        .site-footer { max-width: 1440px; margin: 0 auto; padding: 16px 24px 40px; font-size: 12px; color: var(--text-soft); border-top: 1px solid var(--border-faint); }
+        .site-footer p { margin: 4px 0; }
+        .site-footer ul { list-style: none; padding: 0; margin: 10px 0 0; display: flex; flex-wrap: wrap; gap: 14px; }
+
+        details.toc-mobile { display: none; }
+
+        .search { position: relative; }
+        .search-results {
+            position: absolute; top: calc(100% + 2px); left: 0; right: 0; z-index: 20;
+            background: #fff; border: 1px solid var(--border); border-radius: 2px;
+            box-shadow: 0 4px 12px rgba(0,0,0,.12); max-height: 70vh; overflow-y: auto; font-size: 13.5px;
         }
-        .live-card:hover .go { color: var(--accent); border-color: var(--accent); }
+        .search-results .sr-item {
+            display: block; width: 100%; text-align: left; font: inherit; color: var(--text);
+            background: none; border: none; border-bottom: 1px solid var(--border-faint); padding: 8px 12px; cursor: pointer;
+        }
+        .search-results .sr-item:hover, .search-results .sr-item[aria-selected="true"] { background: #eaf3ff; }
+        .sr-head { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; }
+        .sr-path { color: var(--link); font-weight: 600; }
+        .sr-score { flex: none; font-size: 12px; color: var(--text-soft); font-variant-numeric: tabular-nums; }
+        .sr-snippet { display: block; margin-top: 2px; color: var(--text-soft); font-size: 12.5px; line-height: 1.5;
+            overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+        .sr-status { padding: 10px 12px; color: var(--text-soft); }
+        .sr-status a { font-size: 13px; }
+        .sr-foot { padding: 6px 12px; font-size: 12px; color: var(--text-soft); background: var(--bg-subtle); display: flex; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
+        .search-hit { animation: hit 2.4s ease-out; }
+        @keyframes hit { 0%, 35% { background: #fef6e7; box-shadow: 0 0 0 3px #fc3; } 100% { background: transparent; box-shadow: 0 0 0 3px transparent; } }
 
-        /* ── プロジェクト ── */
-        .project { display: grid; grid-template-columns: 200px 1fr; gap: 24px; padding: 26px 0; border-top: 1px solid var(--line); text-decoration: none; color: inherit; }
-        .project:last-of-type { border-bottom: 1px solid var(--line); }
-        .project:hover .p-name { color: var(--accent); }
-        .p-name { font-family: var(--mono); font-size: 15px; font-weight: 500; transition: color .15s; }
-        .p-name::after { content: " ↗"; font-size: 11px; color: var(--ink-faint); }
-        .p-lang { margin-top: 6px; font-family: var(--mono); font-size: 11px; color: var(--ink-faint); }
-        .p-desc { font-size: 14px; color: var(--ink-soft); }
-
-        /* ── フッター ── */
-        footer { padding: 48px 0 64px; font-family: var(--mono); font-size: 12px; color: var(--ink-faint); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
-        footer a { color: inherit; }
-
-        /* リビール */
-        .reveal { opacity: 0; transform: translateY(16px); transition: opacity .7s ease, transform .7s ease; }
-        .reveal.in { opacity: 1; transform: none; }
-
+        @media (max-width: 980px) {
+            .page { grid-template-columns: 1fr; gap: 0; }
+            .sidebar { display: none; }
+            details.toc-mobile {
+                display: block; border: 1px solid var(--border); background: var(--bg-subtle);
+                padding: 6px 12px; margin: 0 0 14px; font-size: 14px;
+            }
+            details.toc-mobile summary { cursor: pointer; font-weight: 700; }
+            .header-links { display: none; }
+        }
         @media (max-width: 640px) {
-            .stat-grid { grid-template-columns: 1fr 1fr; }
-            .stat:nth-child(2) { border-right: none; }
-            .stat:nth-child(1), .stat:nth-child(2) { border-bottom: 1px solid var(--line); }
-            .domain-grid { grid-template-columns: 1fr; }
-            .live-grid { grid-template-columns: 1fr; }
-            .project { grid-template-columns: 1fr; gap: 8px; }
-            .contrib-chart { gap: 6px; height: 150px; }
-            .contrib-bar .count { font-size: 9px; }
+            .site-header { padding: 10px 16px; gap: 10px; flex-wrap: wrap; }
+            .search { margin-left: 0; max-width: none; flex-basis: 100%; }
+            .page { padding: 0 16px; }
+            .site-footer { padding: 16px; }
+            .infobox { float: none; width: 100%; margin: 0 0 16px; }
+            h1.firstHeading { font-size: 26px; }
+            .tabs { font-size: 12.5px; }
+            .tabs a, .tabs span { padding: 6px 6px 5px; }
         }
     </style>
     <!-- トラッキングスクリプト -->
     <script src="https://analytics.fybe.jp/analytics.js" async defer></script>
 </head>
 <body>
-    <div class="wrap">
-        <header>
-            <span class="brand">konaito.github.io</span>
-            <nav class="lang-toggle" aria-label="Language">
-                <button id="btn-ja" onclick="setLang('ja')">日本語</button>
-                <button id="btn-en" onclick="setLang('en')">EN</button>
+    <header class="site-header">
+        <a class="logo" href="/" aria-label="コナイトペディア メインページ">
+            <svg viewBox="0 0 48 48" aria-hidden="true">
+                <circle cx="24" cy="24" r="22" fill="#fff" stroke="#202122" stroke-width="1.5"/>
+                <path d="M4 24h40M24 2c-7 7-7 37 0 44M24 2c7 7 7 37 0 44M8 12c9 4 23 4 32 0M8 36c9-4 23-4 32 0" fill="none" stroke="#a2a9b1" stroke-width="1"/>
+                <text x="24" y="31" text-anchor="middle" font-family="Georgia, serif" font-size="21" fill="#202122">K</text>
+            </svg>
+            <span class="wordmark"><b>コナイトペディア</b><small>ひとりのための百科事典</small></span>
+        </a>
+        <form class="search" id="search-form" role="search" autocomplete="off">
+            <input type="search" id="search-input" placeholder="知りたいことを入力（例: 曲出してる？）" aria-label="この記事を検索" aria-controls="search-results" aria-expanded="false" maxlength="200">
+            <button type="submit">検索</button>
+            <div class="search-results" id="search-results" role="listbox" hidden></div>
+        </form>
+        <nav class="header-links" aria-label="外部">
+            <a class="ext" href="https://github.com/konaito" target="_blank" rel="noopener">GitHub</a>
+            <a class="ext" href="https://x.com/konaito_copilot" target="_blank" rel="noopener">X</a>
+        </nav>
+    </header>
+
+    <div class="page">
+        <aside class="sidebar">
+            <nav class="toc" aria-label="目次">
+                <h2>目次</h2>
+                <a class="top-link" href="#top">（冒頭）</a>
+                <ol id="toc-list"></ol>
             </nav>
-        </header>
-
-        <div class="hero">
-            <p class="kicker" data-i18n="kicker"></p>
-            <h1 id="hero-title"></h1>
-            <p class="lede" data-i18n="lede"></p>
-            <div class="links">
-                <a href="https://github.com/konaito" target="_blank" rel="noopener">GitHub</a>
-                <a href="https://x.com/konaito_copilot" target="_blank" rel="noopener">X / Twitter</a>
-                <a href="/codex-notification-bridge/">Codex Bridge</a>
+            <div class="side-block">
+                <h2>このサイト</h2>
+                <ul>
+                    <li><a href="/english-article-tetris/">English Article Tetris</a></li>
+                    <li><a href="/codex-notification-bridge/">Codex Notification Bridge</a></li>
+                </ul>
             </div>
-        </div>
-
-        <section class="reveal">
-            <div class="sec-head">
-                <span class="num">01</span>
-                <h2 data-i18n="s1_title"></h2>
-                <span class="rule"></span>
+            <div class="side-block">
+                <h2>ツール</h2>
+                <ul>
+                    <li><a class="ext" href="https://github.com/konaito/konaito.github.io/commits/main" target="_blank" rel="noopener">更新履歴</a></li>
+                    <li><a class="ext" href="https://github.com/konaito/konaito.github.io/blob/main/index.html" target="_blank" rel="noopener">ソースを表示</a></li>
+                    <li><a href="data.json">統計データ（JSON）</a></li>
+                </ul>
             </div>
-            <div class="stat-grid" id="stat-grid"></div>
-            <p class="stat-note" data-i18n="s1_note"></p>
+        </aside>
 
-            <div class="contrib">
-                <h3 data-i18n="contrib_title"></h3>
-                <div class="contrib-chart" id="contrib-chart"></div>
-                <p class="contrib-note" data-i18n="contrib_note"></p>
+        <main id="top">
+            <div class="tabs">
+                <div class="group">
+                    <span class="selected">記事</span>
+                    <a class="ext" href="https://github.com/konaito/konaito.github.io/issues" target="_blank" rel="noopener">ノート</a>
+                </div>
+                <div class="group">
+                    <span class="selected">閲覧</span>
+                    <a class="ext" href="https://github.com/konaito/konaito.github.io/edit/main/index.html" target="_blank" rel="noopener">ソースを編集</a>
+                    <a class="ext" href="https://github.com/konaito/konaito.github.io/commits/main/index.html" target="_blank" rel="noopener">履歴表示</a>
+                </div>
             </div>
 
-            <div class="lang-block">
-                <h3 data-i18n="lang_title"></h3>
-                <div id="lang-rows"></div>
-                <p class="lang-note" data-i18n="lang_note"></p>
-            </div>
-        </section>
+            <h1 class="firstHeading">内藤剛汰</h1>
+            <p class="siteSub">出典: コナイトペディア（konaito.github.io）</p>
 
-        <section class="reveal">
-            <div class="sec-head">
-                <span class="num">02</span>
-                <h2 data-i18n="s2_title"></h2>
-                <span class="rule"></span>
-            </div>
-            <div class="domain-grid" id="domain-grid"></div>
-            <p class="domain-note" data-i18n="s2_note"></p>
-        </section>
+            <div class="content">
+                <p class="hatnote">この項目では、ソフトウェアエンジニア・実業家について説明しています。同姓同名の人物とは別人です。</p>
 
-        <section class="reveal">
-            <div class="sec-head">
-                <span class="num">03</span>
-                <h2 data-i18n="live_title"></h2>
-                <span class="rule"></span>
-            </div>
-            <div class="live-grid" id="live-grid"></div>
-        </section>
+                <div class="ambox" role="note">
+                    <svg width="36" height="36" viewBox="0 0 36 36" aria-hidden="true"><path d="M18 3 34 32H2z" fill="#fc3" stroke="#202122" stroke-width="1.2" stroke-linejoin="round"/><path d="M17 13h2l-.4 10h-1.2zM18 25.5a1.4 1.4 0 1 1 0 2.8 1.4 1.4 0 0 1 0-2.8z" fill="#202122"/></svg>
+                    <div>この記事は<b>記事の主題である本人</b>が執筆・管理しています。中立的な観点に欠けるおそれがあります。記述はできる限り公開された一次資料に依拠し、<a href="#脚注">脚注</a>に出典を示しています。</div>
+                </div>
 
-        <section class="reveal">
-            <div class="sec-head">
-                <span class="num">04</span>
-                <h2 data-i18n="s3_title"></h2>
-                <span class="rule"></span>
-            </div>
-            <div id="projects"></div>
-        </section>
+                <table class="infobox">
+                    <caption>内藤 剛汰</caption>
+                    <tbody>
+                        <tr><td colspan="2" class="nickname">ないとう こうた<br>Kota Naito</td></tr>
+                        <tr><td colspan="2" class="image">
+                            <img src="assets/avatar.jpg" alt="konaito のアイコン" width="180" height="180" loading="lazy">
+                            <div>本人がGitHubで使用しているアイコン</div>
+                        </td></tr>
+                        <tr><th scope="row">別名</th><td>konaito</td></tr>
+                        <tr><th scope="row">出身地</th><td>日本・神奈川県川崎市<sup class="reference"><a href="#cite-profile">[1]</a></sup></td></tr>
+                        <tr><th scope="row">拠点</th><td>東京都</td></tr>
+                        <tr><th scope="row">出身校</th><td>岩手大学 理工学部（数理・物理）<br>42 Tokyo</td></tr>
+                        <tr><th scope="row">職業</th><td>ソフトウェアエンジニア<br>実業家<br>音楽家</td></tr>
+                        <tr><th scope="row">活動期間</th><td>2021年 -</td></tr>
+                        <tr><th scope="row">肩書き</th><td>合同会社FYBE.jp 代表社員（CEO）<sup class="reference"><a href="#cite-fybe">[2]</a></sup></td></tr>
+                        <tr><th scope="row">著名な実績</th><td>BLOCKCHAIN HACKATHON for students 2023 Grand Prize<sup class="reference"><a href="#cite-42b">[3]</a></sup><br>Sui x ONE Championship Tokyo Builders' Arena 優勝<sup class="reference"><a href="#cite-x-sui">[18]</a></sup><br>VoiceOSハッカソン 優勝<sup class="reference"><a href="#cite-x-voiceos">[19]</a></sup></td></tr>
+                        <tr class="subhead"><th colspan="2">音楽活動</th></tr>
+                        <tr><th scope="row">ジャンル</th><td>J-POP</td></tr>
+                        <tr><th scope="row">担当</th><td>作詞・作曲・プロデュース</td></tr>
+                        <tr><th scope="row">活動期間</th><td>2025年 -</td></tr>
+                        <tr><th scope="row">レーベル</th><td>自主制作</td></tr>
+                        <tr class="subhead"><th colspan="2">ウェブサイト</th></tr>
+                        <tr><td colspan="2" style="text-align:center">
+                            <a class="ext" href="https://github.com/konaito" target="_blank" rel="noopener">GitHub</a> ·
+                            <a class="ext" href="https://x.com/konaito_copilot" target="_blank" rel="noopener">X</a> ·
+                            <a class="ext" href="https://note.com/konaito" target="_blank" rel="noopener">note</a>
+                        </td></tr>
+                    </tbody>
+                </table>
 
-        <footer>
-            <span>© <span id="year"></span> konaito</span>
-            <span><span data-i18n="updated"></span> <span id="generated-at"></span></span>
-        </footer>
+                <p><b>内藤 剛汰</b>（ないとう こうた、英: Kota Naito）は、日本のソフトウェアエンジニア、実業家、音楽家。<b>konaito</b>（コナイト）の名義で活動する。<a class="ext" href="https://www.fybe.jp/" target="_blank" rel="noopener">合同会社FYBE.jp</a>代表社員<sup class="reference"><a href="#cite-fybe">[2]</a></sup>。岩手大学理工学部で数理・物理を学ぶ傍ら、42 Tokyoでプログラミングを習得した。</p>
+                <p>AIエージェントを開発工程の中心に置く開発スタイルで、Webサービス、デスクトップ・モバイルアプリ、強化学習、開発者ツールまで幅広い領域のソフトウェアを制作している。並行して、AI時代における人間の役割を論じるエッセイを執筆し、自ら作詞・作曲・プロデュースした楽曲を配信している。</p>
+
+                <details class="toc-mobile">
+                    <summary>目次</summary>
+                    <ol id="toc-list-mobile"></ol>
+                </details>
+
+                <h2 id="経歴">経歴</h2>
+                <h3 id="生い立ちと学業">生い立ちと学業</h3>
+                <p>神奈川県川崎市出身<sup class="reference"><a href="#cite-profile">[1]</a></sup>。岩手大学理工学部に進学し、数理・物理を専攻した。本人によれば、2021年の時点で「物理・数学の博士はAIに代替される」と予見しており、ChatGPTの登場を受けて休学し、東京で活動を始めた<sup class="reference"><a href="#cite-complex">[4]</a></sup>。</p>
+
+                <h3 id="42_Tokyoとハッカソン">42 Tokyoとハッカソン</h3>
+                <p>フランス発のエンジニア養成機関である42 Tokyoに所属し、C言語によるシステムプログラミング課題に取り組んだ。2023年からはブロックチェーン関連のハッカソンに出場した。</p>
+                <p>2023年12月、博報堂キースリーが運営する「web3 Global Hackathon 2023AW」に、wasabiとのチーム「Enn-Drive」で出場し、マツダ優秀賞を受賞した。ブロックチェーン技術を自動車での移動体験に応用する作品で、内藤はフロントエンドとサーバーサイドを担当した<sup class="reference"><a href="#cite-42a">[5]</a></sup>。</p>
+                <blockquote>
+                    多くのユーザーがWeb2のような感覚でブロックチェーンが提供する超情報共有社会の基盤に乗れるように触りやすいデザインを心がけました。受賞できたということだけでなく、技術的にもエンジニアとしての飛躍のきっかけになったと思います。
+                    <cite>— 内藤剛汰、42 Tokyo公式ニュース（2023年12月9日）<sup class="reference"><a href="#cite-42a">[5]</a></sup></cite>
+                </blockquote>
+                <p>同月、本郷Web3バレーが主催した「BLOCKCHAIN HACKATHON for students 2023」に、wasabi、akafudaとのチーム「竹虎」で出場し、Grand PrizeとCrypto Games賞を受賞した。ゼロ知識証明とToken Curated Registry（TCR）を組み合わせ、透明かつ秘匿に投票できる仕組みをブロックチェーン上に実装した作品である。内藤はこの大会で初めてスマートコントラクトを書いたと述べている<sup class="reference"><a href="#cite-42b">[3]</a></sup>。Web3の思想に初めて触れたのは大会の約1か月前で、この大会が2回目のハッカソンだった<sup class="reference"><a href="#cite-x-hongo">[22]</a></sup>。</p>
+                <p>2024年2月には、ETHGlobalのハッカソン「Circuit Breaker」に、ゼロ知識証明を使って正確な座標を明かさずに位置を証明する「zk-Geo」を出品した<sup class="reference"><a href="#cite-zkgeo">[23]</a></sup>。</p>
+                <p>2024年8月の本人の投稿によれば、それまでの約1年で国内外の約10のハッカソンに出場し、その賞金で韓国に1週間、アメリカに1か月、ヨーロッパに2か月滞在した<sup class="reference"><a href="#cite-x-2023">[13]</a></sup>。42 Tokyo内ではLT会を開き、Next.jsの学習法や、フロントエンドとバックエンドをつなぐ際に起きるCORSの問題について発表した<sup class="reference"><a href="#cite-lt">[24]</a></sup>。2025年2月には、42 Tokyo発の起業をまとめたページを公開している<sup class="reference"><a href="#cite-x-42matome">[25]</a></sup>。2025年4月24日を最後に42 Tokyoでの活動を終え、教育機関に求めるもののうち「コミュニティと機会を大変に享受できました」と振り返っている<sup class="reference"><a href="#cite-x-42">[14]</a></sup>。</p>
+
+                <h3 id="起業">起業</h3>
+                <p>ハッカソンの次は自分のプロダクトで評価されたいと考え、2024年夏に起業した<sup class="reference"><a href="#cite-x-2023">[13]</a></sup>。2024年8月22日、合同会社FYBE.jpの法人番号が指定された。当初の本店は神奈川県川崎市幸区にあり、2025年7月30日に東京都港区北青山へ移転した<sup class="reference"><a href="#cite-houjin">[6]</a></sup>。</p>
+
+                <h2 id="事業">事業</h2>
+                <h3 id="FYBE.jp">FYBE.jp</h3>
+                <p>合同会社FYBE.jpは「未来型社外CTO」を掲げ、社外の技術責任者として経営と技術をつなぎ、技術戦略の立案から実装までを一貫して担う。個別のアプリを納品することではなく、データ定義・業務ロジック・権限を統合し、社外CTOがいなくても機能し続ける構造を顧客企業に残すことを成果と定義している<sup class="reference"><a href="#cite-fybe">[2]</a></sup>。</p>
+                <p>自社プロダクトとして、以下を発表している。</p>
+                <div class="table-wrap">
+                <table class="wikitable">
+                    <caption>FYBE.jpの主な発表</caption>
+                    <thead><tr><th>発表日</th><th>名称</th><th>概要</th></tr></thead>
+                    <tbody>
+                        <tr><td>2025年7月28日</td><td>Web2MD</td><td>WebページをAIが扱いやすいMarkdownに変換するツール。公開から約1週間でユニークユーザー1,600人を超えたと発表した<sup class="reference"><a href="#cite-web2md">[7]</a></sup>。</td></tr>
+                        <tr><td>2025年11月30日</td><td><a class="ext" href="https://hitoshira.fybe.jp/" target="_blank" rel="noopener">ヒトシラ</a></td><td>ビジネスパーソンの「事実だけの年表」をWeb上の情報から自動生成するツール。AIによる推測や人物評価を排している<sup class="reference"><a href="#cite-hitoshira">[8]</a></sup>。</td></tr>
+                        <tr><td>2026年1月4日</td><td>外部スポット開発組織</td><td>現場の課題をAI駆動開発で短期にプロダクト化するサービス<sup class="reference"><a href="#cite-prtimes">[9]</a></sup>。</td></tr>
+                        <tr><td>2026年1月14日</td><td>営業リスト自動化ツール</td><td>業界を選ぶだけで営業リストを作成し、問い合わせフォームへの入力と送信まで自動化する<sup class="reference"><a href="#cite-prtimes">[9]</a></sup>。</td></tr>
+                        <tr><td>2026年1月14日</td><td>バイラルくん</td><td>AIアバターとトレンド分析を組み合わせたSNSマーケティングツール<sup class="reference"><a href="#cite-prtimes">[9]</a></sup>。</td></tr>
+                        <tr><td>2026年1月15日</td><td>PDFStudio</td><td>営業資料やスライドの「読まれ方」を可視化するPDF分析ツール。事前登録を開始した<sup class="reference"><a href="#cite-prtimes">[9]</a></sup>。</td></tr>
+                    </tbody>
+                </table>
+                </div>
+
+                <h3 id="眼光出版">眼光出版</h3>
+                <p>FYBE.jpが運営する出版レーベル。「思考は外注可能、理解は外注不可能。」を標語とし、内藤のエッセイを体系立てて公開している<sup class="reference"><a href="#cite-pub">[10]</a></sup>。</p>
+
+                <h2 id="ソフトウェア開発">ソフトウェア開発</h2>
+                <h3 id="開発スタイル">開発スタイル</h3>
+                <p>設計・検証・レビューを自身が担い、実装の多くをAIコーディングエージェントに任せる開発スタイルをとる。リポジトリには、エージェントが参照する指示書（<code>AGENTS.md</code>）、型検査・静的解析・テストを実行するCI、スキーマの変更を管理するマイグレーションを置き、小さな単位のプルリクエストで変更を積み重ねる。</p>
+
+                <h3 id="GitHub上の活動">GitHub上の活動</h3>
+                <p id="stats-lead">非公開を含むGitHub上の全リポジトリ（フォークを除く）を集計した値を以下に示す。</p>
+                <div class="table-wrap">
+                <table class="wikitable" id="contrib-table">
+                    <caption>年別コントリビューション数</caption>
+                    <thead><tr><th>年</th><th>コントリビューション</th></tr></thead>
+                    <tbody><tr><td colspan="2">読み込み中…</td></tr></tbody>
+                </table>
+                </div>
+                <div class="table-wrap">
+                <table class="wikitable" id="domain-table">
+                    <caption>領域別リポジトリ数</caption>
+                    <thead><tr><th>領域</th><th>リポジトリ数</th><th>主な技術</th></tr></thead>
+                    <tbody><tr><td colspan="3">読み込み中…</td></tr></tbody>
+                </table>
+                </div>
+
+                <h3 id="JPYCガス支援">JPYCガス支援</h3>
+                <p>2025年11月、日本円建てステーブルコインJPYCを受け取っても、手数料（ガス代）に使うPOLがないため動かせない人に、最低限のPOLを配布するWebアプリ<a class="ext" href="https://jpyc-volunteer.vercel.app/" target="_blank" rel="noopener">JPYCガス支援</a>を公開した。JPYC社からJPYCを受け取った履歴があり、POLの残高が0.02以下のアドレスが請求できる。告知のポストは約10万回表示された<sup class="reference"><a href="#cite-x-jpyc">[15]</a></sup>。</p>
+                <p>運営費は寄付でまかなわれている。公開から4日後、内藤は支援を受けたあと自らも寄付する利用者が10%、寄付だけをする人が60%いると報告した<sup class="reference"><a href="#cite-x-jpyc-don">[16]</a></sup>。2026年4月には、寄付だけで運営が自立していると報告している<sup class="reference"><a href="#cite-x-jpyc-self">[17]</a></sup>。</p>
+
+                <h3 id="主な公開作品">主な公開作品</h3>
+                <div class="table-wrap">
+                <table class="wikitable">
+                    <thead><tr><th>名称</th><th>分類</th><th>概要</th><th>公開</th></tr></thead>
+                    <tbody>
+                        <tr><td><a class="ext" href="https://github.com/konaito/nimmt" target="_blank" rel="noopener">nimmt</a></td><td>強化学習</td><td>カードゲーム「6 Nimmt!」のAI。PPOによる自己対戦とリーグ学習で訓練し、1手96プレイアウトの先読み探索に対して1ディールあたり平均2.40点少ない失点で勝つ。先行研究のAlphaZero型探索にも有意に勝ち越した。</td><td><a href="https://konaito.github.io/nimmt/">Web版</a></td></tr>
+                        <tr><td><a class="ext" href="https://github.com/konaito/terminal-browser" target="_blank" rel="noopener">terminal-browser</a></td><td>開発者ツール</td><td>ターミナル内で動くWebブラウザ。ヘッドレスChromiumの画面をkitty graphics protocolで描画し、マウスとキー入力をCDPで転送する。TypeScriptのみで実装し、npmで配布している。</td><td><a href="https://konaito.github.io/terminal-browser/">紹介ページ</a> · npm</td></tr>
+                        <tr><td><a class="ext" href="https://github.com/konaito/opttab" target="_blank" rel="noopener">OptTab</a></td><td>macOSアプリ</td><td>⌥⇥で、操作中のアプリのウィンドウをSpace・フルスクリーン・最小化をまたいで切り替えるウィンドウスイッチャー。公開APIのみで実装している。</td><td><a href="https://konaito.github.io/opttab/">紹介ページ</a> · Homebrew</td></tr>
+                        <tr><td><a class="ext" href="https://github.com/konaito/ai-karaoke" target="_blank" rel="noopener">ai-karaoke</a></td><td>Webアプリ</td><td>自作曲のカラオケPWA。ボーカル低減、キー変更、マイクの音程検出をすべてブラウザ内で処理し、音声をサーバーへ送らない。</td><td><a href="https://konaito.github.io/ai-karaoke/">Web版</a></td></tr>
+                        <tr><td><a class="ext" href="https://github.com/konaito/milliondoubt" target="_blank" rel="noopener">milliondoubt</a></td><td>ゲームAI</td><td>ミリオンダウトのWeb版。ルールを理解した戦略層の上に、自己対戦で学習したニューラルネットワークを組み合わせる。</td><td><a href="https://konaito.github.io/milliondoubt/">Web版</a></td></tr>
+                        <tr><td><a class="ext" href="https://github.com/konaito/keirin-model-dashboard" target="_blank" rel="noopener">KEIRIN SIGNAL</a></td><td>データ分析</td><td>競輪予測モデルの検証ダッシュボード。2025年の18,299レースを対象としたローリング検証で、3着以内の的中率は79.8%。</td><td><a href="https://konaito.github.io/keirin-model-dashboard/">Web版</a></td></tr>
+                        <tr><td><a class="ext" href="https://github.com/konaito/onaji-sora" target="_blank" rel="noopener">同じ空</a></td><td>ゲーム</td><td>4人用の論理と運のカードゲーム。3人のNPCと対戦できる。</td><td><a href="https://konaito.github.io/onaji-sora/">Web版</a></td></tr>
+                        <tr><td><a class="ext" href="https://github.com/konaito/craps" target="_blank" rel="noopener">TALA / CRAPS</a></td><td>ゲーム</td><td>Three.jsによる3Dのクラップス。ダイスをつかんで投げる操作と簡易物理演算による投球を実装した。</td><td><a href="https://konaito.github.io/craps/">Web版</a></td></tr>
+                        <tr><td><a href="/english-article-tetris/">English Article Tetris</a></td><td>教育</td><td>冠詞や可算・不可算名詞を判断する英語学習用のテトリス。</td><td><a href="/english-article-tetris/">Web版</a></td></tr>
+                        <tr><td><a class="ext" href="https://github.com/konaito/codex-notification-bridge" target="_blank" rel="noopener">Codex Notification Bridge</a></td><td>デスクトップアプリ</td><td>入力したメッセージを、会話の文脈から判断した適切なCodexタスクへ送るElectronアプリ。</td><td><a href="/codex-notification-bridge/">ダウンロード</a></td></tr>
+                        <tr><td><a class="ext" href="https://github.com/konaito/agent-sessions-menubar" target="_blank" rel="noopener">agent-sessions-menubar</a></td><td>macOSアプリ</td><td>Claude CodeとCodexの直近のセッションと使用量をメニューバーに表示し、再開用のコマンドをコピーできる。</td><td>GitHub</td></tr>
+                        <tr><td><a class="ext" href="https://github.com/konaito/ito" target="_blank" rel="noopener">ito</a></td><td>マルチエージェント</td><td>4社の大規模言語モデルが会話しながらカードゲーム「ito」を遊ぶ実験。各AIには自分の手札と公開情報だけを渡す。</td><td>GitHub</td></tr>
+                        <tr><td><a class="ext" href="https://github.com/konaito/contextcap" target="_blank" rel="noopener">ContextCap</a></td><td>macOS / Android</td><td>画面を定期的に記録し、撮影直後に端末内でOCRする常駐レコーダー。両OSで保存形式を揃えている。</td><td>GitHub</td></tr>
+                        <tr><td><a class="ext" href="https://github.com/konaito/manga-agent" target="_blank" rel="noopener">Manga Agent</a></td><td>AIツール</td><td>企画・ネームのレビューから画像生成、品質確認までを仕様に沿って進める漫画制作ハーネス。</td><td>GitHub</td></tr>
+                        <tr><td><a class="ext" href="https://github.com/konaito/ClaudeAsOpenAI" target="_blank" rel="noopener">ClaudeAsOpenAI</a></td><td>開発者ツール</td><td>Claude Agent SDKを、OpenAI Chat Completions API互換のインターフェースで使えるようにするプロキシサーバー。</td><td>GitHub</td></tr>
+                    </tbody>
+                </table>
+                </div>
+
+                <h2 id="音楽">音楽</h2>
+                <p>konaito名義で、作詞・作曲・プロデュースを自身で手がけた楽曲を配信している<sup class="reference"><a href="#cite-yt">[11]</a></sup>。歌詞には、AIによって技能の価値が短期間で失われていくことへの焦りや、人間の言葉や努力の意味といった、エッセイと共通する主題が多い。</p>
+                <div class="table-wrap">
+                <table class="wikitable">
+                    <caption>ディスコグラフィ</caption>
+                    <thead><tr><th>発売日</th><th>形態</th><th>タイトル</th><th>収録曲</th></tr></thead>
+                    <tbody>
+                        <tr><td>2025年12月12日</td><td>EP</td><td>焦燥<br><small>（Anxiety）</small></td><td>
+                            <ol style="margin:0;padding-left:1.4em">
+                                <li><a class="ext" href="https://www.youtube.com/watch?v=XgYgRNQJ13A" target="_blank" rel="noopener">時定数の低い世界で</a></li>
+                                <li><a class="ext" href="https://www.youtube.com/watch?v=3cIhOaHep1A" target="_blank" rel="noopener">Vibe Coding</a></li>
+                            </ol>
+                        </td></tr>
+                        <tr><td>2026年9月22日</td><td>シングル</td><td>愛を伝えるだとか<br><small>（Before I'm Ready）</small></td><td>
+                            <ol style="margin:0;padding-left:1.4em">
+                                <li><a class="ext" href="https://www.youtube.com/watch?v=iKdMuPsDftQ" target="_blank" rel="noopener">愛を伝えるだとか</a></li>
+                            </ol>
+                        </td></tr>
+                    </tbody>
+                </table>
+                </div>
+                <h3 id="参加作品">参加作品</h3>
+                <ul>
+                    <li>さだすこ feat. konaito「俺らのYUMEMI」</li>
+                </ul>
+                <h3 id="作品の特徴">作品の特徴</h3>
+                <p>「時定数の低い世界で」は、ホワイトカラーの業務がAIエージェントに置き換わっていく状況と、20代のキャリアの道筋が崩れていく焦りを描く。学歴を「免責ラベル」、人間に残るものを「運と責任」とする歌詞は、2025年のエッセイ「みんなのやりたい仕事の未来」の論点と重なる<sup class="reference"><a href="#cite-pub">[10]</a></sup>。</p>
+                <p>「愛を伝えるだとか」は、贈り物をAIに考えてもらった「僕」が、喜ぶ相手を前に寂しさを覚える歌である。</p>
+                <blockquote>
+                    百点満点の 言葉より<br>僕のゼロ点を 愛してくれ
+                    <cite>— 「愛を伝えるだとか」より</cite>
+                </blockquote>
+                <p>楽曲は、自作のカラオケアプリ<a href="https://konaito.github.io/ai-karaoke/">ai-karaoke</a>で、歌詞の同期表示とともに歌うことができる。</p>
+
+                <h2 id="執筆活動">執筆活動</h2>
+                <p>2025年1月から、noteと眼光出版でAI時代の仕事・つながり・意味・交換を論じるエッセイを発表している<sup class="reference"><a href="#cite-note">[12]</a></sup><sup class="reference"><a href="#cite-pub">[10]</a></sup>。</p>
+                <h3 id="主な概念">主な概念</h3>
+                <ul>
+                    <li><b>時定数</b> — 技能が価値を失うまでの速さ。AIはあらゆる技能の時定数を圧縮する装置であり、人間には「燃えないものを見る目」と「隣の誰かの手」が残るとする（「時定数ゼロの世界で、人間は何を握るのか」）。</li>
+                    <li><b>発散と収束</b> — 案を出す発散はAIの仕事、選択肢を「見る」収束は人間の仕事とする（「『考える』なんてAIにやらせろ、人間の仕事は『見る』ことだ」）。</li>
+                    <li><b>動摩擦と静止摩擦</b> — AIは考える・調べる・書く・作るといった営みの抵抗（動摩擦）をほぼゼロにした。しかし、止まっている人間を動かす意思（静止摩擦）は人間にしか作れないとする（「動摩擦が0になった世界」）。</li>
+                    <li><b>天才と仙人</b> — 有限性を捉えて張る「天才」と、不変を見抜いて留まる「仙人」。時間との向き合い方で人間を分類する（「仙人と天才」）。</li>
+                </ul>
+                <h3 id="主な著作">主な著作</h3>
+                <div class="table-wrap">
+                <table class="wikitable">
+                    <thead><tr><th>公開</th><th>タイトル</th></tr></thead>
+                    <tbody>
+                        <tr><td>2025年1月</td><td><a class="ext" href="https://note.com/konaito/n/n2f8cc400fdbb" target="_blank" rel="noopener">AIによりプログラミングというスキルが陳腐化されていくこの世界で「僕たちはどう生きるか」</a></td></tr>
+                        <tr><td>2025年2月</td><td><a class="ext" href="https://note.com/konaito/n/n6b191d831312" target="_blank" rel="noopener">20代はおしまい，40代ははじまり -AI時代への絶望-</a></td></tr>
+                        <tr><td>2025年4月</td><td><a class="ext" href="https://note.com/konaito/n/nce6c033404fb" target="_blank" rel="noopener">みんなのやりたい仕事の未来</a></td></tr>
+                        <tr><td>2025年7月</td><td><a class="ext" href="https://note.com/konaito/n/n898155031d36" target="_blank" rel="noopener">AIが奪う「新卒の仕事」──アメリカの警告は、日本の未来か？</a></td></tr>
+                        <tr><td>2026年2月</td><td><a class="ext" href="https://note.com/konaito/n/n7afe40a9a1e8" target="_blank" rel="noopener">生成AIとAIエージェントの違い</a></td></tr>
+                        <tr><td>2026年3月</td><td><a class="ext" href="https://note.com/konaito/n/n65fc897493a4" target="_blank" rel="noopener">AGI前にする、人生最後の努力</a></td></tr>
+                        <tr><td>2026年3月</td><td><a class="ext" href="https://note.com/konaito/n/na883f2b0a2a5" target="_blank" rel="noopener">友達ショート — 制作コスト0の世界で、私たちは何を失うのか</a></td></tr>
+                        <tr><td>2026年3月</td><td><a class="ext" href="https://note.com/konaito/n/n4203d3d77c2f" target="_blank" rel="noopener">今のうちに絶望しておこう、AGIピル</a></td></tr>
+                        <tr><td>2026年3月</td><td><a class="ext" href="https://note.com/konaito/n/n63a80f0ba3bd" target="_blank" rel="noopener">何でもするから飯をくれ——交換の席がなくなる世界で</a></td></tr>
+                        <tr><td>2026年3月</td><td><a class="ext" href="https://note.com/konaito/n/n11a2a7168266" target="_blank" rel="noopener">仙人と天才 v2</a></td></tr>
+                        <tr><td>2026年3月</td><td><a class="ext" href="https://pub.fybe.jp/" target="_blank" rel="noopener">時定数ゼロの世界で、人間は何を握るのか</a>（眼光出版）</td></tr>
+                        <tr><td>2026年4月</td><td><a class="ext" href="https://note.com/konaito/n/nf053632e18bd" target="_blank" rel="noopener">複雑な社会を、複雑なまま捉えよう</a></td></tr>
+                        <tr><td>2026年4月</td><td><a class="ext" href="https://note.com/konaito/n/n22563a310ea6" target="_blank" rel="noopener">AGIという死滅回遊後の「同化」</a></td></tr>
+                        <tr><td>2026年4月</td><td><a class="ext" href="https://note.com/konaito/n/n7269d554c702" target="_blank" rel="noopener">「考える」なんてAIにやらせろ、人間の仕事は「見る」ことだ</a></td></tr>
+                        <tr><td>2026年5月</td><td><a class="ext" href="https://note.com/konaito/n/n462350144ef1" target="_blank" rel="noopener">動摩擦が0になった世界 -人間は摩擦になる-</a></td></tr>
+                        <tr><td>2026年8月</td><td><a class="ext" href="https://note.com/konaito/n/n7d59cd70785b" target="_blank" rel="noopener">シンギュラリティ後の世界は、ちいかわ</a></td></tr>
+                    </tbody>
+                </table>
+                </div>
+
+                <h2 id="受賞歴">受賞歴</h2>
+                <ul>
+                    <li>2023年12月 – web3 Global Hackathon 2023AW マツダ優秀賞（チーム「Enn-Drive」）<sup class="reference"><a href="#cite-42a">[5]</a></sup></li>
+                    <li>2023年12月 – BLOCKCHAIN HACKATHON for students 2023 Grand Prize、Crypto Games賞（チーム「竹虎」）<sup class="reference"><a href="#cite-42b">[3]</a></sup></li>
+                    <li>2025年11月 – Sui x ONE Championship Tokyo Builders' Arena 優勝、最も睡眠が少なかったで賞<sup class="reference"><a href="#cite-x-sui">[18]</a></sup></li>
+                    <li>2026年4月 – VoiceOSハッカソン 優勝<sup class="reference"><a href="#cite-x-voiceos">[19]</a></sup></li>
+                </ul>
+
+                <h2 id="出演">出演</h2>
+                <h3 id="講演">講演</h3>
+                <ul>
+                    <li><a class="ext" href="https://speakerdeck.com/konaito/next-dot-jszui-qiang" target="_blank" rel="noopener">Next.js最強</a> – 42 Tokyo LT会（資料は2024年7月公開）<sup class="reference"><a href="#cite-lt">[24]</a></sup></li>
+                    <li><a class="ext" href="https://speakerdeck.com/konaito/burauzaha-anatawoshou-ritai-cors" target="_blank" rel="noopener">ブラウザはあなたを守りたい - CORS</a> – 42 Tokyo LT会（資料は2024年7月公開）<sup class="reference"><a href="#cite-lt">[24]</a></sup></li>
+                </ul>
+                <h3 id="インターネット番組">インターネット番組</h3>
+                <ul>
+                    <li>M&amp;A CAMP（YouTube）
+                        <ul>
+                            <li><a class="ext" href="https://www.youtube.com/watch?v=Y_ps0mHRF00" target="_blank" rel="noopener">【稼いでから考えろ】何もない時の優秀な人の口説き方を亀山会長にガチ相談</a>（2025年1月24日公開）</li>
+                            <li><a class="ext" href="https://www.youtube.com/watch?v=BkbmnZjNEW4" target="_blank" rel="noopener">【覚悟が会社を強くする】お金を生み出す商売論を亀山会長に聞いてみた【公開収録】</a>（2025年1月30日公開） – サムネイルにも登場</li>
+                        </ul>
+                    </li>
+                </ul>
+                <p>いずれも、DMM.com会長の亀山敬司が起業家の相談に答える回である。</p>
+
+                <h2 id="人物">人物</h2>
+                <ul>
+                    <li>技術、事業、投資、音楽と関心の幅が広い。趣味は『ポケットモンスター』と『ONE PIECE』<sup class="reference"><a href="#cite-profile">[1]</a></sup>。</li>
+                    <li>エッセイでは、数理物理の用語（時定数、摩擦）、柄谷行人の交換様式論、カミュの『シーシュポスの神話』、漫画『呪術廻戦』などを同じ平面に並べて論じる<sup class="reference"><a href="#cite-pub">[10]</a></sup>。</li>
+                    <li>Xでは@konaito_copilotとして、AIの動向への考察や自作プロダクトの告知を発信している。2026年7月、Claude Fable 5の提供期間延長の意図を読んだ引用ポストは約15.9万回<sup class="reference"><a href="#cite-x-fable">[20]</a></sup>、2026年9月、AI生成動画の技術に驚いた引用ポストは約86万回表示された<sup class="reference"><a href="#cite-x-biwako">[21]</a></sup>。</li>
+                </ul>
+
+                <h3 id="画面から推定した感情">画面から推定した感情</h3>
+                <div class="thumb">
+                    <a href="assets/brain-final.webp"><img src="assets/brain-final.webp" alt="頭の形の中に、期待・不安・喜びなど15感情を表す漢字が割合に応じた数だけ並んだ図" width="1000" height="709" loading="lazy"></a>
+                    <div class="thumbcaption">48日間の画面の文字から推定した感情の配分。頭の中の69文字を、各感情の割合（平方根補正後）に比例して割り当てている。</div>
+                </div>
+                <p>内藤は、自作の画面記録ツールContextCap<sup class="reference"><a href="#cite-contextcap">[26]</a></sup>で記録したPCとAndroidの画面の文字（OCR）から、その時々の気分をJevに推定させる実験を行っている。2026年8月3日から9月21日までの48日間を10秒ごとに区切り、文字のある188,658区間それぞれについて、15の感情のどれに近いかの確率を求めた。全区間の確率を合計して平方根をとり、割合を頭の中の文字数で表したのが図である。</p>
+                <p>最も多いのは期待（14.7%）で、不安（13.7%）、喜び（12.4%）が続く。上位7つの感情で全体の77%を占める。期待・不安・喜びの3つは、全区間の65%で最も確率の高い感情だった。</p>
+                <p>これは画面の文字から推定した値で、本人の感情を測ったものではない。画面を見ていない時間や、画像・音声・動画の中身は含まれない。また表示には平方根補正をかけており、補正前は期待（22.4%）と恐怖（0.2%）に約140倍の差があるのに対し、補正後は約12倍まで縮んでいる。</p>
+                <div class="table-wrap">
+                <table class="wikitable">
+                    <caption>感情ごとの推定値（48日間・188,658区間）</caption>
+                    <thead><tr><th>感情（図の文字）</th><th>図の割合<br><small>平方根補正後</small></th><th>補正前の<br>平均確率</th><th>最も確率が高かった<br>区間の割合</th></tr></thead>
+                    <tbody>
+                        <tr><td>期待（期）</td><td class="num">14.7%</td><td class="num">22.4%</td><td class="num">25.2%</td></tr>
+                        <tr><td>不安（憂）</td><td class="num">13.7%</td><td class="num">19.5%</td><td class="num">22.0%</td></tr>
+                        <tr><td>喜び（喜）</td><td class="num">12.4%</td><td class="num">16.0%</td><td class="num">17.4%</td></tr>
+                        <tr><td>誇り（誇）</td><td class="num">10.3%</td><td class="num">11.0%</td><td class="num">12.8%</td></tr>
+                        <tr><td>安心（安）</td><td class="num">9.5%</td><td class="num">9.4%</td><td class="num">7.6%</td></tr>
+                        <tr><td>驚き（驚）</td><td class="num">8.7%</td><td class="num">7.9%</td><td class="num">6.7%</td></tr>
+                        <tr><td>怒り（怒）</td><td class="num">7.9%</td><td class="num">6.5%</td><td class="num">4.9%</td></tr>
+                        <tr><td>寂しさ（寂）</td><td class="num">3.8%</td><td class="num">1.5%</td><td class="num">0.7%</td></tr>
+                        <tr><td>恥ずかしさ（恥）</td><td class="num">3.7%</td><td class="num">1.5%</td><td class="num">0.6%</td></tr>
+                        <tr><td>嫌悪（嫌）</td><td class="num">3.6%</td><td class="num">1.3%</td><td class="num">0.7%</td></tr>
+                        <tr><td>愛情（愛）</td><td class="num">3.3%</td><td class="num">1.1%</td><td class="num">0.5%</td></tr>
+                        <tr><td>悲しみ（悲）</td><td class="num">2.7%</td><td class="num">0.8%</td><td class="num">0.5%</td></tr>
+                        <tr><td>嫉妬（妬）</td><td class="num">2.2%</td><td class="num">0.5%</td><td class="num">0.2%</td></tr>
+                        <tr><td>罪悪感（罪）</td><td class="num">2.2%</td><td class="num">0.5%</td><td class="num">0.3%</td></tr>
+                        <tr><td>恐怖（怖）</td><td class="num">1.2%</td><td class="num">0.2%</td><td class="num">0.05%</td></tr>
+                    </tbody>
+                </table>
+                </div>
+
+                <h2 id="脚注">脚注</h2>
+                <ol class="references cols">
+                    <li id="cite-profile"><span class="back">^</span> <a class="ext" href="https://github.com/konaito" target="_blank" rel="noopener">konaito のGitHubプロフィール</a>（本人作成のペルソナ・プロファイル）。2026年9月28日閲覧。</li>
+                    <li id="cite-fybe"><span class="back">^</span> <a class="ext" href="https://www.fybe.jp/" target="_blank" rel="noopener">FYBE 公式サイト</a>。合同会社FYBE.jp。2026年9月28日閲覧。</li>
+                    <li id="cite-42b"><span class="back">^</span> <a class="ext" href="https://42tokyo.jp/news/2023-12-16-9qnl39syjtnv/" target="_blank" rel="noopener">「BLOCKCHAIN HACKATHON for students 2023」にて42 Tokyoの学生による2チームが受賞</a>. 42 Tokyo（2023年12月16日）。</li>
+                    <li id="cite-complex"><span class="back">^</span> <a class="ext" href="https://note.com/konaito/n/nf053632e18bd" target="_blank" rel="noopener">複雑な社会を、複雑なまま捉えよう</a>. note（2026年4月11日）。</li>
+                    <li id="cite-42a"><span class="back">^</span> <a class="ext" href="https://42tokyo.jp/news/2023-12-09-00quj9lf-v/" target="_blank" rel="noopener">「web3 Global Hackathon 2023AW」にて42 Tokyoの学生による2チームが受賞</a>. 42 Tokyo（2023年12月9日）。</li>
+                    <li id="cite-houjin"><span class="back">^</span> <a class="ext" href="https://www.houjin-bangou.nta.go.jp/henkorireki-johoto.html?selHouzinNo=6020003026687" target="_blank" rel="noopener">合同会社FYBE.jp（法人番号 6020003026687）の変更履歴</a>. 国税庁法人番号公表サイト。2026年9月28日閲覧。</li>
+                    <li id="cite-web2md"><span class="back">^</span> <a class="ext" href="https://prtimes.jp/main/html/rd/p/000000003.000154423.html" target="_blank" rel="noopener">【ユニークユーザー1,600人突破】Web2MDが変える情報整理の新常識</a>. PR TIMES（2025年8月2日）。</li>
+                    <li id="cite-hitoshira"><span class="back">^</span> <a class="ext" href="https://prtimes.jp/main/html/rd/p/000000008.000154423.html" target="_blank" rel="noopener">"ヒトシラ"、商談前の「ググっても相手の情報が出てこない」問題を解決。</a> PR TIMES（2025年11月30日）。</li>
+                    <li id="cite-prtimes"><span class="back">^</span> <a class="ext" href="https://prtimes.jp/main/html/searchrlp/company_id/154423" target="_blank" rel="noopener">合同会社FYBE.jpのプレスリリース一覧</a>. PR TIMES。2026年9月28日閲覧。</li>
+                    <li id="cite-pub"><span class="back">^</span> <a class="ext" href="https://pub.fybe.jp/" target="_blank" rel="noopener">眼光出版</a>. 合同会社FYBE.jp。2026年9月28日閲覧。</li>
+                    <li id="cite-yt"><span class="back">^</span> <a class="ext" href="https://www.youtube.com/channel/UCUCuTNSoAma6Q3-FHk4Ea8w" target="_blank" rel="noopener">konaito - トピック</a>. YouTube。2026年9月28日閲覧。</li>
+                    <li id="cite-note"><span class="back">^</span> <a class="ext" href="https://note.com/konaito" target="_blank" rel="noopener">konaito</a>. note。2026年9月28日閲覧。</li>
+                    <li id="cite-x-2023"><span class="back">^</span> 内藤剛汰 [@konaito_copilot]（2024年8月25日）. <a class="ext" href="https://x.com/konaito_copilot/status/1827568041066164651" target="_blank" rel="noopener">「去年、国内外10個くらいのハッカソンに出て…」</a>. X。</li>
+                    <li id="cite-x-42"><span class="back">^</span> 内藤剛汰 [@konaito_copilot]（2025年4月25日）. <a class="ext" href="https://x.com/konaito_copilot/status/1915688116012347650" target="_blank" rel="noopener">「42，良かった．」</a>. X。</li>
+                    <li id="cite-x-jpyc"><span class="back">^</span> 内藤剛汰 [@konaito_copilot]（2025年11月2日）. <a class="ext" href="https://x.com/konaito_copilot/status/1984701706597515338" target="_blank" rel="noopener">「$JPYC 貰ってもガス代なく動かせない人のために…」</a>. X。</li>
+                    <li id="cite-x-jpyc-don"><span class="back">^</span> 内藤剛汰 [@konaito_copilot]（2025年11月6日）. <a class="ext" href="https://x.com/konaito_copilot/status/1986238753388835240" target="_blank" rel="noopener">「$JPYC で初めてブロックチェーンに触れる人向けにガス代を寄付するプロジェクト…」</a>. X。</li>
+                    <li id="cite-x-jpyc-self"><span class="back">^</span> 内藤剛汰 [@konaito_copilot]（2026年4月26日）. <a class="ext" href="https://x.com/konaito_copilot/status/2048383265627877862" target="_blank" rel="noopener">「超久しぶりにJPYCガス支援サイト…」</a>. X。</li>
+                    <li id="cite-x-sui"><span class="back">^</span> 内藤剛汰 [@konaito_copilot]（2025年11月16日）. <a class="ext" href="https://x.com/konaito_copilot/status/1989939624488439983" target="_blank" rel="noopener">「Suiハッカソン優勝しました」</a>. X。</li>
+                    <li id="cite-x-voiceos"><span class="back">^</span> 内藤剛汰 [@konaito_copilot]（2026年4月3日）. <a class="ext" href="https://x.com/konaito_copilot/status/2040070237635359140" target="_blank" rel="noopener">「VoiceOSハッカソン行ったら…」</a>. X。</li>
+                    <li id="cite-x-fable"><span class="back">^</span> 内藤剛汰 [@konaito_copilot]（2026年7月8日）. <a class="ext" href="https://x.com/konaito_copilot/status/2074553655827812643" target="_blank" rel="noopener">「claude fableを使うために…」</a>. X。</li>
+                    <li id="cite-x-biwako"><span class="back">^</span> 内藤剛汰 [@konaito_copilot]（2026年9月8日）. <a class="ext" href="https://x.com/konaito_copilot/status/2097230171971653902" target="_blank" rel="noopener">「いや、普通に技術として…」</a>. X。</li>
+                    <li id="cite-x-hongo"><span class="back">^</span> 内藤剛汰 [@konaito_copilot]（2023年12月17日）. <a class="ext" href="https://x.com/konaito_copilot/status/1736226541158465621" target="_blank" rel="noopener">「本郷ハッカソンお疲れ様でした！」</a>. X。</li>
+                    <li id="cite-zkgeo"><span class="back">^</span> <a class="ext" href="https://ethglobal.com/showcase/zk-geo-5rfdt" target="_blank" rel="noopener">zk-Geo</a>. ETHGlobal Showcase（Circuit Breaker）。2026年9月28日閲覧。</li>
+                    <li id="cite-lt"><span class="back">^</span> 内藤剛汰 [@konaito_copilot]（2024年7月15日・27日）. <a class="ext" href="https://x.com/konaito_copilot/status/1812854380963749962" target="_blank" rel="noopener">「以前、42TokyoでLT会をやった時に扱った資料です。」</a>、<a class="ext" href="https://x.com/konaito_copilot/status/1817145379940663309" target="_blank" rel="noopener">「以前、42内でLT会を開いた時に発表した資料です。」</a> X。</li>
+                    <li id="cite-x-42matome"><span class="back">^</span> 内藤剛汰 [@konaito_copilot]（2025年2月23日）. <a class="ext" href="https://x.com/konaito_copilot/status/1893640988133867954" target="_blank" rel="noopener">「42Tokyo発起業まとめてみた」</a>. X。</li>
+                    <li id="cite-contextcap"><span class="back">^</span> <a class="ext" href="https://github.com/konaito/contextcap" target="_blank" rel="noopener">ContextCap</a>. GitHub。2026年9月28日閲覧。</li>
+                </ol>
+
+                <h2 id="外部リンク">外部リンク</h2>
+                <ul>
+                    <li><a class="ext" href="https://github.com/konaito" target="_blank" rel="noopener">konaito</a> – GitHub</li>
+                    <li><a class="ext" href="https://x.com/konaito_copilot" target="_blank" rel="noopener">内藤剛汰 (@konaito_copilot)</a> – X</li>
+                    <li><a class="ext" href="https://note.com/konaito" target="_blank" rel="noopener">konaito</a> – note</li>
+                    <li><a class="ext" href="https://www.youtube.com/channel/UCUCuTNSoAma6Q3-FHk4Ea8w" target="_blank" rel="noopener">konaito - トピック</a> – YouTube</li>
+                    <li><a class="ext" href="https://www.fybe.jp/" target="_blank" rel="noopener">FYBE</a> – 合同会社FYBE.jp</li>
+                    <li><a class="ext" href="https://pub.fybe.jp/" target="_blank" rel="noopener">眼光出版</a></li>
+                </ul>
+
+                <div class="catlinks">
+                    カテゴリ:
+                    <ul>
+                        <li>日本のソフトウェア開発者</li>
+                        <li>日本の実業家</li>
+                        <li>日本のシンガーソングライター</li>
+                        <li>日本のエッセイスト</li>
+                        <li>岩手大学の人物</li>
+                        <li>42 Tokyoの人物</li>
+                        <li>神奈川県出身の人物</li>
+                        <li>ハッカソン受賞者</li>
+                        <li>存命人物</li>
+                    </ul>
+                </div>
+            </div>
+        </main>
     </div>
 
-    <script>
-    const I18N = {
-        ja: {
-            kicker: "Engineering Portfolio",
-            hero_title: 'Build first, <em>then think.</em>',
-            lede: "konaito（内藤剛汰）。AIエージェント、Webサービス、ネイティブアプリ。思いついたものは全部作る。{repos}リポジトリ、うち{private}は非公開。",
-            s1_title: "数字で見る",
-            s1_note: "GitHub上の全リポジトリ（fork除く）の実測値。非公開リポジトリを含む。",
-            contrib_title: "年間コントリビューション",
-            contrib_note: "※ {year}年は1月〜{month}月時点の値。AIエージェントを使い倒す開発スタイルに移行してから、出荷速度が桁で変わった。",
-            lang_title: "言語別リポジトリ数",
-            lang_note: "各リポジトリの主要言語で集計。ほかに Rust / Go / Ruby / Dart / Astro / Solidity など。",
-            s2_title: "何を作ってきたか",
-            s2_note: "非公開リポジトリを含む{repos}リポジトリをドメイン別に集計。個別の非公開プロジェクトの詳細は面談等でお見せできます。",
-            live_title: "触って試せる",
-            live_go: "開く",
-            s3_title: "公開プロジェクト",
-            updated: "データ更新:",
-            domains: {
-                "ai-agents": { name: "AIエージェント / LLMアプリ", tech: "Claude Agent SDK · OpenAI · マルチエージェント · RAG", desc: "自律エージェント、LLM同士の対戦・会話システム、生成AIプロダクトの企画から実装まで。" },
-                "web-saas": { name: "Webサービス / SaaS", tech: "Next.js · TypeScript · Supabase · Prisma · Vercel", desc: "認証・課金・分析まで含むフルスタックのWebサービスを多数構築・運用。" },
-                "devtools": { name: "開発ツール / CLI", tech: "TypeScript · CDP · Claude Code skills · Homebrew", desc: "ターミナル内ブラウザ、エージェント用スキル群など、開発体験を上げる道具を自作。" },
-                "native-apps": { name: "ネイティブアプリ", tech: "Swift / macOS · Kotlin / Android · BLE", desc: "macOSメニューバー常駐ツール、Androidウィジェット、BLEデバイス連携アプリなど。" },
-                "trading": { name: "トレーディング / 予測市場", tech: "Python · Polymarket · Hyperliquid · バックテスト", desc: "予測市場・暗号資産の自動売買Bot、バックテスト基盤、ダッシュボード。" },
-                "ml": { name: "機械学習 / 強化学習", tech: "PyTorch · PPO self-play · シミュレーション", desc: "カードゲームAIの自己対戦学習、LLM×RLのハイブリッド対戦AIなど。" },
-                "web3": { name: "ブロックチェーン / zk", tech: "Solidity · zkSNARK · Solana · Sui", desc: "zk回路、トークン、ウォレット連携。ハッカソン参加作品を含む。" },
-                "systems": { name: "低レイヤ / システム", tech: "C · Rust · アルゴリズム", desc: "42カリキュラムのC課題群、Rust製OSSツールへのPR提出など計算機の基礎体力。" },
-                "experiments": { name: "プロトタイプ / 検証", tech: "調査 · 技術検証 · 企画", desc: "新しい技術やアイデアの検証リポジトリ。作って確かめるのが最速だと思っている。" }
-            },
-            statLabels: { repos: "リポジトリ", private: "非公開", langs: "言語", since: "年から" }
-        },
-        en: {
-            kicker: "Engineering Portfolio",
-            hero_title: 'Build first, <em>then think.</em>',
-            lede: "konaito (Kota Naito). AI agents, web services, native apps — I build everything I think of. {repos} repositories, {private} of them private.",
-            s1_title: "By the numbers",
-            s1_note: "Measured across all GitHub repositories (excluding forks), private ones included.",
-            contrib_title: "Yearly contributions",
-            contrib_note: "* {year} covers January–{monthName}. Shipping speed changed by an order of magnitude after going all-in on AI-agent-driven development.",
-            lang_title: "Repositories by language",
-            lang_note: "Counted by each repository's primary language. Also: Rust, Go, Ruby, Dart, Astro, Solidity, and more.",
-            s2_title: "What I build",
-            s2_note: "All {repos} repositories, private ones included, grouped by domain. Happy to walk through private projects in a call.",
-            live_title: "Try it live",
-            live_go: "Open",
-            s3_title: "Public projects",
-            updated: "Data updated:",
-            domains: {
-                "ai-agents": { name: "AI Agents / LLM Apps", tech: "Claude Agent SDK · OpenAI · multi-agent · RAG", desc: "Autonomous agents, LLM-vs-LLM game and conversation systems, generative-AI products from concept to code." },
-                "web-saas": { name: "Web Services / SaaS", tech: "Next.js · TypeScript · Supabase · Prisma · Vercel", desc: "Full-stack web services with auth, billing, and analytics — built and operated end to end." },
-                "devtools": { name: "Developer Tools / CLI", tech: "TypeScript · CDP · Claude Code skills · Homebrew", desc: "A browser inside the terminal, agent skill packs — tools that sharpen the development loop." },
-                "native-apps": { name: "Native Apps", tech: "Swift / macOS · Kotlin / Android · BLE", desc: "macOS menu-bar utilities, Android widgets, BLE device companions, and more." },
-                "trading": { name: "Trading / Prediction Markets", tech: "Python · Polymarket · Hyperliquid · backtesting", desc: "Trading bots for prediction markets and crypto, backtesting rigs, dashboards." },
-                "ml": { name: "Machine Learning / RL", tech: "PyTorch · PPO self-play · simulation", desc: "Self-play card-game AIs, hybrid LLM×RL battle agents, and other trained systems." },
-                "web3": { name: "Blockchain / zk", tech: "Solidity · zkSNARK · Solana · Sui", desc: "zk circuits, tokens, wallet integrations — including hackathon entries." },
-                "systems": { name: "Systems / Low-level", tech: "C · Rust · algorithms", desc: "The 42 curriculum in C, pull requests to Rust OSS tools — computing fundamentals." },
-                "experiments": { name: "Prototypes / Research", tech: "research · feasibility · planning", desc: "Repositories for testing new tech and ideas. Building is the fastest way to find out." }
-            },
-            statLabels: { repos: "repositories", private: "private", langs: "languages", since: "since" }
-        }
-    };
+    <footer class="site-footer">
+        <p>このページの最終更新日時は 2026年9月28日 です。GitHub統計の集計日は <span id="generated-at">—</span> です。</p>
+        <p>コナイトペディアは内藤剛汰の個人サイトです。ウィキペディアおよびウィキメディア財団とは関係ありません。</p>
+        <ul>
+            <li><a class="ext" href="https://github.com/konaito/konaito.github.io" target="_blank" rel="noopener">ソースコード</a></li>
+            <li><a class="ext" href="https://github.com/konaito/konaito.github.io/commits/main" target="_blank" rel="noopener">更新履歴</a></li>
+            <li>© <span id="year">2026</span> konaito</li>
+        </ul>
+    </footer>
 
-    let DATA = null;
-    let lang = (() => {
-        try { return localStorage.getItem('lang') || 'ja'; }
-        catch (e) { return 'ja'; }
+    <script>
+    // 目次を見出しから生成
+    (function buildToc() {
+        const heads = [...document.querySelectorAll('.content h2, .content h3')];
+        const make = () => {
+            const root = document.createElement('ol');
+            let current = null;
+            heads.forEach(h => {
+                const li = document.createElement('li');
+                const a = document.createElement('a');
+                a.href = '#' + h.id;
+                a.textContent = h.textContent;
+                li.appendChild(a);
+                if (h.tagName === 'H2') {
+                    root.appendChild(li);
+                    current = li;
+                } else if (current) {
+                    let sub = current.querySelector('ol');
+                    if (!sub) { sub = document.createElement('ol'); current.appendChild(sub); }
+                    sub.appendChild(li);
+                }
+            });
+            return root.innerHTML;
+        };
+        document.getElementById('toc-list').innerHTML = make();
+        document.getElementById('toc-list-mobile').innerHTML = make();
+
+        // 読んでいる節を目次で強調
+        const links = new Map([...document.querySelectorAll('#toc-list a')].map(a => [decodeURIComponent(a.hash.slice(1)), a]));
+        const io = new IntersectionObserver(entries => {
+            entries.forEach(e => {
+                if (!e.isIntersecting) return;
+                links.forEach(a => a.classList.remove('active'));
+                const a = links.get(e.target.id);
+                if (a) a.classList.add('active');
+            });
+        }, { rootMargin: '0px 0px -75% 0px' });
+        heads.forEach(h => io.observe(h));
     })();
 
-    function setLang(l) {
-        lang = l;
-        try { localStorage.setItem('lang', l); } catch (e) {}
-        document.documentElement.lang = l;
-        render();
-    }
+    document.getElementById('year').textContent = new Date().getFullYear();
 
-    function render() {
-        if (!DATA) return;
-        const t = I18N[lang];
-        const partial = DATA.contributions.find(c => c.partial) || DATA.contributions.at(-1);
-        const generatedDate = new Date(`${DATA.generatedAt}T00:00:00Z`);
-        const variables = {
-            repos: DATA.totals.repos,
-            private: DATA.totals.private,
-            year: partial?.year || generatedDate.getUTCFullYear(),
-            month: generatedDate.getUTCMonth() + 1,
-            monthName: new Intl.DateTimeFormat('en-US', { month: 'long', timeZone: 'UTC' }).format(generatedDate),
-        };
-        const translate = value => String(value ?? '').replace(/\{(\w+)\}/g, (_, key) => variables[key] ?? `{${key}}`);
-        document.getElementById('btn-ja').classList.toggle('active', lang === 'ja');
-        document.getElementById('btn-en').classList.toggle('active', lang === 'en');
-        document.querySelectorAll('[data-i18n]').forEach(el => {
-            el.textContent = translate(t[el.dataset.i18n]);
-        });
-        document.getElementById('hero-title').innerHTML = t.hero_title;
-        document.getElementById('generated-at').textContent = DATA.generatedAt;
-        document.getElementById('year').textContent = new Date().getFullYear();
-
-        // 統計
-        const langCount = DATA.languagesByBytes.length;
-        const stats = [
-            { v: DATA.totals.repos, u: '', label: t.statLabels.repos },
-            { v: DATA.totals.private, u: '', label: t.statLabels.private },
-            { v: langCount, u: '+', label: t.statLabels.langs },
-            { v: DATA.totals.since, u: '', label: t.statLabels.since },
-        ];
-        document.getElementById('stat-grid').innerHTML = stats.map(s =>
-            `<div class="stat"><div class="value">${s.v}<span class="unit">${s.u}</span></div><div class="label">${s.label}</div></div>`
-        ).join('');
-
-        // コントリビューション
-        const max = Math.max(...DATA.contributions.map(c => c.total));
-        document.getElementById('contrib-chart').innerHTML = DATA.contributions.map(c => {
-            const h = Math.max(2, Math.round(c.total / max * 100));
-            const yearLabel = c.partial ? (lang === 'ja' ? `${c.year}*` : `${c.year}*`) : c.year;
-            return `<div class="contrib-col">
-                <div class="contrib-bar${c.partial ? ' partial' : ''}" style="height:${h}%">
-                    <span class="count">${c.total.toLocaleString()}</span>
-                </div>
-                <div class="year">${yearLabel}</div>
-            </div>`;
-        }).join('');
-
-        // 言語
-        const maxRepos = DATA.languagesByRepos[0].repos;
-        document.getElementById('lang-rows').innerHTML = DATA.languagesByRepos.map((l, i) =>
-            `<div class="lang-row">
-                <span class="name">${l.name}</span>
-                <div class="bar-track"><div class="bar" style="width:${Math.round(l.repos / maxRepos * 100)}%; animation-delay:${i * 0.05}s"></div></div>
-                <span class="pct">${l.repos}</span>
-            </div>`
-        ).join('');
-
-        // ドメイン
-        const catOrder = [...DATA.categories].sort((a, b) => b.count - a.count);
-        document.getElementById('domain-grid').innerHTML = catOrder.map(c => {
-            const d = t.domains[c.id];
-            if (!d) return '';
-            return `<div class="domain">
-                <div class="top"><h3>${d.name}</h3><span class="count">× ${c.count}</span></div>
-                <div class="tech">${d.tech}</div>
-                <p>${d.desc}</p>
-            </div>`;
-        }).join('');
-
-        // Live (GitHub Pagesで公開中のもの)
-        const live = DATA.featured.filter(p => p.pagesUrl);
-        document.getElementById('live-grid').innerHTML = live.map(p =>
-            `<a class="live-card" href="${p.pagesUrl}" target="_blank" rel="noopener">
-                <span class="live-badge">LIVE</span>
-                <h3>${p.name}</h3>
-                <p>${p.description}</p>
-                <span class="go">${t.live_go} ↗</span>
-            </a>`
-        ).join('');
-
-        // プロジェクト (Live枠以外)
-        document.getElementById('projects').innerHTML = DATA.featured.filter(p => !p.pagesUrl).map(p =>
-            `<a class="project" href="${p.url}" target="_blank" rel="noopener">
-                <div><div class="p-name">${p.name}</div><div class="p-lang">${p.language}${p.stars ? ` · ★ ${p.stars}` : ''}</div></div>
-                <div class="p-desc">${p.description}</div>
-            </a>`
-        ).join('');
-    }
-
+    // GitHub統計（scripts/collect.py が生成する data.json）
+    const DOMAINS = {
+        "ai-agents": ["AIエージェント / LLMアプリ", "Claude Agent SDK, OpenAI, マルチエージェント, RAG"],
+        "web-saas": ["Webサービス / SaaS", "Next.js, TypeScript, Supabase, Prisma, Vercel"],
+        "devtools": ["開発者ツール / CLI", "TypeScript, CDP, Claude Code skills, Homebrew"],
+        "native-apps": ["ネイティブアプリ", "Swift (macOS), Kotlin (Android), BLE"],
+        "trading": ["トレーディング / 予測市場", "Python, Polymarket, Hyperliquid, バックテスト"],
+        "ml": ["機械学習 / 強化学習", "PyTorch, PPO self-play, シミュレーション"],
+        "web3": ["ブロックチェーン / zk", "Solidity, zkSNARK, Solana, Sui"],
+        "systems": ["低レイヤ / システム", "C, Rust"],
+        "experiments": ["プロトタイプ / 検証", "調査, 技術検証, 企画"]
+    };
     fetch('data.json')
         .then(r => r.json())
-        .then(d => { DATA = d; setLang(lang); });
+        .then(d => {
+            document.getElementById('generated-at').textContent = d.generatedAt;
+            document.getElementById('stats-lead').textContent =
+                `非公開を含むGitHub上の全リポジトリ（フォークを除く）を集計した値を以下に示す。${d.generatedAt}時点で${d.totals.repos}リポジトリ（うち非公開${d.totals.private}）。主要言語はTypeScript、Python、JavaScriptの順に多い。`;
+            document.querySelector('#contrib-table tbody').innerHTML = d.contributions.map(c =>
+                `<tr><td>${c.year}年${c.partial ? '（集計時点）' : ''}</td><td class="num">${c.total.toLocaleString()}</td></tr>`
+            ).join('');
+            document.querySelector('#domain-table tbody').innerHTML = [...d.categories]
+                .sort((a, b) => b.count - a.count)
+                .filter(c => DOMAINS[c.id])
+                .map(c => `<tr><td>${DOMAINS[c.id][0]}</td><td class="num">${c.count}</td><td>${DOMAINS[c.id][1]}</td></tr>`)
+                .join('');
+        })
+        .catch(() => {
+            document.querySelector('#contrib-table tbody').innerHTML = '<tr><td colspan="2">統計データを読み込めなかった。</td></tr>';
+            document.querySelector('#domain-table tbody').innerHTML = '<tr><td colspan="3">統計データを読み込めなかった。</td></tr>';
+        });
 
-    // スクロールリビール
-    const io = new IntersectionObserver(entries => {
-        entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
-    }, { threshold: 0.08 });
-    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+    // ── 自然言語検索（Jev） ──
+    // 本文を「パーツ」に分け、Cloudflare Worker 経由で Jev にクエリとの関連度を判定させる。
+    // APIキーは Worker 側にだけある。
+    // Worker のソースは worker/。ローカル（127.0.0.1:4173）からも本番の Worker を使う
+    const SEARCH_ENDPOINT = 'https://konaito-search.fybe-jp.workers.dev';
+    const MIN_SCORE = 0.2;     // これ未満は常に出さない
+    const RELATIVE_CUT = 0.75; // 1位の確率のこの割合未満も出さない（関係の薄い候補を落とす）
+    const MAX_RESULTS = 8;
+
+    // 検索対象から外す部分（出典・リンク集・ナビゲーション）
+    const SKIP_SECTIONS = new Set(['脚注', '外部リンク']);
+
+    function cleanText(el) {
+        const clone = el.cloneNode(true);
+        clone.querySelectorAll('sup.reference').forEach(n => n.remove());
+        clone.querySelectorAll('br').forEach(n => n.replaceWith(' '));
+        return clone.textContent.replace(/\s+/g, ' ').trim();
+    }
+
+    function buildParts() {
+        const parts = [];
+        // text は Jev に渡す文（見出しの文脈つき）、snippet は結果一覧に出す本文
+        const add = (el, text, path, snippet) => {
+            if (!snippet) return;
+            const id = 'p' + parts.length;
+            el.dataset.partId = id;
+            parts.push({ id, el, path, text, snippet });
+        };
+
+        // インフォボックスは行ごと
+        document.querySelectorAll('.infobox tr').forEach(tr => {
+            const th = tr.querySelector('th[scope="row"]'), td = tr.querySelector('td');
+            if (th && td) {
+                const row = `${cleanText(th)}: ${cleanText(td)}`;
+                add(tr, `インフォボックス: ${row}`, ['インフォボックス'], row);
+            }
+        });
+
+        let h2 = '', h3 = '', skip = false;
+        const content = document.querySelector('.content');
+        for (const el of content.children) {
+            if (el.matches('h2')) { h2 = el.textContent.trim(); h3 = ''; skip = SKIP_SECTIONS.has(el.id); continue; }
+            if (el.matches('h3')) { h3 = el.textContent.trim(); continue; }
+            if (skip || el.matches('.hatnote, .ambox, .infobox, details, .catlinks')) continue;
+            const path = [h2 || '概要', h3].filter(Boolean);
+            const label = h2 ? `${path.join(' › ')}` : '冒頭';
+
+            if (el.matches('p, blockquote')) { const t = cleanText(el); add(el, `${label}: ${t}`, path, t); }
+            else if (el.matches('ul, ol')) [...el.children].forEach(li => { const t = cleanText(li); add(li, `${label}: ${t}`, path, t); });
+            else if (el.matches('.table-wrap')) {
+                const table = el.querySelector('table');
+                const caption = table.caption ? cleanText(table.caption) : '';
+                const heads = [...table.querySelectorAll('thead th')].map(th => th.textContent.trim());
+                table.querySelectorAll('tbody tr').forEach(tr => {
+                    const cells = [...tr.children].map((td, i) => `${heads[i] ? heads[i] + ': ' : ''}${cleanText(td)}`).join(' / ');
+                    add(tr, `${label}${caption ? '（' + caption + '）' : ''}: ${cells}`, path, cells);
+                });
+            }
+        }
+        return parts;
+    }
+
+    (function setupSearch() {
+        const form = document.getElementById('search-form');
+        const input = document.getElementById('search-input');
+        const panel = document.getElementById('search-results');
+        const cache = new Map();
+        let timer = null, controller = null, items = [], active = -1;
+
+        const esc = t => t.replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+        const fallback = q => `<a class="ext" href="https://github.com/konaito?tab=repositories&q=${encodeURIComponent(q)}" target="_blank" rel="noopener">GitHubで「${esc(q)}」を探す</a>`;
+
+        function open(html) { panel.innerHTML = html; panel.hidden = false; input.setAttribute('aria-expanded', 'true'); }
+        function close() { panel.hidden = true; input.setAttribute('aria-expanded', 'false'); active = -1; }
+
+        function render(q, ranked, ms) {
+            items = ranked;
+            active = -1;
+            if (!ranked.length) {
+                open(`<div class="sr-status">「${esc(q)}」に当てはまる記述は見つからなかった。<br>${fallback(q)}</div>`);
+                return;
+            }
+            open(ranked.map((r, i) => {
+                return `<button type="button" class="sr-item" role="option" data-i="${i}" aria-selected="false">
+                    <span class="sr-head"><span class="sr-path">${esc(r.path.join(' › '))}</span><span class="sr-score">${Math.round(r.score * 100)}%</span></span>
+                    <span class="sr-snippet">${esc(r.snippet)}</span>
+                </button>`;
+            }).join('') + `<div class="sr-foot"><span>関連度順 · Jevで判定（${ms}ms）</span>${fallback(q)}</div>`);
+        }
+
+        function jump(r) {
+            close();
+            const target = r.el;
+            target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            target.classList.remove('search-hit');
+            void target.offsetWidth;
+            target.classList.add('search-hit');
+        }
+
+        async function search(q) {
+            q = q.trim();
+            if (q.length < 2) { close(); return; }
+            const parts = buildParts();
+            if (cache.has(q)) { const c = cache.get(q); render(q, rank(parts, c.scores), c.ms); return; }
+
+            controller?.abort();
+            controller = new AbortController();
+            open('<div class="sr-status">検索中…</div>');
+            try {
+                const res = await fetch(SEARCH_ENDPOINT, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ query: q, parts: parts.map(({ id, text }) => ({ id, text })) }),
+                    signal: controller.signal,
+                });
+                const data = await res.json();
+                if (!res.ok) throw new Error(data.error || res.status);
+                if (data.missing) console.warn(`[search] ${data.missing}件のパーツに判定が返らなかった`);
+                cache.set(q, data);
+                if (input.value.trim() === q) render(q, rank(parts, data.scores), data.ms);
+            } catch (e) {
+                if (e.name === 'AbortError') return;
+                console.error('[search]', e);
+                const msg = String(e.message) === 'rate limited' ? '検索回数の上限に達した。少し待ってから試してほしい。' : '検索サーバーに接続できなかった。';
+                open(`<div class="sr-status">${msg}<br>${fallback(q)}</div>`);
+            }
+        }
+
+        function rank(parts, scores) {
+            const top = Math.max(0, ...parts.map(p => scores[p.id] ?? 0));
+            const cut = Math.max(MIN_SCORE, top * RELATIVE_CUT);
+            return parts
+                .filter(p => (scores[p.id] ?? 0) >= cut)
+                .map(p => ({ ...p, score: scores[p.id] }))
+                .sort((a, b) => b.score - a.score)
+                .slice(0, MAX_RESULTS);
+        }
+
+        function move(d) {
+            const buttons = [...panel.querySelectorAll('.sr-item')];
+            if (!buttons.length) return;
+            active = (active + d + buttons.length) % buttons.length;
+            buttons.forEach((b, i) => b.setAttribute('aria-selected', String(i === active)));
+            buttons[active].scrollIntoView({ block: 'nearest' });
+        }
+
+        input.addEventListener('input', () => {
+            clearTimeout(timer);
+            timer = setTimeout(() => search(input.value), 700);
+        });
+        input.addEventListener('keydown', e => {
+            if (e.key === 'ArrowDown') { e.preventDefault(); move(1); }
+            else if (e.key === 'ArrowUp') { e.preventDefault(); move(-1); }
+            else if (e.key === 'Escape') close();
+        });
+        form.addEventListener('submit', e => {
+            e.preventDefault();
+            clearTimeout(timer);
+            if (active >= 0 && items[active]) jump(items[active]);
+            else search(input.value);
+        });
+        panel.addEventListener('click', e => {
+            const btn = e.target.closest('.sr-item');
+            if (btn) jump(items[Number(btn.dataset.i)]);
+        });
+        input.addEventListener('focus', () => { if (panel.innerHTML && input.value.trim().length >= 2) { panel.hidden = false; } });
+        document.addEventListener('click', e => { if (!form.contains(e.target)) close(); });
+    })();
     </script>
 </body>
 </html>
