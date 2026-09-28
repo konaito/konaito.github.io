@@ -1,3 +1,9 @@
 # ローカル専用: privateリポジトリ名を含むため絶対にコミットしない
 scripts/mapping.local.json
 scripts/raw/
+
+# Cloudflare Worker（検索の中継）
+worker/node_modules/
+worker/.wrangler/
+# APIキーを含むため絶対にコミットしない
+worker/.dev.vars

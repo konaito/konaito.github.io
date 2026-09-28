@@ -1,0 +1,15 @@
+name = "konaito-search"
+main = "src/index.ts"
+compatibility_date = "2026-09-01"
+
+[vars]
+ALLOWED_ORIGINS = "https://konaito.github.io,http://127.0.0.1:4173,http://localhost:4173"
+
+# IPごとに60秒あたり20回まで
+[[ratelimits]]
+name = "RATE_LIMITER"
+namespace_id = "1001"
+
+  [ratelimits.simple]
+  limit = 20
+  period = 60
